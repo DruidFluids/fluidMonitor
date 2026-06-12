@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+<Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
     <TargetFramework>net8.0-windows</TargetFramework>
@@ -13,7 +13,7 @@
     <SelfContained>true</SelfContained>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
-    <Version>1.25.64</Version>
+    <Version>1.0.1</Version>
     <Product>fluidMonitor</Product>
   </PropertyGroup>
 
@@ -31,6 +31,3 @@
   </ItemGroup>
 
 </Project>
-
-
-

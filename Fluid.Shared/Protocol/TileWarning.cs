@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Fluid.Shared.Protocol;
@@ -36,3 +36,5 @@ public class TileWarning : INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(n));
     }
 }
+
+

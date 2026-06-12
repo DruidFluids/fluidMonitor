@@ -245,13 +245,13 @@ public static class ThemeApplier
         new BuiltInTheme("WoW Grizzly Hills",      "WoW",  "#FF0E1208", "#FF1C2410", "#FFC06028", "#FFEFDDC0", "#FF8A7058", "Paper"),     // redwood pine + Amberpine cabin amber
         // Nagrand: "vast openness, floating islands, Oshu'gun crystal".
         // Bright cyan sky + emerald grass + jade open feel.
-        new BuiltInTheme("WoW Nagrand",            "WoW",  "#FF0E1A18", "#FF182C2A", "#FF60D8A8", "#FFDDEFE0", "#FF7CA08C", "Aurora"),     // Outland sky + jade grass + crystal
+        new BuiltInTheme("WoW Nagrand", "WoW", "#FF100E08", "#FF1E1C14", "#FFA89060", "#FFDCD4C0", "#FF807050", "Retro"), // dusty earth floating islands
         // Kun-Lai Summit: "majestic mountains, autumnal plains, frigid
         // northern peaks". Warm autumn maple over snowy summit stone.
-        new BuiltInTheme("WoW Kun-Lai Summit",     "WoW",  "#FF0E1218", "#FF1A1E28", "#FFE8703C", "#FFEFD8C8", "#FF947868", "Frosted"),   // autumnal maple over alpine stone
+        new BuiltInTheme("WoW Kun-Lai Summit", "WoW", "#FF0A0E14", "#FF141E2A", "#FFE8C040", "#FFE0E4EC", "#FF7888A0", "Sharp"), // snow temple + golden prayer flags
         // Howling Fjord: "stormy fjord, dark forests, treacherous cliffs,
         // vrykul Viking" Norse Nordic coast. Stormy slate.
-        new BuiltInTheme("WoW Howling Fjord",      "WoW",  "#FF0A1014", "#FF181E26", "#FF5894A8", "#FFD8DFE5", "#FF6C7E88", "Default"),    // vrykul stormy fjord slate
+        new BuiltInTheme("WoW Howling Fjord", "WoW", "#FF0C100A", "#FF1A1E16", "#FFB8A078", "#FFD8DCC8", "#FF688858", "Retro"), // meadow stone + warm cliff accent
         // Zangarmarsh: alien fungal swamp, bioluminescent giant mushrooms,
         // pre-Outland Sea of Zangar. Deep neon turquoise + spore mushroom.
         new BuiltInTheme("WoW Zangarmarsh",        "WoW",  "#FF0A1820", "#FF142836", "#FF30E0C0", "#FFD0EEE5", "#FF6E9A98", "Holographic"),// alien fungal turquoise + spore
@@ -278,14 +278,14 @@ public static class ThemeApplier
         new BuiltInTheme("WoW Tirisfal Glades",    "WoW",  "#FF0C1208", "#FF181E12", "#FF8AAE38", "#FFD8DCB0", "#FF7C8458", "Ink"),         // Forsaken sickly plague yellow-green
         // Sholazar Basin: "tropical jungle in midst of Northrend, hot
         // springs, animals you'd find in Africa". Lush amber-gold tropics.
-        new BuiltInTheme("WoW Sholazar Basin",     "WoW",  "#FF12160A", "#FF20280F", "#FFFFB028", "#FFEEDDB8", "#FF98855A", "Paper"),      // Titan tropical jungle amber
+        new BuiltInTheme("WoW Sholazar Basin", "WoW", "#FF060E06", "#FF101C10", "#FF40B840", "#FFC8E0C0", "#FF508850", "Default"), // lush jungle canopy green
         // Vashj'ir: underwater zone, naga ruins, Lady Vashj's domain.
         // Deep ocean cyan with sun-rays. Solid.
         new BuiltInTheme("WoW Vashj'ir",           "WoW",  "#FF061620", "#FF122838", "#FF30A8D8", "#FFCCE0EE", "#FF6890A8", "Holographic"),// deep ocean naga cyan
         // Ashenvale: deep elven forest with "cypresses and ochres,
         // chestnuts and viridians" + "violets and purples" magic baked
         // in trees. NOT cyan (was wrong). Deep emerald + magic violet hint.
-        new BuiltInTheme("WoW Ashenvale",          "WoW",  "#FF0A1410", "#FF142420", "#FF5CB880", "#FFDDEDDC", "#FF789480", "Paper"),     // night elf forest emerald + magic
+        new BuiltInTheme("WoW Ashenvale", "WoW", "#FF061010", "#FF0E1E20", "#FF38C0B0", "#FFC8E8E4", "#FF488880", "Frosted"), // Darnassian teal moonlit forest
         // Felwood: fel-corrupted dead forest, sickly toxic. Solid.
         new BuiltInTheme("WoW Felwood",            "WoW",  "#FF0E1408", "#FF1A2010", "#FF9FE848", "#FFE0E8C0", "#FF8C9A5A", "Brutalist"),  // fel-corrupted toxic neon green
 
@@ -541,6 +541,25 @@ public static class ThemeApplier
         new BuiltInTheme("World of Tanks Olive Drab",    "World of Tanks", "#FF1A1C10", "#FF252818", "#FFC8A050", "#FFE8E2C8", "#FF8A8B68", "Brutalist"),
         new BuiltInTheme("World of Tanks German Panzer", "World of Tanks", "#FF14140E", "#FF202018", "#FFC08038", "#FFDCDCC8", "#FF7A7A68", "Sharp"),
         new BuiltInTheme("World of Tanks Soviet Heavy",  "World of Tanks", "#FF180E08", "#FF281A10", "#FFE03838", "#FFE5DCC8", "#FF897968", "Brutalist"),
+
+            // v1.0.0: Generic themes (sampled from natural landscapes)
+            new BuiltInTheme("Evergreen", "Nature", "#FF0C140C", "#FF1A261A", "#FF6C9848", "#FFD4DCC8", "#FF688860", "Default"), // deep forest + meadow green
+            new BuiltInTheme("Sandstone", "Nature", "#FF100E0A", "#FF1E1C16", "#FFB8A070", "#FFE0DCD0", "#FF807860", "Retro"), // warm desert rock
+            new BuiltInTheme("Deep Current", "Nature", "#FF0A1014", "#FF141E24", "#FF5898A0", "#FFD0DCE0", "#FF608080", "Frosted"), // cool teal depths
+            new BuiltInTheme("Morning Dew", "Nature", "#FF0C0E0A", "#FF1A1E18", "#FFA8B880", "#FFDCE0D4", "#FF788870", "Paper"), // soft pale green
+            new BuiltInTheme("Hearthwood", "Nature", "#FF100C08", "#FF201A14", "#FFB87848", "#FFE0D8CC", "#FF887058", "Retro"), // rustic cabin warmth
+            new BuiltInTheme("Terracotta", "Nature", "#FF0E0C0C", "#FF1C1A1A", "#FFA86850", "#FFDCD8D4", "#FF806860", "Brutalist"), // earthy clay red
+            new BuiltInTheme("Tidestone", "Nature", "#FF12100C", "#FF201E18", "#FF5898A0", "#FFDCD8CC", "#FF807868", "Sharp"), // rock meets sea
+            new BuiltInTheme("Forest Gold", "Nature", "#FF0C140E", "#FF1A2618", "#FFC8B870", "#FFD8E0D0", "#FF688860", "Default"), // sunlit canopy
+            new BuiltInTheme("Inlet", "Nature", "#FF0A1214", "#FF142022", "#FFB87848", "#FFD0DCE0", "#FF607880", "Frosted"), // deep water warm glow
+            new BuiltInTheme("Canopy", "Nature", "#FF0E100C", "#FF1C1E1A", "#FF4C8840", "#FFD8DCD0", "#FF788870", "Default"), // dense overhead green
+            new BuiltInTheme("Sage", "Nature", "#FF0E0C0A", "#FF1C1A18", "#FFA8C088", "#FFDCE0D4", "#FF787060", "Paper"), // muted green on stone
+            new BuiltInTheme("Clay Coast", "Nature", "#FF0A0E12", "#FF141C22", "#FFA86850", "#FFD0D8DC", "#FF607078", "Brutalist"), // cool water warm clay
+            new BuiltInTheme("Dusk Harbor", "Nature", "#FF100E12", "#FF1E1C22", "#FF68A0A8", "#FFD8D8E0", "#FF787080", "Holographic"), // purple-gray twilight
+            new BuiltInTheme("Fern", "Nature", "#FF0A120A", "#FF162016", "#FF78B060", "#FFD4E0CC", "#FF588850", "Default"), // bright natural green
+            new BuiltInTheme("Driftwood", "Nature", "#FF100E0A", "#FF1E1A16", "#FF889870", "#FFDCD8CC", "#FF787058", "Retro"), // warm muted sage
+            new BuiltInTheme("Glacier", "Nature", "#FF0C0E10", "#FF1A1E22", "#FF78A8C0", "#FFD8DCE4", "#FF687880", "Frosted"), // cool icy blue-gray
+            new BuiltInTheme("Amber Trail", "Nature", "#FF0E0A08", "#FF1E1610", "#FFC8A050", "#FFE0D8C8", "#FF806840", "Retro"), // rich brown + gold
     };
 
     /// <summary>Find the matching preset for current settings, or return the Custom entry (index 0).</summary>

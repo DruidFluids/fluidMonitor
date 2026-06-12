@@ -2,7 +2,7 @@
 
 <img src="https://github.com/DruidFluids/fluidMonitor/raw/main/docs/images/icon.png" width="64">
 
-### fluidMonitor v1.0.0
+### fluidMonitor v1.0.1
 **A beautiful, lightweight system monitor widget for Windows.**
 
 </div>
@@ -11,7 +11,7 @@
 
 ### Download
 
-> **[fluidMonitor_installer_v1.0.0.exe](https://github.com/DruidFluids/fluidMonitor/releases/download/v1.0.0/fluidMonitor_installer_v1.0.0.exe)** — Windows 10/11 (x64)
+> **[fluidMonitor_installer_v1.0.1.exe](https://github.com/DruidFluids/fluidMonitor/releases/download/v1.0.1/fluidMonitor_installer_v1.0.1.exe)** — Windows 10/11 (x64)
 >
 > Includes the widget, background sensor service, and .NET 8 runtime. CPU temperature driver is optional and downloaded on demand.
 

@@ -8,7 +8,7 @@
 
 Real-time CPU, GPU, RAM, network, and disk stats — always on your desktop, never in your way.
 
-[![Release](https://img.shields.io/badge/release-v1.0.0-blue)](../../releases)
+[![Release](https://img.shields.io/badge/release-v1.0.1-blue)](../../releases)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4)](#requirements)
 [![.NET](https://img.shields.io/badge/.NET-8.0-512bd4)](#requirements)
 
@@ -111,7 +111,7 @@ Run fluidMonitor on multiple machines and watch them all from one desktop. TCP-b
 
 fluidMonitor is built with security-conscious defaults:
 
-- **0/69 on VirusTotal** — the installer is clean across all major antivirus engines. [Verify the latest scan yourself](https://www.virustotal.com) by uploading the installer or checking the SHA-256 hash listed in each release.
+- **0/69 on VirusTotal** — the installer is clean across all major antivirus engines. [View the VirusTotal scan](https://www.virustotal.com/gui/file/f3abd4cb91b12d056c93159848ae981f9cf6ba488d0674aa2a69a9cf14de3dcc) — 0 detections across 66 engines. SHA-256 hash is listed in each release for verification.
 - **No telemetry** — the app makes zero network calls. The only outbound connections are the optional PawnIO driver download (user-initiated) and LAN-only remote monitoring.
 - **PawnIO is never bundled** — the CPU temperature driver is downloaded on demand from its [official GitHub release](https://github.com/namazso/PawnIO.Setup/releases), and the digital signature is verified before execution.
 - **Open source** — every line of code is in this repo for inspection. The service requires LocalSystem privileges solely for hardware sensor access via LibreHardwareMonitor.

@@ -1,5 +1,19 @@
 # Version History
 
+## v1.0.1 (2026-06-12)
+
+### Themes
+- 17 new Nature themes: Evergreen, Sandstone, Deep Current, Morning Dew, Hearthwood, Terracotta, Tidestone, Forest Gold, Inlet, Canopy, Sage, Clay Coast, Dusk Harbor, Fern, Driftwood, Glacier, Amber Trail
+- Updated WoW zone themes: Howling Fjord, Sholazar Basin, Ashenvale, Kun-Lai Summit, Nagrand
+- Total built-in themes: 159
+
+### UI
+- "Warnings" renamed to "Alerts" (button, window title, header, help)
+- CPU/GPU capitalization fixed in Alerts window
+- Themed ScrollBar (6px thin, rounded, muted thumb with hover/drag states)
+- Help window footer simplified
+- VirusTotal scan linked in README Security section
+
 ## v1.0.0 (2026-06-12)
 Initial public release.
 

@@ -1,10 +1,10 @@
-﻿; ----------------------------------------------------------------------------
+; ----------------------------------------------------------------------------
 ; fluidMonitor - Installer (Inno Setup 6+)
 ; Compile: ISCC.exe installer\fluid.iss
 ; ----------------------------------------------------------------------------
 
 #define AppName       "fluidMonitor"
-#define AppVersion    "1.0.0"
+#define AppVersion    "1.0.1"
 #define AppPublisher  "Matt Hakes"
 #define AppExeName    "fluidMonitor.exe"
 #define SvcExeName    "fluidMonitor.service.exe"
@@ -55,7 +55,7 @@ Source: "..\Fluid.Service\bin\Release\net8.0-windows\win-x64\publish\*"; DestDir
 
 [InstallDelete]
 ; v1.22: LHM 0.9.4 extracted the vulnerable WinRing0 driver next to the service
-; exe at runtime. Remove it on upgrade installs â€” the file on disk is the exposure.
+; exe at runtime. Remove it on upgrade installs — the file on disk is the exposure.
 Type: files; Name: "{app}\service\WinRing0x64.sys"
 Type: files; Name: "{app}\service\WinRing0x64.dll"
 
@@ -76,7 +76,7 @@ Filename: "{sys}\sc.exe"; Parameters: "failure {#SvcName} reset= 86400 actions= 
 ; Start
 Filename: "{sys}\sc.exe"; Parameters: "start {#SvcName}"; Flags: runhidden waituntilterminated; StatusMsg: "Starting service..."
 ; ---- Add firewall rule for remote monitoring (TCP 5199, private profile) ----
-; Rule exists but TCP is disabled by default â€” user opts in via Settings.
+; Rule exists but TCP is disabled by default — user opts in via Settings.
 Filename: "{sys}\netsh.exe"; Parameters: "advfirewall firewall add rule name=""fluidMonitor Remote Sensor"" dir=in action=allow protocol=tcp localport=5199 profile=private description=""fluidMonitor remote hardware sensor feed"""; Flags: runhidden waituntilterminated; StatusMsg: "Adding firewall rule..."
 ; Launch widget
 Filename: "{app}\app\{#AppExeName}"; Description: "Launch fluidMonitor"; Flags: nowait postinstall skipifsilent
@@ -116,7 +116,3 @@ begin
     if DirExists(Path) then DelTree(Path, True, True, True);
   end;
 end;
-
-
-
-

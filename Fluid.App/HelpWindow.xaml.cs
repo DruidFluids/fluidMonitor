@@ -82,7 +82,7 @@ public partial class HelpWindow : Window
                 ("Appearance when active", "Set a different opacity, orientation, and click-through behavior while Game Mode is active. Useful for making the widget smaller and unobtrusive during gaming."),
                 ("Tiles when active", "Choose which tiles are visible during Game Mode. Hide Clock or Storage to save space while keeping CPU/GPU/RAM visible."),
             }),
-            ("Warnings", new[]
+            ("Alerts", new[]
             {
                 ("Temperature threshold", "Set a temperature (in °C) that triggers a visual warning. When crossed, the tile background flashes the configured color."),
                 ("Flash", "Enable a flashing background effect when the threshold is exceeded. Choose the flash color (default: red)."),
@@ -146,7 +146,7 @@ public partial class HelpWindow : Window
         // Footer
         var footer = new TextBlock
         {
-            Text = "fluidMonitor — built with care",
+            Text = ":)",
             FontSize = 10,
             HorizontalAlignment = HorizontalAlignment.Center,
             Margin = new Thickness(0, 20, 0, 8),

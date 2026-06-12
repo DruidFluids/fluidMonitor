@@ -463,7 +463,7 @@
                         Margin="0,0,10,0" ToolTip="Help — feature guide"
                         Click="OnOpenHelp"/>
                 <Button DockPanel.Dock="Left"   Content="Utilities"            Style="{StaticResource BottomBar}" Margin="0,0,6,0" Click="OnOpenTweaks"/>
-                <Button DockPanel.Dock="Left"   Content="Warnings"          Style="{StaticResource BottomBar}" Margin="0,0,6,0" Click="OnOpenWarnings"/>
+                <Button DockPanel.Dock="Left"   Content="Alerts"          Style="{StaticResource BottomBar}" Margin="0,0,6,0" Click="OnOpenWarnings"/>
                 <Button DockPanel.Dock="Left"   Content="Game Mode"         Style="{StaticResource BottomBar}" Margin="0,0,6,0" Click="OnOpenGameMode"/>
                 <Button DockPanel.Dock="Left"   Content="Reset to Defaults" Style="{StaticResource BottomBarDanger}" Margin="0,0,6,0" Click="OnResetAll"/>
             </DockPanel>
