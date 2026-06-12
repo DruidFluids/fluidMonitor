@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <ApplicationIcon>Assets\fluid.ico</ApplicationIcon>
+    <AssemblyName>fluidMonitor</AssemblyName>
+    <RootNamespace>Fluid.App</RootNamespace>
+    <Version>1.25.64</Version>
+    <Company>Matt Hakes</Company>
+    <Product>fluidMonitor</Product>
+    <Description>fluidMonitor system monitor widget</Description>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fluid.Shared\Fluid.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- v1.20.3: System.Management for WMI Win32_DiskDrive enumeration in the
+         Disk picker dropdown (SettingsWindow.LoadDiskCombo). -->
+    <PackageReference Include="System.Management" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\fluid.ico" Condition="Exists('Assets\fluid.ico')" />
+    <!-- All skin XAMLs are loaded as resources at runtime via pack:// URIs.
+         Glob ensures new skin files in Styles\Skins\ are auto-registered as
+         Resource items, preventing the WPF auto-detector from treating them
+         as Page items (which triggers stricter XAML compilation rules that
+         reject x:Double tags). See SkinManager.ApplySkin for the load path. -->
+    <Page Remove="Styles\Skins\*.xaml" />
+    <Resource Include="Styles\Skins\*.xaml" />
+  </ItemGroup>
+
+</Project>

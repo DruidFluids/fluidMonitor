@@ -1,0 +1,141 @@
+<Window x:Class="Fluid.App.GameModeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:beh="clr-namespace:Fluid.App.Behaviors"
+        Title="fluidMonitor — Game Mode"
+        Width="420" SizeToContent="Height"
+        MaxHeight="700"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        AllowsTransparency="False"
+        ResizeMode="NoResize"
+        Background="{DynamicResource BackgroundBrush}"
+        Style="{StaticResource BorderlessWindow}"
+        KeyDown="OnWindowKeyDown">
+    <Grid>
+        <!-- v1.25.10: chrome overlay sits inside the 32px caption area
+             defined by WindowChrome. The original content (below) keeps
+             its existing layout and Margin (no structural change). The
+             default Window template still hosts both, so UI Automation
+             walks the tree normally. -->
+        <TextBlock Text="Game Mode" FontSize="13" FontWeight="SemiBold"
+                   Foreground="{DynamicResource TextBrush}"
+                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Margin="14,8,0,0" Panel.ZIndex="100"/>
+        <Button Style="{StaticResource BorderlessCloseButton}"
+                HorizontalAlignment="Right" VerticalAlignment="Top"
+                Margin="0,4,6,0"
+                Panel.ZIndex="100"
+                beh:WindowClose.IsClose="True"/>
+        <StackPanel Margin="20,52,20,20">
+
+        <TextBlock Text="GAME MODE" Style="{StaticResource SettingsSectionHeader}" Margin="0,0,0,4"/>
+        <TextBlock TextWrapping="Wrap" Margin="0,0,0,12"
+                   Foreground="{DynamicResource MutedTextBrush}" FontSize="11"
+                   Text="Press the hotkey to instantly snap the widget to your primary monitor. Press again to return it where it was. Works system-wide, even while gaming."/>
+
+        <CheckBox x:Name="EnabledCheck" Content="Enable Game Mode"
+                  Style="{StaticResource SettingsCheckBox}" Margin="0,0,0,8"/>
+
+        <TextBlock Text="Hotkey" Style="{StaticResource SettingsLabel}"/>
+        <StackPanel Orientation="Horizontal">
+            <TextBox x:Name="HotkeyBox" Width="180" Padding="6,4" IsReadOnly="True" Cursor="Hand"
+                     Background="{DynamicResource TileBrush}"
+                     Foreground="{DynamicResource TextBrush}"
+                     BorderBrush="{DynamicResource MutedTextBrush}"
+                     BorderThickness="0,0,0,1" FontSize="12"
+                     CaretBrush="{DynamicResource AccentBrush}"
+                     ToolTip="Click then press your desired key combination"
+                     PreviewKeyDown="OnHotkeyCapture"
+                     GotFocus="OnHotkeyBoxFocused"
+                     LostFocus="OnHotkeyBoxUnfocused"/>
+            <TextBlock x:Name="HotkeyPrompt" Text=" (click to set)" Margin="4,0,0,0"
+                       Foreground="{DynamicResource MutedTextBrush}" FontSize="10"
+                       VerticalAlignment="Center"/>
+            <Button Content="Clear" Style="{StaticResource InlineBtn}" Margin="4,0,0,0" Click="OnClearHotkey"/>
+        </StackPanel>
+
+        <!-- Position grid -->
+        <TextBlock Text="SNAP POSITION" Style="{StaticResource SettingsSectionHeader}"/>
+        <TextBlock Text="Always snaps to the primary monitor."
+                   Foreground="{DynamicResource MutedTextBrush}" FontSize="10" Margin="0,0,0,8"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="32"/>
+            </Grid.RowDefinitions>
+
+            <RadioButton x:Name="PosTopLeft"     Grid.Row="0" Grid.Column="0" Content="↖ Top Left"     Tag="TopLeft"     Style="{StaticResource PosRadio}" Checked="OnPositionChanged"/>
+            <RadioButton x:Name="PosTopCenter"   Grid.Row="0" Grid.Column="1" Content="↑ Top Center"   Tag="TopCenter"   Style="{StaticResource PosRadio}" Checked="OnPositionChanged"/>
+            <RadioButton x:Name="PosTopRight"    Grid.Row="0" Grid.Column="2" Content="↗ Top Right"    Tag="TopRight"    Style="{StaticResource PosRadio}" Checked="OnPositionChanged"/>
+            <RadioButton x:Name="PosLeftCenter"  Grid.Row="1" Grid.Column="0" Content="← Left Center"  Tag="LeftCenter"  Style="{StaticResource PosRadio}" Checked="OnPositionChanged"/>
+            <RadioButton x:Name="PosRightCenter" Grid.Row="1" Grid.Column="2" Content="→ Right Center" Tag="RightCenter" Style="{StaticResource PosRadio}" Checked="OnPositionChanged"/>
+            <RadioButton x:Name="PosBotLeft"     Grid.Row="2" Grid.Column="0" Content="↙ Bot Left"     Tag="BottomLeft"  Style="{StaticResource PosRadio}" Checked="OnPositionChanged"/>
+            <RadioButton x:Name="PosBotCenter"   Grid.Row="2" Grid.Column="1" Content="↓ Bot Center"   Tag="BottomCenter" Style="{StaticResource PosRadio}" Checked="OnPositionChanged"/>
+            <RadioButton x:Name="PosBotRight"    Grid.Row="2" Grid.Column="2" Content="↘ Bot Right"    Tag="BottomRight" Style="{StaticResource PosRadio}" Checked="OnPositionChanged"/>
+        </Grid>
+
+        <!-- Appearance -->
+        <TextBlock Text="APPEARANCE WHEN ACTIVE" Style="{StaticResource SettingsSectionHeader}"/>
+        <TextBlock Text="Opacity" Style="{StaticResource SettingsLabel}"/>
+        <Grid>
+            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="44"/></Grid.ColumnDefinitions>
+            <Slider x:Name="OpacitySlider" Minimum="0.1" Maximum="1.0" TickFrequency="0.05"
+                    ValueChanged="OnOpacityChanged"/>
+            <TextBlock x:Name="OpacityLabel" Grid.Column="1" TextAlignment="Right"
+                       VerticalAlignment="Center" Foreground="{DynamicResource MutedTextBrush}"/>
+        </Grid>
+
+        <TextBlock Text="Orientation" Style="{StaticResource SettingsLabel}"/>
+        <StackPanel Orientation="Horizontal">
+            <RadioButton x:Name="OrientCurrent"    Content="Use current"  Margin="0,0,16,0" Foreground="{DynamicResource TextBrush}" Checked="OnOrientChanged"/>
+            <RadioButton x:Name="OrientHorizontal" Content="Horizontal"   Margin="0,0,16,0" Foreground="{DynamicResource TextBrush}" Checked="OnOrientChanged"/>
+            <RadioButton x:Name="OrientVertical"   Content="Vertical"     Foreground="{DynamicResource TextBrush}" Checked="OnOrientChanged"/>
+        </StackPanel>
+
+        <CheckBox x:Name="ClickThroughCheck" Content="Enable click-through while in Game Mode"
+                  Style="{StaticResource SettingsCheckBox}" Margin="0,8,0,0"/>
+
+        <!-- Tiles -->
+        <TextBlock Text="TILES WHEN ACTIVE" Style="{StaticResource SettingsSectionHeader}"/>
+        <!-- v1.25.13: was a WrapPanel which made the second row left-align
+             flush against the start, looking visually off-balance under the
+             first row. Now a 3-column Grid so each toggle in row 2 sits
+             directly under the one in row 1 (RAM under CPU is the visual
+             anchor people read first). -->
+        <Grid HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="6"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <CheckBox Grid.Row="0" Grid.Column="0" x:Name="CpuCheck"     Content="CPU"     Style="{StaticResource SettingsCheckBox}"/>
+            <CheckBox Grid.Row="0" Grid.Column="2" x:Name="GpuCheck"     Content="GPU"     Style="{StaticResource SettingsCheckBox}"/>
+            <CheckBox Grid.Row="0" Grid.Column="4" x:Name="RamCheck"     Content="RAM"     Style="{StaticResource SettingsCheckBox}"/>
+            <CheckBox Grid.Row="2" Grid.Column="0" x:Name="NetworkCheck" Content="Network" Style="{StaticResource SettingsCheckBox}"/>
+            <CheckBox Grid.Row="2" Grid.Column="2" x:Name="StorageCheck" Content="Storage" Style="{StaticResource SettingsCheckBox}"/>
+            <CheckBox Grid.Row="2" Grid.Column="4" x:Name="ClockCheck"   Content="Clock"   Style="{StaticResource SettingsCheckBox}"/>
+        </Grid>
+
+        <!-- Bottom buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Reset to Defaults" Style="{StaticResource BottomBarDanger}" Margin="0,0,8,0"
+                    Foreground="IndianRed" Click="OnReset"/>
+            <Button Content="Save &amp; Close" Style="{StaticResource BottomBarPrimary}" Click="OnSave"/>
+        </StackPanel>
+    </StackPanel>
+    </Grid>
+</Window>

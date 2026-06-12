@@ -1,0 +1,500 @@
+<Window x:Class="Fluid.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:m="clr-namespace:Fluid.App.Models"
+        xmlns:local="clr-namespace:Fluid.App"
+        Title="fluidMonitor"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        ShowInTaskbar="True"
+        SizeToContent="WidthAndHeight"
+        Topmost="True">
+
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Settings…"  Click="OnOpenSettings"/>
+            <Separator/>
+            <MenuItem Header="Exit" Click="OnExit"/>
+        </ContextMenu>
+    </Window.ContextMenu>
+
+    <Border x:Name="RootBorder"
+            Background="{DynamicResource BackgroundBrush}"
+            CornerRadius="{DynamicResource WidgetCornerRadius}"
+            BorderThickness="{DynamicResource SkinWidgetBorderThickness}"
+            BorderBrush="{DynamicResource SkinWidgetBorderBrush}"
+            Opacity="{DynamicResource SkinWidgetOpacity}"
+            Padding="6"
+            MouseLeftButtonDown="OnDragMouseDown"
+            MouseMove="OnDragMouseMove"
+            MouseLeftButtonUp="OnDragMouseUp">
+        <Border.Effect>
+            <DropShadowEffect Color="Black" BlurRadius="20" ShadowDepth="0" Opacity="0.55"/>
+        </Border.Effect>
+
+        <StackPanel>
+            <!-- Gear + X header row -->
+            <Grid x:Name="HeaderGrid" Margin="2,2,2,2">
+                <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Click="OnOpenSettings" Width="16" Height="16"
+                        Padding="0" BorderThickness="0" Background="Transparent"
+                        Foreground="{DynamicResource MutedTextBrush}"
+                        FontSize="11" Content="⚙" Cursor="Hand" ToolTip="Settings">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <TextBlock Text="{TemplateBinding Content}"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   FontSize="{TemplateBinding FontSize}"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <!-- Click-through active indicator -->
+                <TextBlock x:Name="ClickThroughIndicator"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Text="⊘ CLICK-THROUGH"
+                           Foreground="{DynamicResource AccentBrush}"
+                           FontSize="8" FontWeight="Bold"
+                           Visibility="Collapsed"
+                           ToolTip="Click-through mode is ON. Right-click tray to disable."/>
+                <Button HorizontalAlignment="Right" VerticalAlignment="Center"
+                        Click="OnHideToTray" Width="16" Height="16"
+                        Padding="0" BorderThickness="0" Background="Transparent"
+                        Foreground="{DynamicResource MutedTextBrush}"
+                        FontSize="11" FontWeight="Bold" Content="✕" Cursor="Hand" ToolTip="Hide to tray">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <TextBlock Text="{TemplateBinding Content}"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   FontSize="{TemplateBinding FontSize}"
+                                                   FontWeight="{TemplateBinding FontWeight}"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="IndianRed"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+
+            <!-- Device switcher bar (hidden when no remote devices configured) -->
+            <WrapPanel x:Name="DeviceSwitcher"
+                       Visibility="Collapsed"
+                       HorizontalAlignment="Center"
+                       Margin="0,2,0,4">
+                <Button x:Name="LocalBtn"
+                        Content="LOCAL"
+                        Style="{StaticResource DeviceSwitchBtn}"
+                        Click="OnSwitchDevice"
+                        Tag="local"/>
+            </WrapPanel>
+
+            <ItemsControl x:Name="TilesItems" ItemsSource="{Binding}"
+                          MouseDoubleClick="OnTileDoubleClick">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type m:TileData}">
+                    <Border x:Name="TileShell"
+                            Width="{DynamicResource TileWidth}" Height="{DynamicResource TileHeight}"
+                            Padding="{DynamicResource SkinTilePadding}"
+                            Margin="{DynamicResource SkinTileMargin}"
+                            CornerRadius="{DynamicResource SkinTileCornerRadius}"
+                            BorderThickness="{DynamicResource SkinTileBorderThickness}"
+                            BorderBrush="{DynamicResource SkinTileBorderBrush}"
+                            Opacity="{DynamicResource SkinTileOpacity}">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="{DynamicResource SkinTileBackground}"/>
+                                <Setter Property="Effect" Value="{DynamicResource SkinTileEffect}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding FlashActive}" Value="True">
+                                        <Setter Property="Background" Value="{Binding FlashBrush}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <!-- Skin overlay layer (gradient sheen, scanlines, header bar etc) -->
+                        <Grid>
+                            <Grid x:Name="SkinOverlay" IsHitTestVisible="False">
+                                <!-- Top gradient sheen (Glassmorphism) -->
+                                <Border x:Name="SkinSheen" CornerRadius="{DynamicResource SkinTileCornerRadius}"
+                                        Opacity="{DynamicResource SkinSheenOpacity}" IsHitTestVisible="False">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Color="{DynamicResource SkinSheenColor}" Offset="0"/>
+                                            <GradientStop Color="Transparent" Offset="0.6"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                                <!-- Inner edge highlight (top/left bright line — glass refraction) -->
+                                <Border CornerRadius="{DynamicResource SkinTileCornerRadius}"
+                                        BorderThickness="1,1,0,0"
+                                        BorderBrush="#55FFFFFF"
+                                        Opacity="{DynamicResource SkinSheenOpacity}"
+                                        IsHitTestVisible="False"/>
+                                <!-- Inner bottom/right darker edge (glass depth) -->
+                                <Border CornerRadius="{DynamicResource SkinTileCornerRadius}"
+                                        BorderThickness="0,0,1,1"
+                                        BorderBrush="#22000080"
+                                        Opacity="{DynamicResource SkinSheenOpacity}"
+                                        IsHitTestVisible="False"/>
+                                <!-- Header bar (Retro) -->
+                                <Border x:Name="SkinHeaderBar"
+                                        VerticalAlignment="Top"
+                                        Height="{DynamicResource SkinHeaderBarHeight}"
+                                        CornerRadius="{DynamicResource SkinHeaderBarCornerRadius}"
+                                        Opacity="{DynamicResource SkinHeaderBarOpacity}"
+                                        IsHitTestVisible="False">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="{DynamicResource SkinHeaderBarColor}" Offset="0"/>
+                                            <GradientStop Color="Transparent" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                                <!-- Left accent bar (Sharp) -->
+                                <Rectangle x:Name="SkinAccentBar"
+                                           Width="{DynamicResource SkinAccentBarWidth}"
+                                           HorizontalAlignment="Left"
+                                           Fill="{DynamicResource AccentBrush}"
+                                           Opacity="{DynamicResource SkinAccentBarOpacity}"/>
+                            </Grid>
+                            <!-- Tile content -->
+                            <Grid Margin="{DynamicResource SkinContentMargin}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="{Binding Header}"
+                                           Style="{StaticResource HeaderText}"
+                                           FontFamily="{DynamicResource WidgetSecondaryFont}"
+                                           FontWeight="{DynamicResource SkinHeaderFontWeight}"
+                                           Opacity="{DynamicResource SkinHeaderOpacity}"/>
+                                <TextBlock Grid.Row="1" Text="{Binding SubHeader}"
+                                           Style="{StaticResource SubHeaderText}"
+                                           FontFamily="{DynamicResource WidgetSecondaryFont}"/>
+                                <StackPanel Grid.Row="2" Orientation="Horizontal"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Visibility="{Binding IsStacked, Converter={StaticResource InvBoolVis}}">
+                                    <TextBlock local:Fmt.Text="{Binding PrimaryValue}" local:Fmt.AccentOverride="{Binding AccentOverride}"
+                                               Style="{StaticResource PrimaryText}"
+                                               FontFamily="{DynamicResource WidgetPrimaryFont}"/>
+                                    <TextBlock Text="{Binding PrimaryUnit}"
+                                               Style="{StaticResource UnitText}"
+                                               FontFamily="{DynamicResource WidgetIndicatorFont}"/>
+                                </StackPanel>
+                                <Grid Grid.Row="2" VerticalAlignment="Center" Margin="2,0,0,0"
+                                      Visibility="{Binding IsStacked, Converter={StaticResource BoolVis}}">
+                                    <Grid.ColumnDefinitions>
+                                        <!-- v1.23: label column is FIXED at the slider max (40), so the
+                                             *-width value column NEVER moves when the spacing
+                                             slider changes. The slider now drives TileData.LabelMargin
+                                             (right margin on the right-aligned label) rather than this
+                                             column width: only the arrow slides, not the text. -->
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Line1Label}"
+                                               HorizontalAlignment="Right" Margin="{Binding LabelMargin}"
+                                               FontWeight="Bold"
+                                               FontFamily="{DynamicResource WidgetIndicatorFont}" VerticalAlignment="Center">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock" BasedOn="{StaticResource PrimaryText}">
+                                                <Setter Property="FontSize" Value="{DynamicResource ArrowFontSize}"/>
+                                                <!-- v1.23: Foreground moved from a local attribute into the
+                                                     style so the traffic-indicator triggers below can override
+                                                     it with the accent brush (local values always beat style
+                                                     trigger setters; that's why accent coloring never worked). -->
+                                                <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Line1Label}" Value="R:">
+                                                        <Setter Property="FontSize" Value="{DynamicResource DiskLabelFontSize}"/>
+                                                    </DataTrigger>
+                                                    <!-- v1.21: style-specific traffic indicators. Previously a single
+                                                         bool gate meant Blink, Fade, and Glow all played the same
+                                                         animation. Each MultiDataTrigger now matches the configured
+                                                         style by name. -->
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding Line1Label}" Value="↓"/>
+                                                            <Condition Binding="{Binding Line1Active}" Value="True"/>
+                                                            <Condition Binding="{Binding Source={x:Static local:TrafficIndicatorState.Instance}, Path=Style}" Value="Blink"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <MultiDataTrigger.Setters>
+                                                            <!-- v1.23: active traffic flashes in the accent color -->
+                                                            <Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/>
+                                                        </MultiDataTrigger.Setters>
+                                                        <MultiDataTrigger.EnterActions>
+                                                            <BeginStoryboard x:Name="L1BlinkBegin">
+                                                                <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                                     From="1.0" To="0.35" Duration="0:0:0.6"/>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </MultiDataTrigger.EnterActions>
+                                                        <MultiDataTrigger.ExitActions>
+                                                            <StopStoryboard BeginStoryboardName="L1BlinkBegin"/>
+                                                        </MultiDataTrigger.ExitActions>
+                                                    </MultiDataTrigger>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding Line1Label}" Value="↓"/>
+                                                            <Condition Binding="{Binding Line1Active}" Value="True"/>
+                                                            <Condition Binding="{Binding Source={x:Static local:TrafficIndicatorState.Instance}, Path=Style}" Value="Fade"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <MultiDataTrigger.Setters>
+                                                            <!-- v1.23: active traffic flashes in the accent color -->
+                                                            <Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/>
+                                                        </MultiDataTrigger.Setters>
+                                                        <MultiDataTrigger.EnterActions>
+                                                            <BeginStoryboard x:Name="L1FadeBegin">
+                                                                <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                                     From="1.0" To="0.25" Duration="0:0:1.6"/>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </MultiDataTrigger.EnterActions>
+                                                        <MultiDataTrigger.ExitActions>
+                                                            <StopStoryboard BeginStoryboardName="L1FadeBegin"/>
+                                                        </MultiDataTrigger.ExitActions>
+                                                    </MultiDataTrigger>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding Line1Label}" Value="↓"/>
+                                                            <Condition Binding="{Binding Line1Active}" Value="True"/>
+                                                            <Condition Binding="{Binding Source={x:Static local:TrafficIndicatorState.Instance}, Path=Style}" Value="Glow"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <MultiDataTrigger.Setters>
+                                                            <!-- v1.25.15: bigger glow (BlurRadius 18, was 9) and the
+                                                                 arrow now gently breathes via an animated BlurRadius.
+                                                                 Reads as a soft pulse instead of a static halo. -->
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect ShadowDepth="0" BlurRadius="18" Opacity="0.95"
+                                                                                      Color="{DynamicResource AccentGlowColor}"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                            <Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/>
+                                                        </MultiDataTrigger.Setters>
+                                                        <MultiDataTrigger.EnterActions>
+                                                            <BeginStoryboard x:Name="L1GlowBegin">
+                                                                <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                                                                    <DoubleAnimation
+                                                                        Storyboard.TargetProperty="(TextBlock.Effect).(DropShadowEffect.BlurRadius)"
+                                                                        From="12" To="22" Duration="0:0:1.1"/>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </MultiDataTrigger.EnterActions>
+                                                        <MultiDataTrigger.ExitActions>
+                                                            <StopStoryboard BeginStoryboardName="L1GlowBegin"/>
+                                                        </MultiDataTrigger.ExitActions>
+                                                    </MultiDataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <!-- v1.23.2: values left-align at the label column edge so R:/W:
+                                         (and the network rows) start exactly in line with each other;
+                                         centered values of different widths read as misaligned. This also
+                                         puts typical values back where they sat before the fixed column. -->
+                                    <TextBlock Grid.Row="0" Grid.Column="1" local:Fmt.Text="{Binding Line1Value}" local:Fmt.AccentOverride="{Binding AccentOverride}"
+                                               local:Fmt.AccentScale="0.75"
+                                               Style="{StaticResource PrimaryText}"
+                                               FontFamily="{DynamicResource WidgetPrimaryFont}"
+                                               TextAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Line2Label}"
+                                               HorizontalAlignment="Right" Margin="{Binding LabelMargin}"
+                                               FontWeight="Bold"
+                                               FontFamily="{DynamicResource WidgetIndicatorFont}" VerticalAlignment="Center">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock" BasedOn="{StaticResource PrimaryText}">
+                                                <Setter Property="FontSize" Value="{DynamicResource ArrowFontSize}"/>
+                                                <!-- v1.23: see Line1: style-level Foreground so triggers can accent it. -->
+                                                <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Line2Label}" Value="W:">
+                                                        <Setter Property="FontSize" Value="{DynamicResource DiskLabelFontSize}"/>
+                                                    </DataTrigger>
+                                                    <!-- v1.21: style-specific traffic indicators. Previously a single
+                                                         bool gate meant Blink, Fade, and Glow all played the same
+                                                         animation. Each MultiDataTrigger now matches the configured
+                                                         style by name. -->
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding Line2Label}" Value="↑"/>
+                                                            <Condition Binding="{Binding Line2Active}" Value="True"/>
+                                                            <Condition Binding="{Binding Source={x:Static local:TrafficIndicatorState.Instance}, Path=Style}" Value="Blink"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <MultiDataTrigger.Setters>
+                                                            <!-- v1.23: active traffic flashes in the accent color -->
+                                                            <Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/>
+                                                        </MultiDataTrigger.Setters>
+                                                        <MultiDataTrigger.EnterActions>
+                                                            <BeginStoryboard x:Name="L2BlinkBegin">
+                                                                <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                                     From="1.0" To="0.35" Duration="0:0:0.6"/>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </MultiDataTrigger.EnterActions>
+                                                        <MultiDataTrigger.ExitActions>
+                                                            <StopStoryboard BeginStoryboardName="L2BlinkBegin"/>
+                                                        </MultiDataTrigger.ExitActions>
+                                                    </MultiDataTrigger>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding Line2Label}" Value="↑"/>
+                                                            <Condition Binding="{Binding Line2Active}" Value="True"/>
+                                                            <Condition Binding="{Binding Source={x:Static local:TrafficIndicatorState.Instance}, Path=Style}" Value="Fade"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <MultiDataTrigger.Setters>
+                                                            <!-- v1.23: active traffic flashes in the accent color -->
+                                                            <Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/>
+                                                        </MultiDataTrigger.Setters>
+                                                        <MultiDataTrigger.EnterActions>
+                                                            <BeginStoryboard x:Name="L2FadeBegin">
+                                                                <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                                     From="1.0" To="0.25" Duration="0:0:1.6"/>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </MultiDataTrigger.EnterActions>
+                                                        <MultiDataTrigger.ExitActions>
+                                                            <StopStoryboard BeginStoryboardName="L2FadeBegin"/>
+                                                        </MultiDataTrigger.ExitActions>
+                                                    </MultiDataTrigger>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding Line2Label}" Value="↑"/>
+                                                            <Condition Binding="{Binding Line2Active}" Value="True"/>
+                                                            <Condition Binding="{Binding Source={x:Static local:TrafficIndicatorState.Instance}, Path=Style}" Value="Glow"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <MultiDataTrigger.Setters>
+                                                            <!-- v1.25.15: bigger glow + breathing animation (see L1Glow). -->
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect ShadowDepth="0" BlurRadius="18" Opacity="0.95"
+                                                                                      Color="{DynamicResource AccentGlowColor}"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                            <Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/>
+                                                        </MultiDataTrigger.Setters>
+                                                        <MultiDataTrigger.EnterActions>
+                                                            <BeginStoryboard x:Name="L2GlowBegin">
+                                                                <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                                                                    <DoubleAnimation
+                                                                        Storyboard.TargetProperty="(TextBlock.Effect).(DropShadowEffect.BlurRadius)"
+                                                                        From="12" To="22" Duration="0:0:1.1"/>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </MultiDataTrigger.EnterActions>
+                                                        <MultiDataTrigger.ExitActions>
+                                                            <StopStoryboard BeginStoryboardName="L2GlowBegin"/>
+                                                        </MultiDataTrigger.ExitActions>
+                                                    </MultiDataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" local:Fmt.Text="{Binding Line2Value}" local:Fmt.AccentOverride="{Binding AccentOverride}"
+                                               local:Fmt.AccentScale="0.75"
+                                               Style="{StaticResource PrimaryText}"
+                                               FontFamily="{DynamicResource WidgetPrimaryFont}"
+                                               TextAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Center"/>
+                                </Grid>
+                                <TextBlock Grid.Row="3" local:Fmt.Text="{Binding SecondaryValue}" local:Fmt.AccentOverride="{Binding AccentOverride}"
+                                           FontFamily="{DynamicResource WidgetSecondaryFont}">
+                                    <TextBlock.Style>
+                                        <!-- v1.25.5: when the CPU temp opt-in bar is showing along the
+                                             tile's bottom edge, lift the MHz line above it so the bar
+                                             never covers the clock. Collapses back to normal otherwise.
+                                             v1.25.20: clock-only date bump. The "Thursday, June 11th"
+                                             secondary line used the same small SecondaryFontSize as the
+                                             MHz/load-% lines on other tiles, which read as too small
+                                             for a centerpiece date. ClockDateFontSize is +2pt over the
+                                             default; other tiles unchanged. -->
+                                        <Style TargetType="TextBlock" BasedOn="{StaticResource SecondaryValueText}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding TempHintVisible}" Value="True">
+                                                    <Setter Property="Margin" Value="0,0,0,17"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Kind}" Value="DateTime">
+                                                    <Setter Property="FontSize" Value="{DynamicResource ClockDateFontSize}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+
+                            <!-- v1.25.5: always-visible accent bar along the tile's bottom edge
+                                 while CPU temp needs setup. Same look as the v1.25.2 strip but
+                                 driven by a plain TempHintVisible binding (the old hover
+                                 MultiDataTrigger with an ElementName lookup never fired inside
+                                 the DataTemplate's namescope). The MHz line above lifts via its
+                                 own TempHintVisible trigger so the bar never covers it. -->
+                            <Border VerticalAlignment="Bottom"
+                                    Background="{DynamicResource AccentBrush}"
+                                    CornerRadius="0,0,5,5" Padding="4,1"
+                                    Visibility="{Binding TempHintVisible, Converter={StaticResource BoolVis}}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Column="0" Click="OnTempHintClick"
+                                            Background="Transparent" BorderThickness="0" Cursor="Hand"
+                                            Padding="0" HorizontalAlignment="Center"
+                                            ToolTip="Click to turn on CPU temperature">
+                                        <TextBlock Text="Turn on temperature" FontSize="10"
+                                                   Foreground="White"
+                                                   FontFamily="{DynamicResource WidgetIndicatorFont}"/>
+                                    </Button>
+                                    <Button Grid.Column="1" Click="OnTempHintDismiss"
+                                            Background="Transparent" BorderThickness="0" Cursor="Hand"
+                                            Padding="4,0,2,0" VerticalAlignment="Center"
+                                            ToolTip="Dismiss this prompt">
+                                        <TextBlock Text="✕" FontSize="9" Foreground="White"
+                                                   FontFamily="{DynamicResource WidgetIndicatorFont}"/>
+                                    </Button>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        </StackPanel>
+    </Border>
+</Window>

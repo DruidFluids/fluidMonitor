@@ -1,0 +1,132 @@
+<Window x:Class="Fluid.App.CpuTempDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:beh="clr-namespace:Fluid.App.Behaviors"
+        Title="fluidMonitor — CPU temperature"
+        Width="440" SizeToContent="Height"
+        MaxHeight="640"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        AllowsTransparency="False"
+        ResizeMode="NoResize"
+        Background="{DynamicResource BackgroundBrush}"
+        Style="{StaticResource BorderlessWindow}">
+    <Grid>
+        <!-- v1.25.10: chrome overlay sits inside the 32px caption area
+             defined by WindowChrome. The original content (below) keeps
+             its existing layout and Margin (no structural change). The
+             default Window template still hosts both, so UI Automation
+             walks the tree normally. -->
+        <TextBlock Text="CPU temperature" FontSize="13" FontWeight="SemiBold"
+                   Foreground="{DynamicResource TextBrush}"
+                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Margin="14,8,0,0" Panel.ZIndex="100"/>
+        <Button Style="{StaticResource BorderlessCloseButton}"
+                HorizontalAlignment="Right" VerticalAlignment="Top"
+                Margin="0,4,6,0"
+                Panel.ZIndex="100"
+                beh:WindowClose.IsClose="True"/>
+        <Grid Margin="22,52,22,18">
+
+        <!-- ══ PRIMARY ══ -->
+        <StackPanel x:Name="PrimaryPanel">
+            <TextBlock Text="Enable CPU temperature" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,12"/>
+
+            <TextBlock TextWrapping="Wrap" FontSize="13" Margin="0,0,0,10" LineHeight="19"
+                       Text="Reading CPU temperature requires a hardware sensor driver. This is a Windows requirement — temperature data is not available to standard applications without one."/>
+
+            <TextBlock TextWrapping="Wrap" FontSize="13" Margin="0,0,0,14" LineHeight="19"
+                       Foreground="{DynamicResource MutedTextBrush}"
+                       Text="fluidMonitor uses PawnIO, the same open-source sensor driver used by LibreHardwareMonitor, Fan Control, and OpenRGB. It is digitally signed and verified by Microsoft — Windows will not load an unsigned driver."/>
+
+            <Border Background="{DynamicResource TileBrush}" CornerRadius="6" Padding="11,9" Margin="0,0,0,16">
+                <TextBlock TextWrapping="Wrap" FontSize="12" LineHeight="17"
+                           Foreground="{DynamicResource MutedTextBrush}"
+                           Text="Windows will request administrator permission once during install. This is standard for any hardware-level component."/>
+            </Border>
+
+            <Grid>
+                <Button Content="More info" Click="OnMoreInfo" HorizontalAlignment="Left"
+                        Background="Transparent" BorderThickness="0" Cursor="Hand"
+                        Foreground="{DynamicResource AccentBrush}" FontSize="12" Padding="0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="CancelBtn" Content="Cancel" Style="{StaticResource BottomBar}" Click="OnCancel"
+                            Padding="14,6" Margin="0,0,8,0" Cursor="Hand" FontSize="13"/>
+                    <Button x:Name="InstallBtn" Content="Install &amp; enable" Style="{StaticResource BottomBarPrimary}" Click="OnInstall"
+                            Padding="16,6" Cursor="Hand" FontSize="13" FontWeight="SemiBold"
+                            Background="{DynamicResource AccentBrush}" Foreground="White" BorderThickness="0"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <!-- ══ MORE INFO ══ -->
+        <StackPanel x:Name="InfoPanel" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                <Button Content="‹" Click="OnBack" Background="Transparent" BorderThickness="0"
+                        Cursor="Hand" FontSize="18" Padding="0,0,8,0" Foreground="{DynamicResource MutedTextBrush}"/>
+                <TextBlock Text="About the sensor driver" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <TextBlock TextWrapping="Wrap" FontSize="13" Margin="0,0,0,14" LineHeight="19"
+                       Foreground="{DynamicResource MutedTextBrush}"
+                       Text="PawnIO is an open-source kernel driver that exposes hardware sensor readings. It is maintained publicly and used across the hardware-monitoring community."/>
+
+            <TextBlock Text="Verify it yourself" FontSize="12" FontWeight="SemiBold"
+                       Foreground="{DynamicResource MutedTextBrush}" Margin="0,0,0,8"/>
+            <StackPanel Margin="0,0,0,16">
+                <TextBlock TextWrapping="Wrap" FontSize="12" Margin="0,0,0,7" LineHeight="17"
+                           Foreground="{DynamicResource MutedTextBrush}"
+                           Text="• Full source &amp; releases are on GitHub (namazso/PawnIO)."/>
+                <TextBlock TextWrapping="Wrap" FontSize="12" Margin="0,0,0,7" LineHeight="17"
+                           Foreground="{DynamicResource MutedTextBrush}"
+                           Text="• Inspect the signature: right-click the installer → Properties → Digital Signatures."/>
+                <TextBlock TextWrapping="Wrap" FontSize="12" LineHeight="17"
+                           Foreground="{DynamicResource MutedTextBrush}"
+                           Text="• Signed with a Microsoft-attested EV certificate — Windows blocks unsigned kernel drivers by default."/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                <Button Content="pawnio.eu" Click="OnOpenHomePage" Padding="10,6" Margin="0,0,8,0" Cursor="Hand" FontSize="12"/>
+                <Button Content="GitHub"    Click="OnOpenSource"   Padding="10,6" Margin="0,0,8,0" Cursor="Hand" FontSize="12"/>
+                <Button Content="Our docs"  Click="OnOpenDocs"     Padding="10,6" Cursor="Hand" FontSize="12"/>
+            </StackPanel>
+
+            <Button Content="Back" Click="OnBack" HorizontalAlignment="Right" Padding="16,6" Cursor="Hand" FontSize="13"/>
+        </StackPanel>
+
+        <!-- ══ PROGRESS ══ -->
+        <StackPanel x:Name="ProgressPanel" Visibility="Collapsed">
+            <TextBlock Text="Setting up CPU temperature" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,14"/>
+            <TextBlock x:Name="ProgressText" TextWrapping="Wrap" FontSize="13" Margin="0,0,0,14" LineHeight="19"
+                       Foreground="{DynamicResource MutedTextBrush}" Text="Downloading…"/>
+            <ProgressBar x:Name="ProgressBar" IsIndeterminate="True" Height="4" Margin="0,0,0,4"
+                         Background="{DynamicResource TileBrush}" Foreground="{DynamicResource AccentBrush}" BorderThickness="0"/>
+        </StackPanel>
+
+        <!-- ══ RESULT (success / fallback) ══ -->
+        <StackPanel x:Name="ResultPanel" Visibility="Collapsed">
+            <TextBlock x:Name="ResultTitle" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,12"/>
+            <TextBlock x:Name="ResultBody" TextWrapping="Wrap" FontSize="13" Margin="0,0,0,14" LineHeight="19"
+                       Foreground="{DynamicResource MutedTextBrush}"/>
+
+            <!-- Fallback: manual download link (shown only on failure) -->
+            <Border x:Name="FallbackBox" Background="{DynamicResource TileBrush}" CornerRadius="6"
+                    Padding="11,9" Margin="0,0,0,14" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock TextWrapping="Wrap" FontSize="12" Margin="0,0,0,8" LineHeight="17"
+                               Foreground="{DynamicResource MutedTextBrush}"
+                               Text="You can install it yourself, then come back and click Check again:"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Download driver" Click="OnOpenDownload" Padding="12,6" Margin="0,0,8,0" Cursor="Hand" FontSize="12"/>
+                        <Button Content="Check again" Click="OnRecheck" Padding="12,6" Cursor="Hand" FontSize="12"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Button x:Name="ResultCloseBtn" Content="Done" Click="OnCancel" HorizontalAlignment="Right"
+                    Padding="16,6" Cursor="Hand" FontSize="13"/>
+        </StackPanel>
+
+    </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,122 @@
+<Window x:Class="Fluid.App.TweaksWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:beh="clr-namespace:Fluid.App.Behaviors"
+        Title="fluidMonitor — Utilities"
+        Width="440"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        AllowsTransparency="False"
+        ResizeMode="NoResize"
+        Background="{DynamicResource BackgroundBrush}"
+        Style="{StaticResource BorderlessWindow}"
+        KeyDown="OnWindowKeyDown">
+
+    <Grid>
+        <!-- v1.25.10: chrome overlay sits inside the 32px caption area
+             defined by WindowChrome. The original content (below) keeps
+             its existing layout and Margin (no structural change). The
+             default Window template still hosts both, so UI Automation
+             walks the tree normally. -->
+        <TextBlock Text="Utilities" FontSize="13" FontWeight="SemiBold"
+                   Foreground="{DynamicResource TextBrush}"
+                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Margin="14,8,0,0" Panel.ZIndex="100"/>
+        <Button Style="{StaticResource BorderlessCloseButton}"
+                HorizontalAlignment="Right" VerticalAlignment="Top"
+                Margin="0,4,6,0"
+                Panel.ZIndex="100"
+                beh:WindowClose.IsClose="True"/>
+        <Border Padding="20" Margin="0,32,0,0">
+        <StackPanel>
+
+            <TextBlock Text="UTILITIES" FontSize="14" FontWeight="Bold"
+                       Foreground="{DynamicResource AccentBrush}" Margin="0,0,0,12"/>
+
+            <Border Background="{DynamicResource TileBrush}" CornerRadius="8"
+                    Padding="14,10" Margin="0,0,0,8">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Chris Titus Win Utility" FontWeight="SemiBold" FontSize="13"/>
+                        <TextBlock Text="  ?"
+                                   Foreground="{DynamicResource AccentBrush}"
+                                   FontWeight="Bold" Cursor="Help"
+                                   ToolTipService.InitialShowDelay="0">
+                            <TextBlock.ToolTip>
+                                <ToolTip MaxWidth="320">
+                                    <TextBlock TextWrapping="Wrap" Text="A comprehensive Windows utility by Chris Titus Tech. Includes debloating, Windows Update management, system tweaks (disabling telemetry, Cortana, OneDrive), installing common applications, and performance optimizations. Runs an interactive PowerShell script fetched from GitHub. Requires administrator privileges."/>
+                                </ToolTip>
+                            </TextBlock.ToolTip>
+                        </TextBlock>
+                    </StackPanel>
+                    <TextBlock Text="Debloat Windows, manage updates, install apps, optimize performance."
+                               Foreground="{DynamicResource MutedTextBrush}" FontSize="11"
+                               TextWrapping="Wrap" Margin="0,4,0,8"/>
+                    <Button Content="Run Chris Titus Utility" Style="{StaticResource InlineBtn}" HorizontalAlignment="Left"
+                            Click="OnRunChrisTitus"/>
+                </StackPanel>
+            </Border>
+
+            <Border Background="{DynamicResource TileBrush}" CornerRadius="8"
+                    Padding="14,10" Margin="0,0,0,8">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Microsoft Activation Scripts (MAS)" FontWeight="SemiBold" FontSize="13"/>
+                        <TextBlock Text="  ?"
+                                   Foreground="{DynamicResource AccentBrush}"
+                                   FontWeight="Bold" Cursor="Help"
+                                   ToolTipService.InitialShowDelay="0">
+                            <TextBlock.ToolTip>
+                                <ToolTip MaxWidth="320">
+                                    <TextBlock TextWrapping="Wrap" Text="Open-source activation tool for Windows and Microsoft Office using HWID, Ohook, KMS38, and Online KMS methods. Fetches and executes a PowerShell script from the Massgrave GitHub repository. Use at your own discretion — activating software you do not own a license for may violate Microsoft's terms of service."/>
+                                </ToolTip>
+                            </TextBlock.ToolTip>
+                        </TextBlock>
+                    </StackPanel>
+                    <TextBlock Text="Activate Windows and Microsoft Office via multiple methods."
+                               Foreground="{DynamicResource MutedTextBrush}" FontSize="11"
+                               TextWrapping="Wrap" Margin="0,4,0,8"/>
+                    <Button Content="Run MAS" Style="{StaticResource InlineBtn}" HorizontalAlignment="Left"
+                            Click="OnRunMassgrave"/>
+                </StackPanel>
+            </Border>
+
+            <!-- v1.25.37: snap-to-windows sub-options -->
+            <Border Background="{DynamicResource TileBrush}" CornerRadius="8"
+                    Padding="14,10" Margin="0,0,0,8">
+                <StackPanel>
+                    <TextBlock Text="Window snap blocklist" FontWeight="SemiBold" FontSize="13"/>
+                    <TextBlock Text="Windows with titles matching any line below won't be used as snap targets (substring match, case-insensitive)."
+                               Foreground="{DynamicResource MutedTextBrush}" FontSize="11"
+                               TextWrapping="Wrap" Margin="0,4,0,8"/>
+                    <TextBox x:Name="BlocklistBox" AcceptsReturn="True" MinLines="3" MaxLines="6"
+                             FontSize="11" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                             Background="{DynamicResource TileBrush}"
+                             Foreground="{DynamicResource TextBrush}"
+                             BorderBrush="{DynamicResource MutedTextBrush}"
+                             BorderThickness="1" CaretBrush="{DynamicResource AccentBrush}"
+                             Margin="0,0,0,6"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Save blocklist" Style="{StaticResource InlineBtn}" Click="OnSaveBlocklist"/>
+                        <Button Content="Pick window" Style="{StaticResource InlineBtn}" Margin="8,0,0,0" Click="OnPickWindow"/>
+                        <TextBlock x:Name="BlocklistStatus" FontSize="11" Margin="10,0,0,0"
+                                   Foreground="{DynamicResource MutedTextBrush}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Background="#30FF6600" CornerRadius="6" Padding="10,8" Margin="0,8,0,0">
+                <TextBlock TextWrapping="Wrap" FontSize="10"
+                           Foreground="{DynamicResource MutedTextBrush}">
+                    <Run FontWeight="SemiBold" Text="Disclaimer:"/>
+                    <Run Text="These tools are maintained by third-party developers and are not bundled with, vetted by, or endorsed by fluidMonitor. Scripts are fetched from the internet and executed with administrator privileges. Use at your own risk. The developer of fluidMonitor assumes no responsibility for any changes made to your system by these tools."/>
+                </TextBlock>
+            </Border>
+
+            <Button Content="Close" Style="{StaticResource BottomBar}" HorizontalAlignment="Right"
+                    Margin="0,14,0,0" Click="OnClose"/>
+        </StackPanel>
+    </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,20 @@
+<Application x:Class="Fluid.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Fluid.App"
+             ShutdownMode="OnExplicitShutdown">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Theme.xaml"/>
+                <ResourceDictionary Source="Styles/Skins/Default.xaml"/>
+                <!-- v1.25.8: shared borderless-window chrome (close button,
+                     drag region, rounded corners). Every Window in the app
+                     opts in via Style="{StaticResource BorderlessWindow}". -->
+                <ResourceDictionary Source="Styles/AppWindow.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <local:BoolToVisConverter x:Key="BoolVis"/>
+            <local:InvBoolToVisConverter x:Key="InvBoolVis"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,65 @@
+<Window x:Class="Fluid.App.CpuTempDismissDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:beh="clr-namespace:Fluid.App.Behaviors"
+        Title="fluidMonitor — Dismiss CPU temperature prompt"
+        Width="420" SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        AllowsTransparency="False"
+        ResizeMode="NoResize"
+        Background="{DynamicResource BackgroundBrush}"
+        Style="{StaticResource BorderlessWindow}">
+    <Grid>
+        <!-- v1.25.10: chrome overlay sits inside the 32px caption area
+             defined by WindowChrome. The original content (below) keeps
+             its existing layout and Margin (no structural change). The
+             default Window template still hosts both, so UI Automation
+             walks the tree normally. -->
+        <TextBlock Text="Dismiss CPU temperature prompt" FontSize="13" FontWeight="SemiBold"
+                   Foreground="{DynamicResource TextBrush}"
+                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Margin="14,8,0,0" Panel.ZIndex="100"/>
+        <Button Style="{StaticResource BorderlessCloseButton}"
+                HorizontalAlignment="Right" VerticalAlignment="Top"
+                Margin="0,4,6,0"
+                Panel.ZIndex="100"
+                beh:WindowClose.IsClose="True"/>
+        <StackPanel Margin="22,52,22,18">
+
+        <TextBlock Text="Dismiss the CPU temperature prompt" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,12"/>
+
+        <TextBlock TextWrapping="Wrap" FontSize="13" Margin="0,0,0,10" LineHeight="19"
+                   Text="Without the sensor driver, fluidMonitor can't read your CPU temperature. How should the CPU tile look?"/>
+
+        <TextBlock TextWrapping="Wrap" FontSize="12" Margin="0,0,0,14" LineHeight="17"
+                   Foreground="{DynamicResource MutedTextBrush}"
+                   Text="You can change this later in Settings → Sensors."/>
+
+        <Border Background="{DynamicResource TileBrush}" CornerRadius="6" Padding="11,9" Margin="0,0,0,8" Cursor="Hand"
+                MouseLeftButtonUp="OnPickLoadOnly">
+            <StackPanel>
+                <TextBlock Text="Show load only" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,3"/>
+                <TextBlock Text="Keep the CPU tile, drop the temperature slot. You'll see just the load percentage."
+                           FontSize="12" TextWrapping="Wrap"
+                           Foreground="{DynamicResource MutedTextBrush}" LineHeight="17"/>
+            </StackPanel>
+        </Border>
+
+        <Border Background="{DynamicResource TileBrush}" CornerRadius="6" Padding="11,9" Margin="0,0,0,16" Cursor="Hand"
+                MouseLeftButtonUp="OnPickHideTile">
+            <StackPanel>
+                <TextBlock Text="Hide the CPU tile" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,3"/>
+                <TextBlock Text="Remove the CPU tile from the widget entirely."
+                           FontSize="12" TextWrapping="Wrap"
+                           Foreground="{DynamicResource MutedTextBrush}" LineHeight="17"/>
+            </StackPanel>
+        </Border>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Cancel" Style="{StaticResource BottomBar}" Click="OnCancel"/>
+        </StackPanel>
+
+    </StackPanel>
+    </Grid>
+</Window>
