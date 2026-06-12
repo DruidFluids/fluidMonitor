@@ -12,12 +12,12 @@
 - ThemeApplier.GetAllThemes() merges built-in + downloaded themes seamlessly
 
 ### Discovery points
-- Download button (↓) added left of Die button in Preset Themes cycler row
+- Download button added left of Die button in Preset Themes cycler row
 - "More themes on GitHub" banner at bottom of theme browse popup
 - Both open the Theme Store window
 
 ### From v1.0.6
-- Split back-button chrome (← | TITLE) on all Tools sub-windows
+- Split back-button chrome (<- | TITLE) on all Tools sub-windows
 - Dashboard tile grid layout for Tools window
 - Updates section moved inline to Settings
 - Check Now disables when mode is Off
@@ -26,10 +26,10 @@
 ## v1.0.6 (2026-06-12)
 
 ### UI: standardized Tools sub-window chrome
-- New split back-button title bar: ← | TITLE — entire left region is one clickable back button with hover highlight
+- New split back-button title bar: <- | TITLE -- entire left region is one clickable back button with hover highlight
 - Applied identically to Alerts, Game Mode, and Utilities windows
-- Game Mode width bumped from 420 → 460 (matches Alerts)
-- Utilities width bumped from 440 → 460 (matches Alerts)
+- Game Mode width bumped from 420 -> 460 (matches Alerts)
+- Utilities width bumped from 440 -> 460 (matches Alerts)
 - Utilities: removed duplicate inline "UTILITIES" header, normalized title bar to 11px Bold (was 13px SemiBold)
 - Game Mode: content margins normalized to DockPanel layout matching Alerts
 - All three windows now use consistent DockPanel content layout with docked bottom bar
@@ -45,7 +45,7 @@
 - Dashboard tile grid layout replaces vertical card list
 - 3-column grid with large centered icons in colored backgrounds (coral/blue/green)
 - Accent border hover effect on each tile
-- Window width shrunk from 460 → 380 (compact grid needs less width)
+- Window width shrunk from 460 -> 380 (compact grid needs less width)
 
 
 ## v1.0.5 (2026-06-12)
