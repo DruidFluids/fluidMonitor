@@ -12,7 +12,9 @@ Real-time CPU, GPU, RAM, network, and disk stats — always on your desktop, nev
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4)](#requirements)
 [![.NET](https://img.shields.io/badge/.NET-8.0-512bd4)](#requirements)
 
-<img src="docs/images/hero.png" alt="fluidMonitor widget on desktop" width="280">
+<br>
+
+<img src="docs/images/hero.png" alt="fluidMonitor widget" width="260">
 
 </div>
 
@@ -20,7 +22,7 @@ Real-time CPU, GPU, RAM, network, and disk stats — always on your desktop, nev
 
 ## Why fluidMonitor?
 
-Most system monitors are either heavyweight dashboards or cryptic taskbar numbers. fluidMonitor sits in between: a clean, themeable widget that shows exactly what you care about — temperature, load, clocks, traffic — at a glance, with virtually zero overhead.
+Most system monitors are either heavyweight dashboards or cryptic taskbar numbers. fluidMonitor sits in between — a clean, themeable widget that shows exactly what you care about at a glance, with virtually zero overhead.
 
 - **Lightweight** — a Windows service polls the hardware; the widget just renders. No Electron, no browser engine.
 - **Beautiful by default, yours in two clicks** — 16 skins, 100+ color themes, full font control, or roll the dice and let it surprise you.
@@ -31,17 +33,17 @@ Most system monitors are either heavyweight dashboards or cryptic taskbar number
 
 ## Features
 
-### 📊 Live hardware tiles
+### Live hardware tiles
 
 CPU, GPU, RAM, Network, Disk, and Clock tiles — each individually toggleable and drag-to-reorder. CPU and GPU tiles show temperature, load, and clock speed. RAM shows usage and capacity. Network shows live up/down traffic with animated indicators. Disk shows real-time read/write speeds.
 
+Vertical or horizontal layout — switch any time.
+
 <div align="center">
-<img src="docs/images/widget-vertical.png" alt="Vertical layout" height="420">
-&nbsp;&nbsp;&nbsp;
-<img src="docs/images/widget-horizontal.png" alt="Horizontal layout" width="420">
+<img src="docs/images/widget-horizontal.png" alt="Horizontal layout">
 </div>
 
-### 🎨 Themes, skins, and colors
+### Themes, skins, and colors
 
 The appearance engine has three independent layers:
 
@@ -51,54 +53,55 @@ The appearance engine has three independent layers:
 | **Colors** | 5-color palette (background, tile, accent, text, muted) | 100+ presets |
 | **Preset Themes** | One-click skin + color combos | Curated library |
 
-Hit the 🎲 dice for a random look, undo if you hate it, and save your favorites to 5 quick slots. Import/export themes as `.fluidtheme` files to share.
+Hit the dice for a random look, undo if you don't like it, and save your favorites to 5 quick slots. Import and export themes as `.fluidtheme` files to share with others.
 
 <div align="center">
-<img src="docs/images/settings-appearance.png" alt="Appearance settings" width="640">
+<img src="docs/images/settings-appearance.png" alt="Appearance settings" width="420">
 </div>
 
-### 🌡️ CPU temperature
+### CPU temperature
 
-A one-time sensor driver setup (PawnIO) unlocks CPU temperature directly on the widget. Switch °C/°F with a rocker, and remove the driver any time from the same menu.
+A one-time sensor driver setup ([PawnIO](https://pawnio.eu/)) unlocks CPU temperature directly on the widget. The driver is downloaded on demand from the official source — fluidMonitor never bundles or redistributes it. Switch between °C and °F with a rocker, and remove the driver any time from the same menu.
 
-### 🎮 Game Mode
+### Game Mode
 
-Press a hotkey, and the widget snaps to a corner of your screen with custom opacity, layout, and tile selection — designed to stay readable but unobtrusive over a game. Press again to send it back. Works in fullscreen.
+Press a hotkey and the widget snaps to a corner of your screen with custom opacity, layout, and tile selection — designed to stay readable but unobtrusive over a game. Press again to send it back. Works in fullscreen.
 
 <div align="center">
-<img src="docs/images/game-mode.png" alt="Game Mode settings" width="520">
+<img src="docs/images/game-mode.png" alt="Game Mode settings" width="420">
 </div>
 
-### ⚠️ Temperature warnings
+### Temperature warnings
 
-Set a threshold and the widget flashes a warning color when your CPU or GPU runs hot — or use gradient mode, where the value text shifts smoothly from cool blue to hot red as temperature climbs.
+Set a threshold and the widget flashes a warning color when your CPU or GPU runs hot. Or use gradient mode, where the unit text shifts smoothly from cool blue to hot red as temperature climbs.
 
 <div align="center">
-<img src="docs/images/warnings.png" alt="Warnings settings" width="520">
+<img src="docs/images/warnings.png" alt="Warnings settings" width="420">
 </div>
 
-### 🧰 Utilities
+### Utilities
 
-A toolbox window with extras: quick launchers for popular Windows optimization tools, and the window-snap blocklist with a live window picker.
+Quick launchers for popular Windows optimization tools and a window-snap blocklist with a live window picker.
 
 <div align="center">
-<img src="docs/images/utilities.png" alt="Utilities window" width="520">
+<img src="docs/images/utilities.png" alt="Utilities window" width="420">
 </div>
 
-### 🖥️ Remote monitoring
+### Remote monitoring
 
 Run fluidMonitor on multiple machines and watch them all from one desktop. TCP-based with mutual handshake-key authentication. Each remote device gets its own popout widget with independent layout and theming.
 
 <div align="center">
-<img src="docs/images/remote-monitoring.png" alt="Remote monitoring" width="640">
+<img src="docs/images/remote-monitoring.png" alt="Remote monitoring" width="420">
 </div>
 
-### ✨ Quality of life
+### Quality of life
 
-- **Snap to edges and windows** — the widget docks flush to screen edges and other windows' borders, with a blocklist for exceptions
-- **Click-through mode** — make the widget invisible to the mouse, toggle back with a hotkey
-- **Slider default markers** — every slider shows a tick at its factory default that glows as you approach it
+- **Snap to edges and windows** — the widget docks flush to screen edges and other windows' borders, with a configurable blocklist
+- **Click-through mode** — make the widget invisible to the mouse; toggle back with a hotkey
+- **Slider default markers** — every settings slider shows a tick at its factory default that glows as you approach it
 - **Built-in help** — the **?** button opens a categorized guide to every feature
+- **Dark and light mode** — full palette swap with one click
 - **Run at startup** — per-user, no admin needed
 - **Crash-hardened** — automatic render recovery and crash logging
 
@@ -107,8 +110,8 @@ Run fluidMonitor on multiple machines and watch them all from one desktop. TCP-b
 ## Installation
 
 1. Download the latest installer from [**Releases**](../../releases)
-2. Run `fluidMonitor_installer_v1.0.0.exe`
-3. The widget appears on your desktop — click the ⚙ gear to open Settings
+2. Run the installer
+3. The widget appears on your desktop — click the gear icon to open Settings
 
 The installer sets up both the widget and the background sensor service. CPU temperature requires an optional one-time driver install, offered on first run.
 
@@ -116,7 +119,6 @@ The installer sets up both the widget and the background sensor service. CPU tem
 
 - Windows 10 / 11 (x64)
 - .NET 8 Desktop Runtime (bundled in the installer)
-- ~100 MB disk space
 
 ---
 
@@ -124,7 +126,7 @@ The installer sets up both the widget and the background sensor service. CPU tem
 
 ```
 ┌─────────────────────┐     named pipes      ┌──────────────────┐
-│  fluidsvc (service) │ ◄──────────────────► │  fluidMonitor    │
+│  Fluid.Service      │ ◄──────────────────► │  Fluid.App       │
 │  LibreHardwareMonitor│   sensors + commands │  (WPF widget)    │
 │  polls hardware      │                      │  renders tiles   │
 └─────────────────────┘                      └──────────────────┘
@@ -133,9 +135,9 @@ The installer sets up both the widget and the background sensor service. CPU tem
                   remote monitoring between machines
 ```
 
-- **Fluid.Service** — Windows service running as LocalSystem. Polls hardware via LibreHardwareMonitor at your chosen interval (250ms–5s) and pushes snapshots over a named pipe.
-- **Fluid.App** — the WPF widget. Stateless renderer with all user settings in `%APPDATA%\fluidMonitor\settings.json`.
-- **Fluid.Shared** — pipe/TCP protocol definitions shared by both.
+- **Fluid.Service** — Windows service running as LocalSystem. Polls hardware via [LibreHardwareMonitor](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor) at a configurable interval (250ms–5s) and pushes snapshots over a named pipe.
+- **Fluid.App** — the WPF widget. Stateless renderer with all user settings persisted to `%APPDATA%\fluidMonitor\settings.json`.
+- **Fluid.Shared** — pipe and TCP protocol definitions shared by both projects.
 
 ---
 
@@ -148,14 +150,6 @@ dotnet build -c Release
 ```
 
 The installer is built with [Inno Setup](https://jrsoftware.org/isinfo.php) from `installer/fluid.iss`.
-
-Run the test suite:
-
-```powershell
-.\tests\Test-FluidMonitor.ps1          # full (~60s)
-.\tests\Test-FluidMonitor.ps1 -Fast    # skips memory leak check (~22s)
-.\tests\Test-FluidMonitor.ps1 -Smoke   # 5 quick checks (~8s)
-```
 
 ---
 
