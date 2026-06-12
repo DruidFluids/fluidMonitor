@@ -73,6 +73,18 @@ Press a hotkey, and the widget snaps to a corner of your screen with custom opac
 
 Set a threshold and the widget flashes a warning color when your CPU or GPU runs hot — or use gradient mode, where the value text shifts smoothly from cool blue to hot red as temperature climbs.
 
+<div align="center">
+<img src="docs/images/warnings.png" alt="Warnings settings" width="520">
+</div>
+
+### 🧰 Utilities
+
+A toolbox window with extras: quick launchers for popular Windows optimization tools, and the window-snap blocklist with a live window picker.
+
+<div align="center">
+<img src="docs/images/utilities.png" alt="Utilities window" width="520">
+</div>
+
 ### 🖥️ Remote monitoring
 
 Run fluidMonitor on multiple machines and watch them all from one desktop. TCP-based with mutual handshake-key authentication. Each remote device gets its own popout widget with independent layout and theming.
