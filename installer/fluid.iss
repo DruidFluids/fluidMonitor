@@ -4,7 +4,7 @@
 ; ----------------------------------------------------------------------------
 
 #define AppName       "fluidMonitor"
-#define AppVersion    "1.25.64"
+#define AppVersion    "1.0.0"
 #define AppPublisher  "Matt Hakes"
 #define AppExeName    "fluidMonitor.exe"
 #define SvcExeName    "fluidMonitor.service.exe"
@@ -116,6 +116,7 @@ begin
     if DirExists(Path) then DelTree(Path, True, True, True);
   end;
 end;
+
 
 
 

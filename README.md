@@ -107,6 +107,16 @@ Run fluidMonitor on multiple machines and watch them all from one desktop. TCP-b
 
 ---
 
+## Security
+
+fluidMonitor is built with security-conscious defaults:
+
+- **0/69 on VirusTotal** — the installer is clean across all major antivirus engines. [Verify the latest scan yourself](https://www.virustotal.com) by uploading the installer or checking the SHA-256 hash listed in each release.
+- **No telemetry** — the app makes zero network calls. The only outbound connections are the optional PawnIO driver download (user-initiated) and LAN-only remote monitoring.
+- **PawnIO is never bundled** — the CPU temperature driver is downloaded on demand from its [official GitHub release](https://github.com/namazso/PawnIO.Setup/releases), and the digital signature is verified before execution.
+- **Open source** — every line of code is in this repo for inspection. The service requires LocalSystem privileges solely for hardware sensor access via LibreHardwareMonitor.
+- **Settings are local** — all configuration lives in `%APPDATA%\fluidMonitor\settings.json`. Nothing is sent anywhere.
+
 ## Installation
 
 1. Download the latest installer from [**Releases**](../../releases)
