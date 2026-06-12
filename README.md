@@ -8,7 +8,7 @@
 
 Real-time CPU, GPU, RAM, network, and disk stats — always on your desktop, never in your way.
 
-[![Release](https://img.shields.io/badge/release-v1.5.0-blue)](../../releases)
+[![Release](https://img.shields.io/badge/release-v1.0.0-blue)](../../releases)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4)](#requirements)
 [![.NET](https://img.shields.io/badge/.NET-8.0-512bd4)](#requirements)
 
@@ -107,7 +107,7 @@ Run fluidMonitor on multiple machines and watch them all from one desktop. TCP-b
 ## Installation
 
 1. Download the latest installer from [**Releases**](../../releases)
-2. Run `fluidMonitor_installer_v1.5.0.exe`
+2. Run `fluidMonitor_installer_v1.0.0.exe`
 3. The widget appears on your desktop — click the ⚙ gear to open Settings
 
 The installer sets up both the widget and the background sensor service. CPU temperature requires an optional one-time driver install, offered on first run.

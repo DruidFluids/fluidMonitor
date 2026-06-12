@@ -6,14 +6,11 @@ obj/
 installer/Output/
 installer/redist/
 deploy-*.ps1
+patch-*.ps1
 parse-check.ps1
-patch-interval.ps1
+Capture-*.ps1
 tests/test-results.txt
 tests/coverage.txt
 *-diagnostics-*.zip
 crash.log
 *.log
-
-Capture-*.ps1
-
-Capture-*.ps1
