@@ -1,0 +1,33 @@
+{
+  "franchise": "Borderlands",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Borderlands Pandora",
+      "bg": "#FF18100A",
+      "tile": "#FF281A12",
+      "accent": "#FFE08020",
+      "text": "#FFEFDDC0",
+      "muted": "#FF9C7E5C",
+      "category": "Brutalist"
+    },
+    {
+      "name": "Borderlands Hyperion Corp",
+      "bg": "#FF14100A",
+      "tile": "#FF221E14",
+      "accent": "#FFFFD030",
+      "text": "#FFEFE8C8",
+      "muted": "#FF94885A",
+      "category": "Sharp"
+    },
+    {
+      "name": "Borderlands Eridium Crystal",
+      "bg": "#FF0E0820",
+      "tile": "#FF1A1230",
+      "accent": "#FFB060FF",
+      "text": "#FFE8DCF8",
+      "muted": "#FF8A6EB6",
+      "category": "Holographic"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+<Window x:Class="Fluid.App.UpdatesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="UPDATES"
+        Width="460" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None" AllowsTransparency="True"
+        Background="Transparent">
+
+    <Border Background="{DynamicResource BackgroundBrush}"
+            CornerRadius="10" BorderThickness="1"
+            BorderBrush="{DynamicResource MutedTextBrush}"
+            Padding="0" Margin="8"
+            MouseLeftButtonDown="OnDragMove">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="12" Opacity="0.4" ShadowDepth="2"/>
+        </Border.Effect>
+        <StackPanel>
+            <!-- Title bar with back button -->
+            <DockPanel Margin="10,10,10,0">
+                <Button DockPanel.Dock="Left" Content="&#8592; Back" Click="OnBack"
+                        Padding="6,3" FontSize="10" Cursor="Hand"
+                        Background="Transparent" Foreground="{DynamicResource MutedTextBrush}"
+                        BorderThickness="0" VerticalAlignment="Center"/>
+                <Button DockPanel.Dock="Right" Content="&#10005;" Click="OnClose"
+                        HorizontalAlignment="Right"
+                        Width="24" Height="24" Padding="0" FontSize="13"
+                        Cursor="Hand" Background="Transparent"
+                        Foreground="{DynamicResource MutedTextBrush}"
+                        BorderThickness="0"/>
+                <TextBlock Text="UPDATES" FontSize="11" FontWeight="Bold"
+                           Foreground="{DynamicResource AccentBrush}"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </DockPanel>
+
+            <StackPanel Margin="14,10,14,14">
+                <!-- Mode selector -->
+                <DockPanel Margin="0,0,0,10">
+                    <TextBlock Text="Check for updates" FontSize="11"
+                               Foreground="{DynamicResource TextBrush}"
+                               VerticalAlignment="Center"/>
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <RadioButton x:Name="UpdateAutoBtn" Content="Auto"
+                                     Style="{StaticResource UpdateModeRadio}"
+                                     Click="OnUpdateModeChanged" Margin="0,0,3,0"/>
+                        <RadioButton x:Name="UpdateManualBtn" Content="Manual"
+                                     Style="{StaticResource UpdateModeRadio}"
+                                     IsChecked="True"
+                                     Click="OnUpdateModeChanged" Margin="0,0,3,0"/>
+                        <RadioButton x:Name="UpdateOffBtn" Content="Off"
+                                     Style="{StaticResource UpdateModeRadio}"
+                                     Click="OnUpdateModeChanged"/>
+                    </StackPanel>
+                </DockPanel>
+
+                <!-- Version info -->
+                <Border Background="{DynamicResource TileBrush}" CornerRadius="8"
+                        Padding="12,10" x:Name="UpdateSection">
+                    <StackPanel>
+                        <DockPanel Margin="0,0,0,4">
+                            <TextBlock Text="Current version" FontSize="10"
+                                       Foreground="{DynamicResource MutedTextBrush}"/>
+                            <TextBlock x:Name="CurrentVersionLabel" FontSize="10"
+                                       Foreground="{DynamicResource TextBrush}"
+                                       HorizontalAlignment="Right"/>
+                        </DockPanel>
+
+                        <!-- New version row (hidden until update found) -->
+                        <DockPanel x:Name="NewVersionRow" Margin="0,0,0,4"
+                                   Visibility="Collapsed">
+                            <TextBlock Text="New version" FontSize="10"
+                                       Foreground="{DynamicResource MutedTextBrush}"/>
+                            <TextBlock x:Name="NewVersionLabel" FontSize="10"
+                                       Foreground="{DynamicResource AccentBrush}"
+                                       HorizontalAlignment="Right"/>
+                        </DockPanel>
+
+                        <!-- Changelog (hidden until update found) -->
+                        <Border x:Name="ChangelogBox" Visibility="Collapsed"
+                                Background="{DynamicResource BackgroundBrush}"
+                                CornerRadius="5" Padding="8,6" Margin="0,4,0,4">
+                            <StackPanel>
+                                <TextBlock Text="What's new:" FontSize="9" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource TextBrush}"
+                                           Margin="0,0,0,2"/>
+                                <TextBlock x:Name="ChangelogText" FontSize="9"
+                                           Foreground="{DynamicResource MutedTextBrush}"
+                                           TextWrapping="Wrap" MaxHeight="100"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Status + action buttons -->
+                        <DockPanel Margin="0,6,0,0">
+                            <TextBlock x:Name="UpdateStatusText" FontSize="10"
+                                       Foreground="{DynamicResource MutedTextBrush}"
+                                       VerticalAlignment="Center"/>
+                            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+                                <Button x:Name="LaterBtn" Content="Later"
+                                        Style="{StaticResource BottomBar}"
+                                        Click="OnLater" Visibility="Collapsed"
+                                        FontSize="9" Padding="8,4" Margin="0,0,4,0"/>
+                                <Button x:Name="DownloadBtn" Content="Download and install"
+                                        Style="{StaticResource BottomBarPrimary}"
+                                        Click="OnDownload" Visibility="Collapsed"
+                                        FontSize="9" Padding="8,4"/>
+                                <Button x:Name="CheckNowBtn" Content="Check now"
+                                        Style="{StaticResource BottomBar}"
+                                        Click="OnCheckNow" FontSize="9" Padding="8,4"/>
+                            </StackPanel>
+                        </DockPanel>
+
+                        <!-- Last checked -->
+                        <TextBlock x:Name="LastCheckedLabel" Text="Last checked: never"
+                                   FontSize="8" Foreground="{DynamicResource MutedTextBrush}"
+                                   Opacity="0.5" HorizontalAlignment="Right"
+                                   Margin="0,6,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

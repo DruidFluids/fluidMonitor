@@ -1,0 +1,33 @@
+{
+  "franchise": "Amnesia",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Amnesia Dark Descent",
+      "bg": "#FF0E0A06",
+      "tile": "#FF181210",
+      "accent": "#FFCAB04A",
+      "text": "#FFC8B098",
+      "muted": "#FF766250",
+      "category": "Brutalist"
+    },
+    {
+      "name": "Amnesia Brennenburg Cellar",
+      "bg": "#FF0A0808",
+      "tile": "#FF141010",
+      "accent": "#FF6A8868",
+      "text": "#FFC0B098",
+      "muted": "#FF686250",
+      "category": "Brutalist"
+    },
+    {
+      "name": "Amnesia Daniel's Sanity Loss",
+      "bg": "#FF1A0E0A",
+      "tile": "#FF281610",
+      "accent": "#FF982828",
+      "text": "#FFC8B098",
+      "muted": "#FF826250",
+      "category": "Holographic"
+    }
+  ]
+}

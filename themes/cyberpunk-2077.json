@@ -1,0 +1,33 @@
+{
+  "franchise": "Cyberpunk 2077",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Cyberpunk 2077 Night City",
+      "bg": "#FF080A14",
+      "tile": "#FF12162A",
+      "accent": "#FFFCEE09",
+      "text": "#FFE8EFFA",
+      "muted": "#FF7C8EAC",
+      "category": "Cyberpunk"
+    },
+    {
+      "name": "Cyberpunk 2077 Pacifica Combat Zone",
+      "bg": "#FF180E08",
+      "tile": "#FF281A12",
+      "accent": "#FFE83828",
+      "text": "#FFEFD2C0",
+      "muted": "#FF947058",
+      "category": "Brutalist"
+    },
+    {
+      "name": "Cyberpunk 2077 Arasaka Corporate",
+      "bg": "#FF0A0808",
+      "tile": "#FF181010",
+      "accent": "#FFC8121C",
+      "text": "#FFE5D8D8",
+      "muted": "#FF8A6868",
+      "category": "Sharp"
+    }
+  ]
+}

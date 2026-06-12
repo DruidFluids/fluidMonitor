@@ -1,0 +1,33 @@
+{
+  "franchise": "Hollow Knight",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Hollow Knight Hallownest",
+      "bg": "#FF080A10",
+      "tile": "#FF12161F",
+      "accent": "#FFD8E5E8",
+      "text": "#FFDCE0E5",
+      "muted": "#FF6E7882",
+      "category": "Ink"
+    },
+    {
+      "name": "Hollow Knight City of Tears",
+      "bg": "#FF08101E",
+      "tile": "#FF14203A",
+      "accent": "#FF6090C8",
+      "text": "#FFD0E0EE",
+      "muted": "#FF7088A0",
+      "category": "Frosted"
+    },
+    {
+      "name": "Hollow Knight Greenpath",
+      "bg": "#FF0A1810",
+      "tile": "#FF14241A",
+      "accent": "#FF60C840",
+      "text": "#FFD8E8C8",
+      "muted": "#FF788E70",
+      "category": "Aurora"
+    }
+  ]
+}

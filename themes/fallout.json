@@ -1,0 +1,132 @@
+{
+  "franchise": "Fallout",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Fallout Pip-Boy",
+      "bg": "#FF000A00",
+      "tile": "#FF001400",
+      "accent": "#FF1BFF80",
+      "text": "#FFC0FFD0",
+      "muted": "#FF509C70",
+      "category": "Terminal"
+    },
+    {
+      "name": "Fallout Vault-Tec",
+      "bg": "#FF080F1A",
+      "tile": "#FF14223A",
+      "accent": "#FFFEF265",
+      "text": "#FFEFE8B8",
+      "muted": "#FF7C8AAA",
+      "category": "Sharp"
+    },
+    {
+      "name": "Fallout Brotherhood Steel",
+      "bg": "#FF14110A",
+      "tile": "#FF221E14",
+      "accent": "#FFC09858",
+      "text": "#FFEAE0C8",
+      "muted": "#FF8C8068",
+      "category": "Brutalist"
+    },
+    {
+      "name": "Fallout Nuka-Cola Classic",
+      "bg": "#FF14080A",
+      "tile": "#FF22120E",
+      "accent": "#FFE82838",
+      "text": "#FFE8C8C8",
+      "muted": "#FF8C6868",
+      "category": "Retro"
+    },
+    {
+      "name": "Fallout Nuka-Cola Quantum",
+      "bg": "#FF00081E",
+      "tile": "#FF001036",
+      "accent": "#FF1EC8FF",
+      "text": "#FFC8E8FF",
+      "muted": "#FF509CC0",
+      "category": "Holographic"
+    },
+    {
+      "name": "Fallout Nuka-Cherry",
+      "bg": "#FF180408",
+      "tile": "#FF28080E",
+      "accent": "#FFE82048",
+      "text": "#FFEFC8D0",
+      "muted": "#FF945868",
+      "category": "Retro"
+    },
+    {
+      "name": "Fallout Nuka-Cola Quartz",
+      "bg": "#FF101418",
+      "tile": "#FF1E2428",
+      "accent": "#FFE0F0D8",
+      "text": "#FFEFEFE5",
+      "muted": "#FF8A9090",
+      "category": "Frosted"
+    },
+    {
+      "name": "Fallout Nuka-Cola Victory",
+      "bg": "#FF18100A",
+      "tile": "#FF281C12",
+      "accent": "#FFFFA838",
+      "text": "#FFEFDDC0",
+      "muted": "#FF94805A",
+      "category": "Retro"
+    },
+    {
+      "name": "Fallout Nuka-Cola Dark",
+      "bg": "#FF080608",
+      "tile": "#FF14100E",
+      "accent": "#FF8B5C29",
+      "text": "#FFE0D2B8",
+      "muted": "#FF806858",
+      "category": "Ink"
+    },
+    {
+      "name": "Fallout Nuka-Cola Wild",
+      "bg": "#FF180E08",
+      "tile": "#FF281A10",
+      "accent": "#FF8B4C0D",
+      "text": "#FFE5D0B0",
+      "muted": "#FF806050",
+      "category": "Paper"
+    },
+    {
+      "name": "Fallout Nuka-Cola Orange",
+      "bg": "#FF18100A",
+      "tile": "#FF2A1A10",
+      "accent": "#FFFF7820",
+      "text": "#FFEFD8C0",
+      "muted": "#FF94785A",
+      "category": "Retro"
+    },
+    {
+      "name": "Fallout Nuka-Cola Grape",
+      "bg": "#FF100818",
+      "tile": "#FF1E1228",
+      "accent": "#FF9038D0",
+      "text": "#FFE0D0EE",
+      "muted": "#FF7868A0",
+      "category": "Retro"
+    },
+    {
+      "name": "Fallout Nuka-Cola Cranberry",
+      "bg": "#FF140608",
+      "tile": "#FF240A10",
+      "accent": "#FFA82038",
+      "text": "#FFE8C8D0",
+      "muted": "#FF806068",
+      "category": "Retro"
+    },
+    {
+      "name": "Fallout Nukashine",
+      "bg": "#FF080E14",
+      "tile": "#FF101A24",
+      "accent": "#FF80B0E8",
+      "text": "#FFD8E0EC",
+      "muted": "#FF7080A0",
+      "category": "Holographic"
+    }
+  ]
+}

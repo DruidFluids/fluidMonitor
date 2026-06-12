@@ -1,0 +1,129 @@
+<Window x:Class="Fluid.App.ThemeStoreWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:beh="clr-namespace:Fluid.App.Behaviors"
+        Title="THEME STORE"
+        Width="460" SizeToContent="Height" MaxHeight="600"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        AllowsTransparency="False"
+        ResizeMode="NoResize"
+        Background="{DynamicResource BackgroundBrush}"
+        Style="{StaticResource BorderlessWindow}"
+        KeyDown="OnWindowKeyDown">
+    <Grid>
+        <Button Content="THEME STORE" Style="{StaticResource SplitBackButton}"
+                FontSize="11" FontWeight="Bold"
+                Foreground="{DynamicResource TextBrush}"
+                Panel.ZIndex="100"
+                beh:WindowClose.IsClose="True"/>
+        <Button Style="{StaticResource BorderlessCloseButton}"
+                HorizontalAlignment="Right" VerticalAlignment="Top"
+                Margin="0,4,6,0"
+                Panel.ZIndex="100"
+                beh:WindowClose.IsClose="True"/>
+
+        <DockPanel Margin="0,32,0,0">
+            <StackPanel DockPanel.Dock="Bottom" Margin="14,8,14,12">
+                <DockPanel>
+                    <TextBlock x:Name="SelectionLabel" Text="" FontSize="9"
+                               Foreground="{DynamicResource MutedTextBrush}"
+                               VerticalAlignment="Center"/>
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <Button x:Name="RemoveBtn" Content="Remove installed"
+                                Style="{StaticResource BottomBar}"
+                                Click="OnRemoveInstalled" Visibility="Collapsed"
+                                FontSize="9" Padding="8,4" Margin="0,0,6,0"/>
+                        <Button x:Name="DownloadBtn" Content="Download selected"
+                                Style="{StaticResource BottomBarPrimary}"
+                                Click="OnDownloadSelected" IsEnabled="False"
+                                FontSize="9" Padding="8,4"/>
+                    </StackPanel>
+                </DockPanel>
+            </StackPanel>
+
+            <DockPanel DockPanel.Dock="Top" Margin="14,6,14,6">
+                <TextBlock x:Name="SummaryLabel" FontSize="10"
+                           Foreground="{DynamicResource MutedTextBrush}"
+                           VerticalAlignment="Center"/>
+                <Button DockPanel.Dock="Right" Content="Refresh"
+                        Style="{StaticResource InlineBtn}"
+                        HorizontalAlignment="Right"
+                        FontSize="9" Padding="8,3" Click="OnRefresh"/>
+            </DockPanel>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="14,0,14,0">
+                <ItemsControl x:Name="PackGrid">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="2" HorizontalAlignment="Stretch"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border x:Name="Card" Background="{DynamicResource TileBrush}"
+                                    CornerRadius="8" Padding="10" Margin="3"
+                                    Cursor="Hand" MouseLeftButtonDown="OnCardClick"
+                                    BorderThickness="1" BorderBrush="Transparent">
+                                <StackPanel>
+                                    <DockPanel>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Name}" FontSize="11" FontWeight="SemiBold"
+                                                       Foreground="{DynamicResource TextBrush}"/>
+                                            <TextBlock FontSize="9" Foreground="{DynamicResource MutedTextBrush}"
+                                                       Margin="0,1,0,0">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0} themes">
+                                                        <Binding Path="Count"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </StackPanel>
+                                        <TextBlock x:Name="StatusBadge" DockPanel.Dock="Right"
+                                                   Text="{Binding StatusText}"
+                                                   Foreground="{Binding StatusColor}"
+                                                   FontSize="8" VerticalAlignment="Top"
+                                                   HorizontalAlignment="Right"
+                                                   Margin="4,0,0,0"/>
+                                    </DockPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                                        <ItemsControl ItemsSource="{Binding SwatchBrushes}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border Width="12" Height="12" CornerRadius="3"
+                                                            Background="{Binding}" Margin="0,0,3,0"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                    <Setter TargetName="Card" Property="BorderBrush"
+                                            Value="{DynamicResource AccentBrush}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsInstalled}" Value="True">
+                                    <Setter TargetName="Card" Property="BorderBrush" Value="#3058C858"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
+
+        <Border x:Name="LoadingOverlay" Panel.ZIndex="200"
+                Background="#CC000000" Visibility="Visible">
+            <TextBlock Text="Loading theme packs..."
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Foreground="{DynamicResource MutedTextBrush}" FontSize="11"/>
+        </Border>
+    </Grid>
+</Window>

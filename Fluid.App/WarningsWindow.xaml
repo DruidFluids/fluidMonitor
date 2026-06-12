@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:beh="clr-namespace:Fluid.App.Behaviors"
         xmlns:m="clr-namespace:Fluid.Shared.Protocol;assembly=Fluid.Shared"
-        Title="fluidMonitor — Alerts"
+        Title="TILE ALERTS"
         Width="460" SizeToContent="Height"
         MaxHeight="700"
         WindowStartupLocation="CenterOwner"
@@ -19,10 +19,11 @@
              its existing layout and Margin (no structural change). The
              default Window template still hosts both, so UI Automation
              walks the tree normally. -->
-        <TextBlock Text="Alerts" FontSize="13" FontWeight="SemiBold"
-                   Foreground="{DynamicResource TextBrush}"
-                   HorizontalAlignment="Left" VerticalAlignment="Top"
-                   Margin="14,8,0,0" Panel.ZIndex="100"/>
+        <Button Content="TILE ALERTS" Style="{StaticResource SplitBackButton}"
+                FontSize="11" FontWeight="Bold"
+                Foreground="{DynamicResource TextBrush}"
+                Panel.ZIndex="100"
+                beh:WindowClose.IsClose="True"/>
         <Button Style="{StaticResource BorderlessCloseButton}"
                 HorizontalAlignment="Right" VerticalAlignment="Top"
                 Margin="0,4,6,0"
@@ -35,7 +36,7 @@
         </StackPanel>
 
         <StackPanel Margin="16">
-            <TextBlock Text="TILE ALERTS" Style="{StaticResource SettingsSectionHeader}" Margin="0,0,0,4"/>
+            
             <TextBlock TextWrapping="Wrap" Margin="0,0,0,16"
                        Foreground="{DynamicResource MutedTextBrush}" FontSize="11"
                        Text="When the temperature threshold is crossed, the tile background flashes. Gradient mode shifts the unit color from dark-blue (cool) to bright-red (hot) continuously. Thresholds are always in °C."/>
@@ -50,7 +51,7 @@
                                 <CheckBox Style="{StaticResource ToggleSwitch}" IsChecked="{Binding Enabled, Mode=TwoWay}"
                                           Foreground="{DynamicResource TextBrush}"
                                           FontWeight="Bold" FontSize="13"
-                                          Content="{Binding Kind}"
+                                          Content="{Binding DisplayName}"
                                           Margin="0,0,0,8"/>
 
                                 <!-- Config (dims when disabled) -->

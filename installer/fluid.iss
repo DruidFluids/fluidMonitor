@@ -4,7 +4,7 @@
 ; ----------------------------------------------------------------------------
 
 #define AppName       "fluidMonitor"
-#define AppVersion    "1.0.1"
+#define AppVersion    "1.0.7"
 #define AppPublisher  "Matt Hakes"
 #define AppExeName    "fluidMonitor.exe"
 #define SvcExeName    "fluidMonitor.service.exe"

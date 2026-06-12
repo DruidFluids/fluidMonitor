@@ -1,0 +1,33 @@
+{
+  "franchise": "DayZ",
+  "version": 1,
+  "themes": [
+    {
+      "name": "DayZ Chernarus Survivor",
+      "bg": "#FF1A1814",
+      "tile": "#FF252118",
+      "accent": "#FF8A7A3A",
+      "text": "#FFD5C8A8",
+      "muted": "#FF796E5A",
+      "category": "Brutalist"
+    },
+    {
+      "name": "DayZ Livonia Forest",
+      "bg": "#FF14180E",
+      "tile": "#FF1F261A",
+      "accent": "#FF8A7038",
+      "text": "#FFE5DCC8",
+      "muted": "#FF7D8668",
+      "category": "Paper"
+    },
+    {
+      "name": "DayZ Infected Encounter",
+      "bg": "#FF120A08",
+      "tile": "#FF1F1410",
+      "accent": "#FFC03830",
+      "text": "#FFE8D8D0",
+      "muted": "#FF8A6C5E",
+      "category": "Brutalist"
+    }
+  ]
+}

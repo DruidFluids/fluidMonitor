@@ -458,14 +458,45 @@
                  accessible directly from Settings instead of only via tray. -->
             <DockPanel LastChildFill="False">
                 <Button DockPanel.Dock="Right"  Content="Save and Close"    Style="{StaticResource BottomBarPrimary}" Click="OnClose"/>
-                <Button DockPanel.Dock="Left"   Content="?" Style="{StaticResource CyclerBtn}"
-                        Width="30" Height="30" FontSize="14" FontWeight="Bold"
-                        Margin="0,0,10,0" ToolTip="Help — feature guide"
-                        Click="OnOpenHelp"/>
-                <Button DockPanel.Dock="Left"   Content="Utilities"            Style="{StaticResource BottomBar}" Margin="0,0,6,0" Click="OnOpenTweaks"/>
-                <Button DockPanel.Dock="Left"   Content="Alerts"          Style="{StaticResource BottomBar}" Margin="0,0,6,0" Click="OnOpenWarnings"/>
-                <Button DockPanel.Dock="Left"   Content="Game Mode"         Style="{StaticResource BottomBar}" Margin="0,0,6,0" Click="OnOpenGameMode"/>
-                <Button DockPanel.Dock="Left"   Content="Reset to Defaults" Style="{StaticResource BottomBarDanger}" Margin="0,0,6,0" Click="OnResetAll"/>
+                <!-- v1.0.4: split button leftmost, reset to its right -->
+                <Border DockPanel.Dock="Left" CornerRadius="7" Margin="0,0,6,0"
+                        BorderBrush="{DynamicResource MutedTextBrush}" BorderThickness="0.5"
+                        SnapsToDevicePixels="True">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="?" Width="34" Height="30" Padding="0"
+                                FontSize="14" FontWeight="Bold" Cursor="Hand"
+                                Background="{DynamicResource TileBrush}"
+                                Foreground="{DynamicResource MutedTextBrush}"
+                                BorderThickness="0" Click="OnOpenHelp"
+                                ToolTip="Help — feature guide">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="7,0,0,7" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Border Width="0.5" Background="{DynamicResource MutedTextBrush}" Opacity="0.4"/>
+                        <Button Content="⚙" Width="34" Height="30" Padding="0"
+                                FontSize="13" Cursor="Hand"
+                                Background="{DynamicResource TileBrush}"
+                                Foreground="{DynamicResource MutedTextBrush}"
+                                BorderThickness="0" Click="OnOpenTools"
+                                ToolTip="Tools — Alerts, Game Mode, Utilities">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="0,7,7,0" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Border>
+                <Button DockPanel.Dock="Left" Content="Reset to Defaults" Style="{StaticResource BottomBarDanger}" Margin="0,0,6,0" Click="OnResetAll"/>
             </DockPanel>
         </Border>
 
@@ -1052,6 +1083,14 @@
                                Foreground="{DynamicResource MutedTextBrush}"
                                HorizontalAlignment="Center" Margin="0,0,0,2"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,6">
+                        <Button x:Name="ThemeDownloadBtn" Content="↓" Click="OnOpenThemeStore"
+                                Width="34" Height="34" Padding="0" FontSize="15"
+                                Cursor="Hand"
+                                Background="{DynamicResource TileBrush}"
+                                Foreground="#FF6AB0E8"
+                                BorderThickness="0"
+                                Margin="0,0,3,0"
+                                ToolTip="Download theme packs from GitHub"/>
                         <Button x:Name="ThemeDiceBtn" Content="🎲" Click="OnRandomizeThemePreset"
                                 Width="34" Height="34" Padding="0" FontSize="18"
                                 Cursor="Hand"
@@ -1060,7 +1099,7 @@
                                 BorderThickness="0"
                                 Margin="0,0,3,0"
                                 ToolTip="Randomize theme (colors + skin together)"/>
-                        <Border Width="10" Background="Transparent"/>
+                        <Border Width="13" Background="Transparent"/>
                         <Button x:Name="ThemePresetPrevBtn" Style="{StaticResource CyclerBtn}" Content="‹" Click="OnThemePresetPrev"
                                 Width="24" Height="24" Padding="0" Cursor="Hand" FontSize="15"/>
                         <!-- v1.24: cycler pills are now Buttons; clicking the field opens
@@ -1126,16 +1165,13 @@
                              skin AND colors. Left-click = both; right-click = skin only. -->
                         <Button x:Name="RandomizeBtn" Click="OnRandomizeAppearance"
                                 MouseRightButtonUp="OnRandomizeSkinOnly"
-                                Width="42" Height="34" Padding="0"
+                                Width="34" Height="34" Padding="0" FontSize="16"
                                 Cursor="Hand"
                                 Background="{DynamicResource TileBrush}"
                                 Foreground="{DynamicResource TextBrush}"
                                 BorderThickness="0"
-                                Margin="0,0,3,0" ToolTipService.InitialShowDelay="300">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="🎲" FontSize="16" VerticalAlignment="Center"/>
-                                <TextBlock Text="🎨" FontSize="12" VerticalAlignment="Center" Margin="-2,0,0,0"/>
-                            </StackPanel>
+                                Margin="0,0,3,0" ToolTipService.InitialShowDelay="300"
+                                Content="🎲">
                             <Button.ToolTip>
                                 <ToolTip>
                                     <StackPanel MaxWidth="260">
@@ -1405,6 +1441,7 @@
                             BorderBrush="{DynamicResource MutedTextBrush}" BorderThickness="1"
                             MinWidth="220" MaxHeight="380" CornerRadius="6">
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
                             <ItemsControl x:Name="ThemePresetBrowseList">
                                 <ItemsControl.GroupStyle>
                                     <GroupStyle>
@@ -1459,6 +1496,21 @@
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
+
+                            <Border x:Name="ThemePacksBanner" Background="#083A8FD4"
+                                    BorderBrush="#203A8FD4" BorderThickness="1"
+                                    CornerRadius="6" Padding="10,8" Margin="6,6,6,6"
+                                    Cursor="Hand" MouseLeftButtonDown="OnBrowseBannerClick">
+                                <StackPanel>
+                                    <TextBlock Text="↓ More themes on GitHub" FontSize="11" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextBrush}"/>
+                                    <TextBlock x:Name="BrowseBannerSubtext"
+                                               Text="22 game franchise packs"
+                                               FontSize="9" Foreground="{DynamicResource MutedTextBrush}"
+                                               Margin="0,2,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            </StackPanel>
                         </ScrollViewer>
                     </Border>
                 </Popup>
@@ -1926,9 +1978,77 @@
                 </Border>
                 </StackPanel>
 
+                <!-- v1.0.6: Updates — moved from standalone window into Settings -->
+                <StackPanel Margin="0,16,0,0">
+                    <TextBlock Text="Updates" Style="{StaticResource SH}" Margin="0,0,0,8"/>
+                    <Border Background="{DynamicResource TileBrush}" CornerRadius="6" Padding="11,9">
+                        <StackPanel>
+                            <DockPanel Margin="0,0,0,6">
+                                <TextBlock Text="Current version" FontSize="10"
+                                           Foreground="{DynamicResource MutedTextBrush}"/>
+                                <TextBlock x:Name="CurrentVersionLabel" FontSize="10"
+                                           Foreground="{DynamicResource TextBrush}"
+                                           HorizontalAlignment="Right"/>
+                            </DockPanel>
+                            <DockPanel x:Name="NewVersionRow" Visibility="Collapsed" Margin="0,0,0,6">
+                                <TextBlock Text="New version" FontSize="10"
+                                           Foreground="{DynamicResource MutedTextBrush}"/>
+                                <TextBlock x:Name="NewVersionLabel" FontSize="10"
+                                           Foreground="{DynamicResource AccentBrush}"
+                                           HorizontalAlignment="Right"/>
+                            </DockPanel>
+                            <Border x:Name="ChangelogBox" Visibility="Collapsed"
+                                    Background="{DynamicResource BackgroundBrush}"
+                                    CornerRadius="5" Padding="8,6" Margin="0,0,0,6">
+                                <StackPanel>
+                                    <TextBlock Text="What's new:" FontSize="9" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextBrush}" Margin="0,0,0,2"/>
+                                    <TextBlock x:Name="ChangelogText" FontSize="9"
+                                               Foreground="{DynamicResource MutedTextBrush}"
+                                               TextWrapping="Wrap" MaxHeight="100"/>
+                                </StackPanel>
+                            </Border>
+                            <DockPanel>
+                                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                                    <RadioButton x:Name="UpdateAutoBtn" Content="Auto"
+                                                 Style="{StaticResource UpdateModeRadio}"
+                                                 Click="OnUpdateModeChanged" Margin="0,0,3,0"/>
+                                    <RadioButton x:Name="UpdateManualBtn" Content="Manual"
+                                                 Style="{StaticResource UpdateModeRadio}"
+                                                 IsChecked="True"
+                                                 Click="OnUpdateModeChanged" Margin="0,0,3,0"/>
+                                    <RadioButton x:Name="UpdateOffBtn" Content="Off"
+                                                 Style="{StaticResource UpdateModeRadio}"
+                                                 Click="OnUpdateModeChanged"/>
+                                </StackPanel>
+                                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal"
+                                            HorizontalAlignment="Right">
+                                    <Button x:Name="LaterBtn" Content="Later"
+                                            Style="{StaticResource BottomBar}"
+                                            Click="OnUpdateLater" Visibility="Collapsed"
+                                            FontSize="9" Padding="8,4" Margin="0,0,4,0"/>
+                                    <Button x:Name="DownloadBtn" Content="Download and install"
+                                            Style="{StaticResource BottomBarPrimary}"
+                                            Click="OnUpdateDownload" Visibility="Collapsed"
+                                            FontSize="9" Padding="8,4"/>
+                                    <Button x:Name="CheckNowBtn" Content="Check now"
+                                            Style="{StaticResource BottomBar}"
+                                            Click="OnCheckNow" FontSize="9" Padding="8,4"/>
+                                </StackPanel>
+                            </DockPanel>
+                            <TextBlock x:Name="UpdateStatusText" FontSize="9"
+                                       Foreground="{DynamicResource MutedTextBrush}"
+                                       Margin="0,4,0,0"/>
+                            <TextBlock x:Name="LastCheckedLabel" Text="Last checked: never"
+                                       FontSize="8" Foreground="{DynamicResource MutedTextBrush}"
+                                       Opacity="0.5" HorizontalAlignment="Right"
+                                       Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
             </StackPanel>
 
-            <!-- Color picker popup -->
             <Popup x:Name="ColorPopup" Grid.Column="0" Grid.ColumnSpan="3"
                    StaysOpen="False" AllowsTransparency="True"
                    Placement="MousePoint" PopupAnimation="Fade">

@@ -1,0 +1,33 @@
+{
+  "franchise": "Witcher",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Witcher Wolf Medallion",
+      "bg": "#FF0A0C10",
+      "tile": "#FF18181C",
+      "accent": "#FFB8B0A0",
+      "text": "#FFE5E0D8",
+      "muted": "#FF888880",
+      "category": "Ink"
+    },
+    {
+      "name": "Witcher Kaer Morhen",
+      "bg": "#FF080F0E",
+      "tile": "#FF141C18",
+      "accent": "#FF4A8060",
+      "text": "#FFD0E0D0",
+      "muted": "#FF708878",
+      "category": "Brutalist"
+    },
+    {
+      "name": "Witcher Toussaint Vineyard",
+      "bg": "#FF180E08",
+      "tile": "#FF2A1E12",
+      "accent": "#FFE0A030",
+      "text": "#FFEFDDC0",
+      "muted": "#FF94805A",
+      "category": "Paper"
+    }
+  ]
+}

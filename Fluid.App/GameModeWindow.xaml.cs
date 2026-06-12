@@ -31,21 +31,16 @@ public partial class GameModeWindow : Window
         RamCheck.IsChecked         = s.GameModeShowRam;
         NetworkCheck.IsChecked     = s.GameModeShowNetwork;
         StorageCheck.IsChecked     = s.GameModeShowStorage;
-        ClockCheck.IsChecked       = s.GameModeShowDateTime;  // v1.21
+        ClockCheck.IsChecked       = s.GameModeShowDateTime;
 
-        // Position
         var posRadios = new[] { PosTopLeft, PosTopCenter, PosTopRight,
                                 PosLeftCenter, PosRightCenter,
                                 PosBotLeft, PosBotCenter, PosBotRight };
         foreach (var rb in posRadios)
             if (rb.Tag as string == s.GameModePosition) { rb.IsChecked = true; break; }
-        // v1.21: the fallback must check ALL radios. The old check only looked
-        // at the top row, so any saved bottom/center position got stomped back
-        // to TopRight every time the dialog opened (all 8 share a radio group).
         if (!System.Array.Exists(posRadios, rb => rb.IsChecked == true))
             PosTopRight.IsChecked = true;
 
-        // Orientation
         switch (s.GameModeOrientation)
         {
             case "Horizontal": OrientHorizontal.IsChecked = true; break;
@@ -63,14 +58,10 @@ public partial class GameModeWindow : Window
         OpacityLabel.Text = $"{(int)(e.NewValue * 100)}%";
     }
 
-    // ------------------------------------------------------------------
-    // Hotkey capture
-    // ------------------------------------------------------------------
-
     private void OnHotkeyBoxFocused(object s, RoutedEventArgs e)
     {
         _capturingHotkey = true;
-        HotkeyPrompt.Text = " (press key combo…)";
+        HotkeyPrompt.Text = " (press key combo\u2026)";
     }
 
     private void OnHotkeyBoxUnfocused(object s, RoutedEventArgs e)
@@ -84,7 +75,6 @@ public partial class GameModeWindow : Window
         if (!_capturingHotkey) return;
         e.Handled = true;
         var key = e.Key == Key.System ? e.SystemKey : e.Key;
-        // v1.21: Escape cancels capture -- it must never become the hotkey
         if (key == Key.Escape)
         {
             _capturingHotkey = false;
@@ -96,11 +86,9 @@ public partial class GameModeWindow : Window
             key == Key.LeftShift || key == Key.RightShift ||
             key == Key.LeftAlt || key == Key.RightAlt ||
             key == Key.LWin || key == Key.RWin) return;
-        // v1.21: require at least one modifier. RegisterHotKey with a bare key
-        // would hijack that key system-wide (e.g. a bare Esc or letter key).
         if (Keyboard.Modifiers == ModifierKeys.None)
         {
-            HotkeyPrompt.Text = " (add Ctrl/Alt/Shift…)";
+            HotkeyPrompt.Text = " (add Ctrl/Alt/Shift\u2026)";
             return;
         }
         var combo = HotkeyHelper.FormatCombo(Keyboard.Modifiers, key);
@@ -112,9 +100,6 @@ public partial class GameModeWindow : Window
 
     private void OnClearHotkey(object s, RoutedEventArgs e) => HotkeyBox.Text = "";
 
-    // ------------------------------------------------------------------
-    // Reset / Save
-    // ------------------------------------------------------------------
 
     private void OnReset(object sender, RoutedEventArgs e)
     {
@@ -129,7 +114,7 @@ public partial class GameModeWindow : Window
         ClickThroughCheck.IsChecked = true;
         CpuCheck.IsChecked = GpuCheck.IsChecked = RamCheck.IsChecked =
             NetworkCheck.IsChecked = StorageCheck.IsChecked = true;
-        ClockCheck.IsChecked = false;  // v1.21: matches AppSettings default
+        ClockCheck.IsChecked = false;
         _loading = false;
     }
 
@@ -145,7 +130,7 @@ public partial class GameModeWindow : Window
         s.GameModeShowRam      = RamCheck.IsChecked     == true;
         s.GameModeShowNetwork  = NetworkCheck.IsChecked == true;
         s.GameModeShowStorage  = StorageCheck.IsChecked == true;
-        s.GameModeShowDateTime = ClockCheck.IsChecked   == true;  // v1.21
+        s.GameModeShowDateTime = ClockCheck.IsChecked   == true;
 
         s.GameModeOrientation = OrientHorizontal.IsChecked == true ? "Horizontal"
                               : OrientVertical.IsChecked   == true ? "Vertical"

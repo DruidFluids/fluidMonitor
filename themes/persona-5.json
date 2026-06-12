@@ -1,0 +1,33 @@
+{
+  "franchise": "Persona 5",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Persona 5 Phantom Thieves",
+      "bg": "#FF0A0808",
+      "tile": "#FF161010",
+      "accent": "#FFD92323",
+      "text": "#FFEFEFEF",
+      "muted": "#FF8C7878",
+      "category": "Sharp"
+    },
+    {
+      "name": "Persona 5 Mementos",
+      "bg": "#FF180808",
+      "tile": "#FF2A0E0E",
+      "accent": "#FFB81020",
+      "text": "#FFE8C8C8",
+      "muted": "#FF885858",
+      "category": "Brutalist"
+    },
+    {
+      "name": "Persona 5 Velvet Room",
+      "bg": "#FF080A1E",
+      "tile": "#FF101230",
+      "accent": "#FF4080E0",
+      "text": "#FFD8E0F2",
+      "muted": "#FF7888A8",
+      "category": "Holographic"
+    }
+  ]
+}

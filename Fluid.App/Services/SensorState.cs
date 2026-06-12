@@ -67,7 +67,7 @@ public sealed class SensorState
         DateTimeTile.SubHeader      = "";                  // drops the "Clock" label
         DateTimeTile.PrimaryValue   = now.ToString("h:mm");
         DateTimeTile.PrimaryUnit    = now.ToString("tt").ToLower();
-        DateTimeTile.SecondaryValue = $"{now:dddd},\n{now:MMMM} {now.Day}{OrdinalSuffix(now.Day)}";
+        DateTimeTile.SecondaryValue = $"{now:dddd},\n{now:MMMM} [a]{now.Day}[/a]{OrdinalSuffix(now.Day)}";
     }
 
     // English ordinal suffix for a day-of-month. 11/12/13 are the irregulars.

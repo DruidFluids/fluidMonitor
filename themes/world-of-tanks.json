@@ -1,0 +1,33 @@
+{
+  "franchise": "World of Tanks",
+  "version": 1,
+  "themes": [
+    {
+      "name": "World of Tanks Olive Drab",
+      "bg": "#FF1A1C10",
+      "tile": "#FF252818",
+      "accent": "#FFC8A050",
+      "text": "#FFE8E2C8",
+      "muted": "#FF8A8B68",
+      "category": "Brutalist"
+    },
+    {
+      "name": "World of Tanks German Panzer",
+      "bg": "#FF14140E",
+      "tile": "#FF202018",
+      "accent": "#FFC08038",
+      "text": "#FFDCDCC8",
+      "muted": "#FF7A7A68",
+      "category": "Sharp"
+    },
+    {
+      "name": "World of Tanks Soviet Heavy",
+      "bg": "#FF180E08",
+      "tile": "#FF281A10",
+      "accent": "#FFE03838",
+      "text": "#FFE5DCC8",
+      "muted": "#FF897968",
+      "category": "Brutalist"
+    }
+  ]
+}

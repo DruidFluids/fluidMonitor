@@ -1,0 +1,33 @@
+{
+  "franchise": "Stronghold 2",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Stronghold 2 Castle Keep",
+      "bg": "#FF1C1812",
+      "tile": "#FF2C271E",
+      "accent": "#FFB81F1F",
+      "text": "#FFEDE2C8",
+      "muted": "#FF978B74",
+      "category": "Default"
+    },
+    {
+      "name": "Stronghold 2 Siege Bombard",
+      "bg": "#FF1A0E0A",
+      "tile": "#FF281A12",
+      "accent": "#FFC04848",
+      "text": "#FFE8DAC8",
+      "muted": "#FF967A68",
+      "category": "Brutalist"
+    },
+    {
+      "name": "Stronghold 2 Royal Feast",
+      "bg": "#FF1C1408",
+      "tile": "#FF2C2010",
+      "accent": "#FFE8C048",
+      "text": "#FFFAE8C8",
+      "muted": "#FF9A825C",
+      "category": "Paper"
+    }
+  ]
+}

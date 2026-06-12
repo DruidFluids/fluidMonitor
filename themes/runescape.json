@@ -1,0 +1,78 @@
+{
+  "franchise": "RuneScape",
+  "version": 1,
+  "themes": [
+    {
+      "name": "RuneScape Combat Bronze",
+      "bg": "#FF14100A",
+      "tile": "#FF22190E",
+      "accent": "#FFE0982E",
+      "text": "#FFEFE0BC",
+      "muted": "#FF94805A",
+      "category": "Paper"
+    },
+    {
+      "name": "RuneScape Rune Plate",
+      "bg": "#FF0A1418",
+      "tile": "#FF152428",
+      "accent": "#FF40D8E0",
+      "text": "#FFD8EAEC",
+      "muted": "#FF7098A0",
+      "category": "Sharp"
+    },
+    {
+      "name": "RuneScape Dragonhide",
+      "bg": "#FF0A1208",
+      "tile": "#FF142010",
+      "accent": "#FF6CB050",
+      "text": "#FFDDE8C8",
+      "muted": "#FF788C68",
+      "category": "Paper"
+    },
+    {
+      "name": "RuneScape Magic Robes",
+      "bg": "#FF080A1C",
+      "tile": "#FF101232",
+      "accent": "#FF6080FF",
+      "text": "#FFD8E0FA",
+      "muted": "#FF7888B8",
+      "category": "Frosted"
+    },
+    {
+      "name": "RuneScape Tutorial Island",
+      "bg": "#FF18221A",
+      "tile": "#FF283A28",
+      "accent": "#FFFFD83A",
+      "text": "#FFF8FFE8",
+      "muted": "#FF98AF7E",
+      "category": "Retro"
+    },
+    {
+      "name": "RuneScape Wilderness",
+      "bg": "#FF120608",
+      "tile": "#FF22090E",
+      "accent": "#FFD42820",
+      "text": "#FFEFC8C0",
+      "muted": "#FF94605A",
+      "category": "Brutalist"
+    },
+    {
+      "name": "RuneScape Morytania",
+      "bg": "#FF0E0814",
+      "tile": "#FF1E1024",
+      "accent": "#FF9038B0",
+      "text": "#FFE0D2EC",
+      "muted": "#FF8068A0",
+      "category": "Ink"
+    },
+    {
+      "name": "RuneScape Corrupted Gauntlet",
+      "bg": "#FF081820",
+      "tile": "#FF142838",
+      "accent": "#FF44E6F0",
+      "text": "#FFD0EAF0",
+      "muted": "#FF6C8E9C",
+      "category": "Holographic"
+    }
+  ]
+}

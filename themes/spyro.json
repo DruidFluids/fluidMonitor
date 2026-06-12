@@ -1,0 +1,78 @@
+{
+  "franchise": "Spyro",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Spyro Artisans",
+      "bg": "#FF100E08",
+      "tile": "#FF1E1C12",
+      "accent": "#FF58B848",
+      "text": "#FFE4E8D0",
+      "muted": "#FF7E8868",
+      "category": "Paper"
+    },
+    {
+      "name": "Spyro Peace Keepers",
+      "bg": "#FF141008",
+      "tile": "#FF261C10",
+      "accent": "#FFD8A040",
+      "text": "#FFE8DCC0",
+      "muted": "#FF907848",
+      "category": "Retro"
+    },
+    {
+      "name": "Spyro Magic Crafters",
+      "bg": "#FF080E1E",
+      "tile": "#FF101C30",
+      "accent": "#FF68C8F0",
+      "text": "#FFDCE8F8",
+      "muted": "#FF7090B8",
+      "category": "Frosted"
+    },
+    {
+      "name": "Spyro Beast Makers",
+      "bg": "#FF080C08",
+      "tile": "#FF121814",
+      "accent": "#FF48A838",
+      "text": "#FFC8D0C0",
+      "muted": "#FF606850",
+      "category": "Brutalist"
+    },
+    {
+      "name": "Spyro Dream Weavers",
+      "bg": "#FF140820",
+      "tile": "#FF201230",
+      "accent": "#FFC060D0",
+      "text": "#FFE8D8F0",
+      "muted": "#FF907898",
+      "category": "Holographic"
+    },
+    {
+      "name": "Spyro Gnasty Gnorc",
+      "bg": "#FF101008",
+      "tile": "#FF1E1C10",
+      "accent": "#FFB8B830",
+      "text": "#FFE0E0C0",
+      "muted": "#FF808060",
+      "category": "Brutalist"
+    },
+    {
+      "name": "Spyro",
+      "bg": "#FF14082A",
+      "tile": "#FF22123E",
+      "accent": "#FFE8B030",
+      "text": "#FFF0E0D0",
+      "muted": "#FF8A7AB0",
+      "category": "Aurora"
+    },
+    {
+      "name": "Spyro Sparx",
+      "bg": "#FF18140A",
+      "tile": "#FF2A2410",
+      "accent": "#FFFFD030",
+      "text": "#FFEFE8C0",
+      "muted": "#FF9C9058",
+      "category": "Retro"
+    }
+  ]
+}

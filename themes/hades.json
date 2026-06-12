@@ -1,0 +1,33 @@
+{
+  "franchise": "Hades",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Hades Tartarus",
+      "bg": "#FF0C1414",
+      "tile": "#FF182222",
+      "accent": "#FF60C8B0",
+      "text": "#FFDDE8DC",
+      "muted": "#FF7A8E84",
+      "category": "Brutalist"
+    },
+    {
+      "name": "Hades Asphodel",
+      "bg": "#FF180808",
+      "tile": "#FF281414",
+      "accent": "#FFFF6020",
+      "text": "#FFEFD0B8",
+      "muted": "#FF9C6858",
+      "category": "Holographic"
+    },
+    {
+      "name": "Hades Elysium",
+      "bg": "#FF0E1810",
+      "tile": "#FF1A281C",
+      "accent": "#FFE8C440",
+      "text": "#FFEFE0BC",
+      "muted": "#FF8E9A6E",
+      "category": "Aurora"
+    }
+  ]
+}

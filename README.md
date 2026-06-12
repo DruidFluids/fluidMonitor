@@ -8,7 +8,7 @@
 
 Real-time CPU, GPU, RAM, network, and disk stats — always on your desktop, never in your way.
 
-[![Release](https://img.shields.io/badge/release-v1.0.1-blue)](../../releases)
+[![Release](https://img.shields.io/badge/release-v1.0.7-blue)](../../releases)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4)](#requirements)
 [![.NET](https://img.shields.io/badge/.NET-8.0-512bd4)](#requirements)
 

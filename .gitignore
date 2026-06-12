@@ -14,3 +14,10 @@ tests/coverage.txt
 *-diagnostics-*.zip
 crash.log
 *.log
+
+Publish-Release.ps1
+
+Publish-Release.ps1
+
+Publish-Release.ps1
+Deploy-Local.ps1

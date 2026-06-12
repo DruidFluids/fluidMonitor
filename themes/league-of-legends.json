@@ -1,0 +1,114 @@
+{
+  "franchise": "League of Legends",
+  "version": 1,
+  "themes": [
+    {
+      "name": "League Demacia",
+      "bg": "#FF0A1424",
+      "tile": "#FF142238",
+      "accent": "#FFB8942E",
+      "text": "#FFE8E8F0",
+      "muted": "#FF7C8AAA",
+      "category": "Sharp"
+    },
+    {
+      "name": "League Noxus",
+      "bg": "#FF120808",
+      "tile": "#FF221010",
+      "accent": "#FFC81818",
+      "text": "#FFEEC8C8",
+      "muted": "#FF8E5C5C",
+      "category": "Brutalist"
+    },
+    {
+      "name": "League Ionia",
+      "bg": "#FF120A18",
+      "tile": "#FF1F1428",
+      "accent": "#FFE890C0",
+      "text": "#FFEFDDEC",
+      "muted": "#FF9888A0",
+      "category": "Aurora"
+    },
+    {
+      "name": "League Freljord",
+      "bg": "#FF0A1A28",
+      "tile": "#FF142C3C",
+      "accent": "#FF98E8FF",
+      "text": "#FFE0F0F8",
+      "muted": "#FF7C98AC",
+      "category": "Frosted"
+    },
+    {
+      "name": "League Shurima",
+      "bg": "#FF1A1408",
+      "tile": "#FF2A2010",
+      "accent": "#FFE8B83C",
+      "text": "#FFEFE0BC",
+      "muted": "#FF9C8458",
+      "category": "Paper"
+    },
+    {
+      "name": "League Bilgewater",
+      "bg": "#FF0A1820",
+      "tile": "#FF142830",
+      "accent": "#FFE0782C",
+      "text": "#FFE8DCC8",
+      "muted": "#FF7E8C8C",
+      "category": "Retro"
+    },
+    {
+      "name": "League Piltover",
+      "bg": "#FF1A1208",
+      "tile": "#FF2A2014",
+      "accent": "#FFE0A028",
+      "text": "#FFEFDDC0",
+      "muted": "#FF94805A",
+      "category": "Sharp"
+    },
+    {
+      "name": "League Zaun",
+      "bg": "#FF0A0E08",
+      "tile": "#FF141810",
+      "accent": "#FF80E830",
+      "text": "#FFD8E8C0",
+      "muted": "#FF788858",
+      "category": "Cyberpunk"
+    },
+    {
+      "name": "League Bandle City",
+      "bg": "#FF180E08",
+      "tile": "#FF281A12",
+      "accent": "#FFFFB838",
+      "text": "#FFEFDDC0",
+      "muted": "#FF8E785A",
+      "category": "Paper"
+    },
+    {
+      "name": "League Targon",
+      "bg": "#FF0A0828",
+      "tile": "#FF14123C",
+      "accent": "#FFC0A8FF",
+      "text": "#FFE5DCFF",
+      "muted": "#FF8478B0",
+      "category": "Holographic"
+    },
+    {
+      "name": "League Void",
+      "bg": "#FF0E081A",
+      "tile": "#FF1A1028",
+      "accent": "#FFC020E0",
+      "text": "#FFE0CCEE",
+      "muted": "#FF8868A0",
+      "category": "Cyberpunk"
+    },
+    {
+      "name": "League Ixtal",
+      "bg": "#FF081410",
+      "tile": "#FF141E1A",
+      "accent": "#FF40C868",
+      "text": "#FFD0E8D0",
+      "muted": "#FF6E8870",
+      "category": "Default"
+    }
+  ]
+}

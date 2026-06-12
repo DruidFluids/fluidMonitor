@@ -1,0 +1,33 @@
+{
+  "franchise": "Baldur's Gate 3",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Baldur's Gate 3 Underdark",
+      "bg": "#FF0E0820",
+      "tile": "#FF1A1230",
+      "accent": "#FF7BD4DE",
+      "text": "#FFE8DFF8",
+      "muted": "#FFA08CC8",
+      "category": "Aurora"
+    },
+    {
+      "name": "Baldur's Gate 3 Shadow-Cursed Lands",
+      "bg": "#FF0E0E18",
+      "tile": "#FF14142A",
+      "accent": "#FF6A40CC",
+      "text": "#FFE0DEEC",
+      "muted": "#FF7C809B",
+      "category": "Holographic"
+    },
+    {
+      "name": "Baldur's Gate 3 Avernus Hellfire",
+      "bg": "#FF180A08",
+      "tile": "#FF281410",
+      "accent": "#FFE85020",
+      "text": "#FFEFD8C8",
+      "muted": "#FF976C5C",
+      "category": "Brutalist"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "franchise": "Crash Bandicoot",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Crash Bandicoot N. Sanity",
+      "bg": "#FF0A2818",
+      "tile": "#FF143828",
+      "accent": "#FFFF7A1A",
+      "text": "#FFFFEFD0",
+      "muted": "#FF77C6E2",
+      "category": "Default"
+    },
+    {
+      "name": "Crash Bandicoot Cortex Castle",
+      "bg": "#FF14081A",
+      "tile": "#FF221028",
+      "accent": "#FF40D848",
+      "text": "#FFE0EAD0",
+      "muted": "#FF927CAC",
+      "category": "Sharp"
+    },
+    {
+      "name": "Crash Bandicoot Slippery Climb",
+      "bg": "#FF1A1018",
+      "tile": "#FF281828",
+      "accent": "#FF40C8FF",
+      "text": "#FFE8DCEC",
+      "muted": "#FF967FA1",
+      "category": "Aurora"
+    }
+  ]
+}

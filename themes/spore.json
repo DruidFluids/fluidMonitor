@@ -1,0 +1,33 @@
+{
+  "franchise": "Spore",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Spore Creature Stage",
+      "bg": "#FF1A0E22",
+      "tile": "#FF2A1832",
+      "accent": "#FF8AFFAA",
+      "text": "#FFFCEEFC",
+      "muted": "#FFFEC075",
+      "category": "Aurora"
+    },
+    {
+      "name": "Spore Cell Stage Primordial",
+      "bg": "#FF0A1418",
+      "tile": "#FF12222A",
+      "accent": "#FF40FFD8",
+      "text": "#FFE0F8F0",
+      "muted": "#FF7CA6AE",
+      "category": "Aurora"
+    },
+    {
+      "name": "Spore Space Stage Galactic",
+      "bg": "#FF0A0814",
+      "tile": "#FF12101F",
+      "accent": "#FFFFC448",
+      "text": "#FFEAE0F8",
+      "muted": "#FF8A809E",
+      "category": "Holographic"
+    }
+  ]
+}

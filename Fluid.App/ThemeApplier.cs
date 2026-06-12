@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using Fluid.App.Models;
+using Fluid.App.Services;
 
 namespace Fluid.App;
 
@@ -134,433 +136,45 @@ public static class ThemeApplier
         // shows "Default" on first open (not the first franchise entry).
         new BuiltInTheme("Default", "", DarkBackground, DarkTile, DarkAccent, DarkText, DarkMuted, "Default"),
 
-        // ---- Spyro (8) — Spyro 1 home worlds + Spyro + Sparx ----
-        // v1.25.26: replaced the mixed 10-theme set with the canonical
-        // Spyro 1 lineup. Colors traced to wiki descriptions and the F4F
-        // crystal dragon statue colors (each home world has a canonical
-        // crystallized dragon hue): Artisans green, Peace Keepers red,
-        // and so on. Spyro himself is purple+gold; Sparx is the golden
-        // yellow dragonfly health meter (gold->blue->green as Spyro
-        // takes hits).
-        new BuiltInTheme("Spyro Artisans", "Spyro", "#FF100E08", "#FF1E1C12", "#FF58B848", "#FFE4E8D0", "#FF7E8868", "Paper"), // warm stone castles + lush green meadows
-        new BuiltInTheme("Spyro Peace Keepers", "Spyro", "#FF141008", "#FF261C10", "#FFD8A040", "#FFE8DCC0", "#FF907848", "Retro"), // desert canyon sandstone + military ochre tents
-        new BuiltInTheme("Spyro Magic Crafters", "Spyro", "#FF080E1E", "#FF101C30", "#FF68C8F0", "#FFDCE8F8", "#FF7090B8", "Frosted"), // alpine ice peaks + crystalline sky blue
-        new BuiltInTheme("Spyro Beast Makers", "Spyro", "#FF080C08", "#FF121814", "#FF48A838", "#FFC8D0C0", "#FF606850", "Brutalist"), // murky dark swamp + sickly moss green
-        new BuiltInTheme("Spyro Dream Weavers", "Spyro", "#FF140820", "#FF201230", "#FFC060D0", "#FFE8D8F0", "#FF907898", "Holographic"), // surreal dream castles + mystical violet-pink
-        new BuiltInTheme("Spyro Gnasty Gnorc", "Spyro", "#FF101008", "#FF1E1C10", "#FFB8B830", "#FFE0E0C0", "#FF808060", "Brutalist"), // industrial junkyard + Gnasty grimy yellow-green
-        new BuiltInTheme("Spyro", "Spyro", "#FF14082A", "#FF22123E", "#FFE8B030", "#FFF0E0D0", "#FF8A7AB0", "Aurora"), // purple dragon body + golden horns and wings
-        new BuiltInTheme("Spyro Sparx",          "Spyro", "#FF18140A", "#FF2A2410", "#FFFFD030", "#FFEFE8C0", "#FF9C9058", "Retro"),        // golden yellow dragonfly (full health)
-
-        // ---- WoW (38) — 13 races + 8 continents + 17 iconic zones ----
-        // v1.25.22: palettes redone from canonical art/screenshot research
-        // rather than guesses. Races draw from heritage armor emblems + iconic
-        // racial mounts/cities; continents pull dominant terrain palettes
-        // from in-game screenshots; zones target signature colors called out
-        // in community/wiki descriptions (e.g. Zangarmarsh "deep blues, teals,
-        // soft neon greens"; Revendreth gothic crimson + ruby; Ardenweald
-        // intense saturated blue with mossy greens; Grizzly Hills redwood
-        // pine + snow + warm trapper lodge tones).
-
-        // -- Races (13) -- v1.25.33 deep palette redo from canonical
-        // research. Each race traced to Wowpedia city/heritage references:
-        // Horde
-        // Orc: Orgrimmar built on "red clay of Durotar", Warsong/Blackrock
-        // heritage in red + dark iron spiked architecture, green skin.
-        new BuiltInTheme("WoW Orc",         "WoW",  "#FF14060A", "#FF260C12", "#FFC0341E", "#FFE5C8B8", "#FF8F6450", "Brutalist"),  // Horde red over dark iron + Durotar clay
-        // Tauren: Wowhead Heritage = "earth tones, browns, greens, creams"
-        // + red war paint symbols, Mulgore green plains.
-        new BuiltInTheme("WoW Tauren",      "WoW",  "#FF1A0F08", "#FF2E1C10", "#FFC85E2C", "#FFEFDCC0", "#FFA68056", "Paper"),       // earthen tan + red war paint
-        // Troll: Darkspear heritage armor "orange and red tints", tiki
-        // masks, jungle voodoo. NOT generic purple.
-        new BuiltInTheme("WoW Troll", "WoW", "#FF081008", "#FF101C10", "#FF40B840", "#FFC8E0C0", "#FF608850", "Brutalist"), // Zul'Gurub/Amani jungle green + tribal moss
-        // Undead/Forsaken: Heritage armor "clad in dark purple" + Lordaeron
-        // crest + skulls. Forsaken canonical decay palette.
-        new BuiltInTheme("WoW Undead", "WoW", "#FF080A0C", "#FF141618", "#FF68B048", "#FFC8D0C8", "#FF6E7870", "Ink"), // Tirisfal plague-blight green + Undercity ashen
-        // Blood Elf: Silvermoon crimson + fel crystal green. v1.25.37:
-        // accent changed from ruby to fel green -- the glowing green eyes
-        // and Sunwell corruption IS the Blood Elf identity.
-        new BuiltInTheme("WoW Blood Elf",   "WoW",  "#FF1A0608", "#FF2E0E12", "#FF33FF44", "#FFF0D0B0", "#FFA07060", "Sharp"),       // crimson Silvermoon + neon fel green
-        // Goblin: Cartel/Bilgewater industrial yellow-green chemical hazard.
-        new BuiltInTheme("WoW Goblin", "WoW", "#FF0A0E08", "#FF141C0E", "#FF40C838", "#FFD0E0C0", "#FF6E8858", "Retro"), // Kezan goblin-green industrial tropical
-        // Pandaren: Pandaria jade + cream + bamboo. Existing was solid.
-        new BuiltInTheme("WoW Pandaren",    "WoW",  "#FF0E1812", "#FF1A2A1E", "#FF3CB888", "#FFD8E8DC", "#FF7A968A", "Paper"),       // Pandaria jade green + cream
-        // Alliance
-        // Human: Stormwind "Lion's Heritage" rich blue + gold lion crest.
-        new BuiltInTheme("WoW Human", "WoW", "#FF080E1A", "#FF101A2E", "#FFC8A030", "#FFE8E0D0", "#FF7080A0", "Sharp"), // Stormwind royal blue + lion gold banner
-        // Dwarf: Bronzebeard Heritage forged in Great Forge. Bronze + molten
-        // metal + Ironforge ember.
-        new BuiltInTheme("WoW Dwarf", "WoW", "#FF120806", "#FF201008", "#FFE08028", "#FFF0D8B0", "#FF907050", "Retro"), // Ironforge molten copper + dark volcanic stone
-        // Night Elf: v1.25.37 earthy Teldrassil bark with pale mint moonwell
-        // glow. Previous purple amethyst replaced with the iconic teal/green.
-        new BuiltInTheme("WoW Night Elf",        "WoW",  "#FF0A0806", "#FF18140E", "#FF90DDC0", "#FFD0D8CC", "#FF687060", "Aurora"),      // Teldrassil bark + pale mint moonwell
-        new BuiltInTheme("WoW Night Elf Grove",  "WoW",  "#FF080A06", "#FF14180E", "#FF80B8CC", "#FFC8D8D0", "#FF607858", "Frosted"),    // mossy oak + lichen steel-blue
-        // Gnome: Gnomeregan tinker workshop brass + cheerful invention.
-        new BuiltInTheme("WoW Gnome", "WoW", "#FF0A100A", "#FF141C14", "#FF50D050", "#FFD0E0D0", "#FF608860", "Retro"), // Gnomeregan irradiated toxic green + mech
-        // Draenei: Exodar crystal ship. Heritage = Telhamat (purple/maroon)
-        // or Lost Embaari (blue/purple). Light-infused naaru crystal.
-        new BuiltInTheme("WoW Draenei", "WoW", "#FF08081C", "#FF101430", "#FF5088E0", "#FFD8E0F8", "#FF6878A8", "Holographic"), // Exodar naaru crystal blue + holy light
-        // Worgen: Gilneas Victorian Gothic — grey stone, black slate, dim
-        // gas-lamp amber under perpetual rain.
-        new BuiltInTheme("WoW Worgen",      "WoW",  "#FF0A0A0E", "#FF14141A", "#FFA09080", "#FFD8D0C8", "#FF74706A", "Ink"),         // Gilneas Victorian stone grey
-
-
-        // -- Continents (8) -- v1.25.33 deep redo with per-continent identity.
-        // Eastern Kingdoms: Alliance heartland, autumnal Elwynn forest +
-        // Khaz Modan mountain stone. Old-world classic vanilla feel.
-        // Distinct from Human race (which is pure Stormwind royal blue).
-        new BuiltInTheme("WoW Eastern Kingdoms", "WoW", "#FF0C1014", "#FF181E26", "#FF6098B8", "#FFDDE5EA", "#FF788C9C", "Default"),    // old-world Alliance stone + sea
-        // Kalimdor: night elf forest + tauren plains + orc Durotar red clay.
-        // Verdant west continent. Existing palette is solid green plains.
-        new BuiltInTheme("WoW Kalimdor",        "WoW", "#FF0E1408", "#FF1C2412", "#FF7AB840", "#FFDDEACA", "#FF7E906A", "Paper"),       // verdant forests + Mulgore plains
-        // Northrend: icy continent, Lich King realm. Differentiate from
-        // Icecrown Citadel (zone) by being lighter aurora blue, not saronite.
-        new BuiltInTheme("WoW Northrend",       "WoW", "#FF080E1A", "#FF14202E", "#FF80C8E8", "#FFDDEEF5", "#FF7898B0", "Frosted"),     // frozen north aurora blue
-        // Outland: shattered Draenor in Twisting Nether, signature hellish
-        // red sky over fel-touched lands. Hellfire + fel undertone.
-        new BuiltInTheme("WoW Outland",         "WoW", "#FF14080A", "#FF240E12", "#FFE85028", "#FFEFD2BC", "#FFA07868", "Brutalist"),   // Hellfire red + Twisting Nether
-        // Pandaria: mist-shrouded continent of jade + Vale of Eternal Blossoms
-        // golden lotus + cherry blossom. Asian-inspired hand-painted color.
-        new BuiltInTheme("WoW Pandaria",        "WoW", "#FF0C1814", "#FF182820", "#FF48C098", "#FFDDEBE0", "#FF7A988A", "Paper"),       // jade green + golden vale
-        // Draenor: raw uncorrupted savage Iron Horde world. Volcanic +
-        // weathered iron + rust. Frostfire + Tanaan war-torn red-orange.
-        new BuiltInTheme("WoW Draenor",         "WoW", "#FF180C06", "#FF2A1C10", "#FFE07028", "#FFEFD0B0", "#FF9C7058", "Retro"),       // Iron Horde rust + volcanic
-        // Broken Isles: Legion expansion, fel-tinged arcane Suramar +
-        // demonic corruption. Distinct from Night Elf lunar (which is
-        // pure soft lavender) — Broken Isles leans Legion fel-purple.
-        new BuiltInTheme("WoW Broken Isles",    "WoW", "#FF0A0818", "#FF161028", "#FFB04AE0", "#FFE8D8F0", "#FF8C70A8", "Aurora"),      // fel arcane purple corruption
-        // Dragon Isles: home of dragonflights — Red (Alexstrasza fire),
-        // Bronze (Nozdormu time gold), Black (Neltharion obsidian). Signature
-        // continent = dragonfire amber + dragonscale shimmer.
-        new BuiltInTheme("WoW Dragon Isles",    "WoW", "#FF180E04", "#FF2A1C0E", "#FFFFB438", "#FFEFE0BC", "#FFA88A60", "Holographic"), // dragonfire amber + bronze
-
-
-        // -- Iconic zones (17) -- v1.25.33 deep redo from canonical
-        // Wowpedia/community descriptions for each location.
-        // Icecrown Citadel: "cathedral of blades and claws made entirely
-        // of saronite" + Scourge necrotic glow. Black saronite + sickly
-        // green Scourge eye, NOT just ice cyan (which is Northrend).
-        new BuiltInTheme("WoW Icecrown Citadel",   "WoW",  "#FF080A12", "#FF101824", "#FF50E090", "#FFCCEAD2", "#FF608878", "Brutalist"),  // saronite black + Scourge green
-        // Grizzly Hills: "stunning sinister pine forest", waterfalls,
-        // Amberpine Lodge warm cabin amber + redwood pine. Solid.
-        new BuiltInTheme("WoW Grizzly Hills",      "WoW",  "#FF0E1208", "#FF1C2410", "#FFC06028", "#FFEFDDC0", "#FF8A7058", "Paper"),     // redwood pine + Amberpine cabin amber
-        // Nagrand: "vast openness, floating islands, Oshu'gun crystal".
-        // Bright cyan sky + emerald grass + jade open feel.
-        new BuiltInTheme("WoW Nagrand", "WoW", "#FF100E08", "#FF1E1C14", "#FFA89060", "#FFDCD4C0", "#FF807050", "Retro"), // dusty earth floating islands
-        // Kun-Lai Summit: "majestic mountains, autumnal plains, frigid
-        // northern peaks". Warm autumn maple over snowy summit stone.
-        new BuiltInTheme("WoW Kun-Lai Summit", "WoW", "#FF0A0E14", "#FF141E2A", "#FFE8C040", "#FFE0E4EC", "#FF7888A0", "Sharp"), // snow temple + golden prayer flags
-        // Howling Fjord: "stormy fjord, dark forests, treacherous cliffs,
-        // vrykul Viking" Norse Nordic coast. Stormy slate.
-        new BuiltInTheme("WoW Howling Fjord", "WoW", "#FF0C100A", "#FF1A1E16", "#FFB8A078", "#FFD8DCC8", "#FF688858", "Retro"), // meadow stone + warm cliff accent
-        // Zangarmarsh: alien fungal swamp, bioluminescent giant mushrooms,
-        // pre-Outland Sea of Zangar. Deep neon turquoise + spore mushroom.
-        new BuiltInTheme("WoW Zangarmarsh",        "WoW",  "#FF0A1820", "#FF142836", "#FF30E0C0", "#FFD0EEE5", "#FF6E9A98", "Holographic"),// alien fungal turquoise + spore
-        // Stormsong Valley: Kul Tiran rolling emerald fields + stormy sea
-        // + Tidesage shrines. Coastal hayfield emerald.
-        new BuiltInTheme("WoW Stormsong Valley",   "WoW",  "#FF0A1416", "#FF182428", "#FF48BC90", "#FFDDEDDC", "#FF749080", "Default"),    // Tidesage emerald + stormy coast
-        // Ardenweald: "moonless night, glowing blue forests, faerie dust,
-        // dream trees". Night fae bioluminescent.
-        new BuiltInTheme("WoW Ardenweald",         "WoW",  "#FF08081E", "#FF121432", "#FF40E0E0", "#FFD8E8F5", "#FF7090B0", "Aurora"),     // night fae bioluminescent cyan
-        // Revendreth: "gothic, scorched graveyards, vampiric, red sky
-        // box, imposing castles". Gothic crimson.
-        new BuiltInTheme("WoW Revendreth",         "WoW",  "#FF12060A", "#FF240C12", "#FFD42038", "#FFEFC8CC", "#FF8E5860", "Ink"),        // Venthyr gothic crimson
-        // Suramar: "Nightborne arcane city, ley lines, nighthold". Pure
-        // arcane violet over night sky. Distinct from race purples.
-        new BuiltInTheme("WoW Suramar",            "WoW",  "#FF0A0824", "#FF161038", "#FFC880FF", "#FFE8DAFA", "#FF8C70B8", "Holographic"),// Nightborne arcane violet
-        // Shadowmoon Valley (Draenor): "lush moor engulfed in eternal
-        // night, lit by Pale Lady moon, relaxing bluish hue". Starlit ash blue.
-        new BuiltInTheme("WoW Shadowmoon Valley",  "WoW",  "#FF06081C", "#FF101430", "#FF6098FF", "#FFD8DEF2", "#FF7080A8", "Aurora"),     // Draenor starlit Pale Lady blue
-        // Stranglethorn Vale: dense tropical jungle, troll ziggurats,
-        // Booty Bay. Lush emerald jungle canopy.
-        new BuiltInTheme("WoW Stranglethorn Vale", "WoW",  "#FF061410", "#FF12241A", "#FF38B85C", "#FFD0E8D5", "#FF6E8C78", "Paper"),      // dense tropical jungle
-        // Tirisfal Glades: "eternally gloomy and dark sky, tainted and
-        // melancholy, derelict farmsteads". Forsaken sickly green-yellow.
-        new BuiltInTheme("WoW Tirisfal Glades",    "WoW",  "#FF0C1208", "#FF181E12", "#FF8AAE38", "#FFD8DCB0", "#FF7C8458", "Ink"),         // Forsaken sickly plague yellow-green
-        // Sholazar Basin: "tropical jungle in midst of Northrend, hot
-        // springs, animals you'd find in Africa". Lush amber-gold tropics.
-        new BuiltInTheme("WoW Sholazar Basin", "WoW", "#FF060E06", "#FF101C10", "#FF40B840", "#FFC8E0C0", "#FF508850", "Default"), // lush jungle canopy green
-        // Vashj'ir: underwater zone, naga ruins, Lady Vashj's domain.
-        // Deep ocean cyan with sun-rays. Solid.
-        new BuiltInTheme("WoW Vashj'ir",           "WoW",  "#FF061620", "#FF122838", "#FF30A8D8", "#FFCCE0EE", "#FF6890A8", "Holographic"),// deep ocean naga cyan
-        // Ashenvale: deep elven forest with "cypresses and ochres,
-        // chestnuts and viridians" + "violets and purples" magic baked
-        // in trees. NOT cyan (was wrong). Deep emerald + magic violet hint.
-        new BuiltInTheme("WoW Ashenvale", "WoW", "#FF061010", "#FF0E1E20", "#FF38C0B0", "#FFC8E8E4", "#FF488880", "Frosted"), // Darnassian teal moonlit forest
-        // Felwood: fel-corrupted dead forest, sickly toxic. Solid.
-        new BuiltInTheme("WoW Felwood",            "WoW",  "#FF0E1408", "#FF1A2010", "#FF9FE848", "#FFE0E8C0", "#FF8C9A5A", "Brutalist"),  // fel-corrupted toxic neon green
-
-
-
-        // ---- RuneScape (8) ----
-        // v1.25.34: deep redo from canonical OSRS Wiki visual research.
-        // Eight themes cover combat triangle (Bronze, Rune, Dragonhide,
-        // Magic), iconic locations (Wilderness, Tutorial Island, Morytania),
-        // and the Corrupted Gauntlet endgame minigame.
-        //
-        // Combat Bronze: starter armor + Lumbridge/Falador early-game
-        // metalwork. Paper gold for that nostalgic newbie look.
-        new BuiltInTheme("RuneScape Combat Bronze",      "RuneScape", "#FF14100A", "#FF22190E", "#FFE0982E", "#FFEFE0BC", "#FF94805A", "Paper"),       // starter bronze metalwork
-        // Combat Rune: per Wiki "rune weapons are cyan in colour" +
-        // "instantly recognizable teal/cyan hue, symbolizing a milestone".
-        // The iconic mid-game F2P plate.
-        new BuiltInTheme("RuneScape Rune Plate",         "RuneScape", "#FF0A1418", "#FF152428", "#FF40D8E0", "#FFD8EAEC", "#FF7098A0", "Sharp"),       // iconic rune cyan mid-game
-        // Dragonhide Ranger: per Wiki "ranged armour made from green
-        // dragonhide" — the iconic ranger green. Combat triangle ranged.
-        new BuiltInTheme("RuneScape Dragonhide",         "RuneScape", "#FF0A1208", "#FF142010", "#FF6CB050", "#FFDDE8C8", "#FF788C68", "Paper"),       // green dragonhide ranger
-        // Magic Robes: blue mage robes, Mage Arena. Combat triangle magic.
-        new BuiltInTheme("RuneScape Magic Robes",        "RuneScape", "#FF080A1C", "#FF101232", "#FF6080FF", "#FFD8E0FA", "#FF7888B8", "Frosted"),     // mage robe arcane blue
-        // Tutorial Island: nostalgic starter — bright grass meadow + sunny
-        // yellow welcome. Where every OSRS journey begins.
-        new BuiltInTheme("RuneScape Tutorial Island",    "RuneScape", "#FF18221A", "#FF283A28", "#FFFFD83A", "#FFF8FFE8", "#FF98AF7E", "Retro"),       // starter meadow + welcome gold
-        // Wilderness: per Wiki "the area that is now the Wilderness was
-        // formerly known as Forinthry" — burned to ash, lava-filled, PvP
-        // death zone. Blood red over scorched earth.
-        new BuiltInTheme("RuneScape Wilderness",         "RuneScape", "#FF120608", "#FF22090E", "#FFD42820", "#FFEFC8C0", "#FF94605A", "Brutalist"),   // scorched Forinthry blood red
-        // Morytania: per Wiki "swamplands, Lord Drakan vampyre territory,
-        // blood tithes, Castle Drakan". Gothic vampyric blood-purple swamp.
-        new BuiltInTheme("RuneScape Morytania",          "RuneScape", "#FF0E0814", "#FF1E1024", "#FF9038B0", "#FFE0D2EC", "#FF8068A0", "Ink"),         // Drakan vampyre blood-purple
-        // Corrupted Gauntlet: endgame Crystal Forest minigame, signature
-        // pink-cyan corrupted crystal aesthetic.
-        new BuiltInTheme("RuneScape Corrupted Gauntlet", "RuneScape", "#FF081820", "#FF142838", "#FF44E6F0", "#FFD0EAF0", "#FF6C8E9C", "Holographic"), // corrupted crystal cyan
-
-        // ---- League of Legends (12) — Runeterra regions ----
-        // v1.25.27: palettes redone from official Riot/Leaguepedia sources.
-        // Demacia "blue, white, and gold" (per Leaguepedia + Petricite).
-        // Noxus = blood red + black militaristic empire. Ionia = Spirit
-        // Blossom soft pink + lilac + jade per Riot's published design.
-        // Freljord = pale True Ice cyan. Shurima = desert gold sands.
-        // Bilgewater = Blue Flame Isles teal + lantern orange. Piltover
-        // Art Deco gold + cyan; Zaun Art Nouveau acidic toxic green
-        // (smogged twilight undercity per Arcane). Targon celestial purple
-        // + cosmic gold. Void eldritch purple. Ixtal jungle vine green.
-        // Bandle City yordle warm yellow-orange whimsy.
-        new BuiltInTheme("League Demacia", "League of Legends", "#FF0A1424", "#FF142238", "#FFB8942E", "#FFE8E8F0", "#FF7C8AAA", "Sharp"), // royal blue + subdued regal gold (less yellow)
-        new BuiltInTheme("League Noxus",       "League of Legends", "#FF120808", "#FF221010", "#FFC81818", "#FFEEC8C8", "#FF8E5C5C", "Brutalist"),    // blood red + iron black
-        new BuiltInTheme("League Ionia",       "League of Legends", "#FF120A18", "#FF1F1428", "#FFE890C0", "#FFEFDDEC", "#FF9888A0", "Aurora"),       // Spirit Blossom pink/lilac
-        new BuiltInTheme("League Freljord",    "League of Legends", "#FF0A1A28", "#FF142C3C", "#FF98E8FF", "#FFE0F0F8", "#FF7C98AC", "Frosted"),      // True Ice pale cyan
-        new BuiltInTheme("League Shurima",     "League of Legends", "#FF1A1408", "#FF2A2010", "#FFE8B83C", "#FFEFE0BC", "#FF9C8458", "Paper"),         // desert sun gold
-        new BuiltInTheme("League Bilgewater",  "League of Legends", "#FF0A1820", "#FF142830", "#FFE0782C", "#FFE8DCC8", "#FF7E8C8C", "Retro"),         // teal harbor + lantern orange
-        new BuiltInTheme("League Piltover",    "League of Legends", "#FF1A1208", "#FF2A2014", "#FFE0A028", "#FFEFDDC0", "#FF94805A", "Sharp"),         // Art Deco gold + cream
-        new BuiltInTheme("League Zaun",        "League of Legends", "#FF0A0E08", "#FF141810", "#FF80E830", "#FFD8E8C0", "#FF788858", "Cyberpunk"),     // toxic chem-green undercity
-        new BuiltInTheme("League Bandle City", "League of Legends", "#FF180E08", "#FF281A12", "#FFFFB838", "#FFEFDDC0", "#FF8E785A", "Paper"),         // yordle warm yellow-orange
-        new BuiltInTheme("League Targon",      "League of Legends", "#FF0A0828", "#FF14123C", "#FFC0A8FF", "#FFE5DCFF", "#FF8478B0", "Holographic"),   // celestial cosmic purple
-        new BuiltInTheme("League Void",        "League of Legends", "#FF0E081A", "#FF1A1028", "#FFC020E0", "#FFE0CCEE", "#FF8868A0", "Cyberpunk"),     // eldritch void purple-pink
-        new BuiltInTheme("League Ixtal",       "League of Legends", "#FF081410", "#FF141E1A", "#FF40C868", "#FFD0E8D0", "#FF6E8870", "Default"),       // jungle vine green
-
-        // ---- Fallout (14) — base 3 + 11 Nuka-Cola flavors ----
-        // v1.25.32: Pip-Boy classic green #1bff80 (FO4) or #99CC00 (Vault
-        // green) — community/wiki definitive. Vault-Tec branding is
-        // canary yellow #FEF265 + dark blue #325886 per the Vault Boy
-        // color scheme. Brotherhood of Steel = sandy tan power armor +
-        // steel grey + iconic red sun emblem on grey.
-        //
-        // The 11 Nuka-Cola flavor palettes are drawn from canonical
-        // wiki descriptions:
-        // * Classic: brown cola ("color described as brown")
-        // * Quantum: neon electric blue ("blue radioactive glow")
-        // * Cherry: bright cherry red
-        // * Quartz: white "with a hint of green" glow + "non-soluble
-        //   sugar flakes to simulate a quartz-like appearance"
-        // * Victory: "pinkish-red", "glowed yellow/orange",
-        //   "patriotic colors" (warm orange-red glow)
-        // * Dark: alcoholic rum, "darker in color, dark brown" / black
-        // * Wild: root-beer flavored ("root-based beverage", caramel)
-        // * Orange: "orange bottle, orange slice label"
-        // * Grape: purple grape soda
-        // * Cranberry: deep red cranberry (FO76)
-        // * Nukashine: Quantum-infused moonshine (cloudy blue-white)
-        new BuiltInTheme("Fallout Pip-Boy",            "Fallout", "#FF000A00", "#FF001400", "#FF1BFF80", "#FFC0FFD0", "#FF509C70", "Terminal"),     // Pip-Boy phosphor green
-        new BuiltInTheme("Fallout Vault-Tec",          "Fallout", "#FF080F1A", "#FF14223A", "#FFFEF265", "#FFEFE8B8", "#FF7C8AAA", "Sharp"),         // Vault-Tec yellow + blue
-        new BuiltInTheme("Fallout Brotherhood Steel",  "Fallout", "#FF14110A", "#FF221E14", "#FFC09858", "#FFEAE0C8", "#FF8C8068", "Brutalist"),     // BoS sandy power armor + steel
-        new BuiltInTheme("Fallout Nuka-Cola Classic",  "Fallout", "#FF14080A", "#FF22120E", "#FFE82838", "#FFE8C8C8", "#FF8C6868", "Retro"),         // classic brown cola + red label
-        new BuiltInTheme("Fallout Nuka-Cola Quantum",  "Fallout", "#FF00081E", "#FF001036", "#FF1EC8FF", "#FFC8E8FF", "#FF509CC0", "Holographic"),   // neon electric blue glow
-        new BuiltInTheme("Fallout Nuka-Cherry",        "Fallout", "#FF180408", "#FF28080E", "#FFE82048", "#FFEFC8D0", "#FF945868", "Retro"),         // bright cherry red
-        new BuiltInTheme("Fallout Nuka-Cola Quartz",   "Fallout", "#FF101418", "#FF1E2428", "#FFE0F0D8", "#FFEFEFE5", "#FF8A9090", "Frosted"),       // white "with hint of green" glow
-        new BuiltInTheme("Fallout Nuka-Cola Victory",  "Fallout", "#FF18100A", "#FF281C12", "#FFFFA838", "#FFEFDDC0", "#FF94805A", "Retro"),         // patriotic orange-yellow glow
-        new BuiltInTheme("Fallout Nuka-Cola Dark",     "Fallout", "#FF080608", "#FF14100E", "#FF8B5C29", "#FFE0D2B8", "#FF806858", "Ink"),           // dark rum brown/black
-        new BuiltInTheme("Fallout Nuka-Cola Wild",     "Fallout", "#FF180E08", "#FF281A10", "#FF8B4C0D", "#FFE5D0B0", "#FF806050", "Paper"),         // root beer caramel
-        new BuiltInTheme("Fallout Nuka-Cola Orange",   "Fallout", "#FF18100A", "#FF2A1A10", "#FFFF7820", "#FFEFD8C0", "#FF94785A", "Retro"),         // orange Fanta
-        new BuiltInTheme("Fallout Nuka-Cola Grape",    "Fallout", "#FF100818", "#FF1E1228", "#FF9038D0", "#FFE0D0EE", "#FF7868A0", "Retro"),         // grape purple
-        new BuiltInTheme("Fallout Nuka-Cola Cranberry", "Fallout",  "#FF140608", "#FF240A10", "#FFA82038", "#FFE8C8D0", "#FF806068", "Retro"),         // deep cranberry red
-        new BuiltInTheme("Fallout Nukashine",          "Fallout", "#FF080E14", "#FF101A24", "#FF80B0E8", "#FFD8E0EC", "#FF7080A0", "Holographic"),   // cloudy moonshine blue-white
-
-        // ---- Borderlands (3) ----
-        // v1.25.29: signature "yellow + red + black logo" palette per
-        // Gearbox's own brand color usage + hand-inked cel-shaded style.
-        // Pandora = post-apocalyptic orange desert + tan dust. Hyperion
-        // corporate = sterile cream-white + yellow (Handsome Jack brand).
-        // Eridium = purple alien crystal (purple shards canonical).
-        new BuiltInTheme("Borderlands Pandora",         "Borderlands", "#FF18100A", "#FF281A12", "#FFE08020", "#FFEFDDC0", "#FF9C7E5C", "Brutalist"),  // dusty orange desert
-        new BuiltInTheme("Borderlands Hyperion Corp",   "Borderlands", "#FF14100A", "#FF221E14", "#FFFFD030", "#FFEFE8C8", "#FF94885A", "Sharp"),     // Hyperion cream + Jack yellow
-        new BuiltInTheme("Borderlands Eridium Crystal", "Borderlands", "#FF0E0820", "#FF1A1230", "#FFB060FF", "#FFE8DCF8", "#FF8A6EB6", "Holographic"), // alien crystal purple
-
-        // ---- Witcher (3) ----
-        // v1.25.31: Witcher 3 community palette = "#4e636c steel-grey +
-        // #b50c0f Witcher red + #eaeaea white (Geralt's hair) + #272727
-        // black". Area reshade refs confirm Kaer Morhen = "cold dark
-        // green spruce forest, dark nights" and Toussaint = warm
-        // vineyard golden Mediterranean. Three: Wolf Medallion (Geralt's
-        // silver/grey + white-wolf), Kaer Morhen (cold green spruce),
-        // Toussaint (warm vineyard gold).
-        new BuiltInTheme("Witcher Wolf Medallion",        "Witcher", "#FF0A0C10", "#FF18181C", "#FFB8B0A0", "#FFE5E0D8", "#FF888880", "Ink"),       // silver medallion + white wolf
-        new BuiltInTheme("Witcher Kaer Morhen",           "Witcher", "#FF080F0E", "#FF141C18", "#FF4A8060", "#FFD0E0D0", "#FF708878", "Brutalist"),  // cold spruce forest northern
-        new BuiltInTheme("Witcher Toussaint Vineyard",    "Witcher", "#FF180E08", "#FF2A1E12", "#FFE0A030", "#FFEFDDC0", "#FF94805A", "Paper"),     // warm Mediterranean vineyard gold
-
-        // ---- Cyberpunk 2077 (3) ----
-        // v1.25.29: Night City signature is "bright yellow + electric cyan
-        // + deep black" per CDPR's own brand palette (the Samurai/V jacket
-        // yellow). Pacifica Combat Zone is the gang-controlled slum,
-        // graffiti red + decay. Arasaka corporate is signature blood-red
-        // (Arasaka's brand is dark red + black militaristic).
-        new BuiltInTheme("Cyberpunk 2077 Night City",          "Cyberpunk 2077", "#FF080A14", "#FF12162A", "#FFFCEE09", "#FFE8EFFA", "#FF7C8EAC", "Cyberpunk"),  // signature Samurai yellow
-        new BuiltInTheme("Cyberpunk 2077 Pacifica Combat Zone", "Cyberpunk 2077", "#FF180E08", "#FF281A12", "#FFE83828", "#FFEFD2C0", "#FF947058", "Brutalist"),    // gang graffiti red + decay
-        new BuiltInTheme("Cyberpunk 2077 Arasaka Corporate",   "Cyberpunk 2077", "#FF0A0808", "#FF181010", "#FFC8121C", "#FFE5D8D8", "#FF8A6868", "Sharp"),        // Arasaka blood red corporate
-
-        // ---- Hades (3) — Tartarus / Asphodel / Elysium ----
-        // v1.25.28: redone from "The Art of Hades" by Jen Zee + community
-        // wiki descriptions. Tartarus: "cold grays to tangy greens,
-        // nauseating decay" — slate grey-green + sulfur teal. Asphodel:
-        // "fiery volcanic wasteland, rivers of magma, sea of fire" — deep
-        // orange + lava red on black. Elysium: "verdant" — heroic gold
-        // + green pastoral honor.
-        new BuiltInTheme("Hades Tartarus",  "Hades", "#FF0C1414", "#FF182222", "#FF60C8B0", "#FFDDE8DC", "#FF7A8E84", "Brutalist"),  // cold gray + tangy green
-        new BuiltInTheme("Hades Asphodel",  "Hades", "#FF180808", "#FF281414", "#FFFF6020", "#FFEFD0B8", "#FF9C6858", "Holographic"), // lava + magma
-        new BuiltInTheme("Hades Elysium",   "Hades", "#FF0E1810", "#FF1A281C", "#FFE8C440", "#FFEFE0BC", "#FF8E9A6E", "Aurora"),     // verdant gold + hero green
-
-        // ---- Helldivers (3) ----
-        // v1.25.30: Super Earth flag canonical hex codes: #41639C blue +
-        // #FFE710 yellow + white per the Helldivers wiki. The faction
-        // identity is yellow+black armor with blue flag. Three themes:
-        // Super Earth democracy (blue/yellow), Hellpod drop (combat
-        // yellow + black urgency), Automaton front (red-eye foe).
-        new BuiltInTheme("Helldivers Super Earth",     "Helldivers", "#FF0A1018", "#FF14223C", "#FF41639C", "#FFE8EFFA", "#FF7C8AAA", "Sharp"),       // SE flag blue + yellow
-        new BuiltInTheme("Helldivers Hellpod Drop",    "Helldivers", "#FF121008", "#FF1F1C10", "#FFFFE710", "#FFEFEAC8", "#FF94905A", "Brutalist"),   // signature yellow+black
-        new BuiltInTheme("Helldivers Automaton Front", "Helldivers", "#FF0A0608", "#FF180A0E", "#FFE82828", "#FFE8D8D8", "#FF8C7878", "Cyberpunk"),   // red-eye Automaton foe
-
-        // ---- Doom (3) ----
-        // v1.25.29: Doom Eternal HUD palette is #cb5e29 burnt orange +
-        // brown leather (exact hex from community UI palette). Mars UAC
-        // base is "gray and brown" sterile with red emergency accent.
-        // Hellfire = pure hell red on near-black.
-        new BuiltInTheme("Doom Slayer",         "Doom", "#FF180C08", "#FF281810", "#FFCB5E29", "#FFEFD8C0", "#FF947058", "Brutalist"),   // Eternal HUD orange #cb5e29
-        new BuiltInTheme("Doom Mars UAC",       "Doom", "#FF14100E", "#FF221E1C", "#FFE03020", "#FFE5D8D5", "#FF8C7E78", "Sharp"),       // UAC base gray/brown + red alert
-        new BuiltInTheme("Doom Hellfire",       "Doom", "#FF180404", "#FF280808", "#FFE83018", "#FFEFC8B8", "#FF945858", "Holographic"), // pure hell red
-
-        // ---- Mass Effect (3) ----
-        // v1.25.30: official ME palette is "#0eb9fe cyan + #e61809 red +
-        // black + white" per community palette tags. N7 = signature
-        // red stripe on black armor. Citadel/ME1 = exploration cyan
-        // (the blue Normandy CIC, hologram displays). Reapers = the
-        // indoctrination warning red on void.
-        new BuiltInTheme("Mass Effect N7",                    "Mass Effect", "#FF0A0A0C", "#FF161616", "#FFE61809", "#FFE8E0DC", "#FF8A7C7C", "Sharp"),       // N7 red stripe + black armor
-        new BuiltInTheme("Mass Effect Citadel Council",       "Mass Effect", "#FF080F1C", "#FF121C30", "#FF0EB9FE", "#FFD8E8F8", "#FF7090B0", "Holographic"),  // exploration cyan + Normandy CIC
-        new BuiltInTheme("Mass Effect Reaper Indoctrination", "Mass Effect", "#FF080608", "#FF14080A", "#FFE82820", "#FFE5D2D0", "#FF8C6868", "Brutalist"),    // Reaper red void
-
-        // ---- No Man's Sky (3) ----
-        // v1.25.30: NMS planets are procedurally psychedelic — community
-        // and pre-NEXT screenshots show signature pink/purple/cyan alien
-        // grass and skies. Galaxy = exotic pink-purple lush biome.
-        // Atlas Singularity = the red orb deity, pulsing scarlet on void.
-        // Sentinel Patrol = green eye + chrome (the AI overseers' menacing
-        // green scan glow).
-        new BuiltInTheme("No Man's Sky Galaxy",            "No Man's Sky", "#FF180A24", "#FF281438", "#FFE860C0", "#FFEAD8F8", "#FF9C7CB0", "Aurora"),     // alien lush psychedelic pink
-        new BuiltInTheme("No Man's Sky Atlas Singularity", "No Man's Sky", "#FF120406", "#FF22080A", "#FFFF2828", "#FFEFCAC8", "#FF8E5858", "Holographic"), // Atlas red pulsing orb
-        new BuiltInTheme("No Man's Sky Sentinel Patrol",   "No Man's Sky", "#FF0A1010", "#FF182020", "#FF40E060", "#FFD8E5D8", "#FF788E78", "Cyberpunk"),   // Sentinel green eye + chrome
-
-        // ---- Hollow Knight (3) — Hallownest core areas ----
-        // v1.25.28: redone from official Hollow Knight wiki + the
-        // community color-palette tag for City of Tears (deep blue
-        // #1d2e65 + teal-grey #4d6f94 verbatim). Greenpath: "exuberant
-        // green cavern, mossy valleys, acid lakes" — bright moss green.
-        // Hallownest core: monochrome pale void white + dark slate.
-        new BuiltInTheme("Hollow Knight Hallownest",    "Hollow Knight", "#FF080A10", "#FF12161F", "#FFD8E5E8", "#FFDCE0E5", "#FF6E7882", "Ink"),       // void monochrome
-        new BuiltInTheme("Hollow Knight City of Tears", "Hollow Knight", "#FF08101E", "#FF14203A", "#FF6090C8", "#FFD0E0EE", "#FF7088A0", "Frosted"),   // perpetual rainfall blue
-        new BuiltInTheme("Hollow Knight Greenpath",     "Hollow Knight", "#FF0A1810", "#FF14241A", "#FF60C840", "#FFD8E8C8", "#FF788E70", "Aurora"),    // mossy acid green
-
-        // ---- Stardew Valley (3) ----
-        // v1.25.31: Stardew's signature is warm pastel pixel art —
-        // grass-green farm + sunset gold. Skull Cavern is the deep
-        // mine with amber-orange torch glow on dark stone. Ginger
-        // Island is the tropical paradise with turquoise sea + orange
-        // sunset.
-        new BuiltInTheme("Stardew Valley Farm",         "Stardew Valley", "#FF0E1A0A", "#FF182812", "#FFE8B040", "#FFEFE0BC", "#FF889872", "Paper"),     // farm meadow + sunset gold
-        new BuiltInTheme("Stardew Valley Skull Cavern", "Stardew Valley", "#FF120C08", "#FF221A12", "#FFE8782C", "#FFEFDDC0", "#FF94785A", "Retro"),     // deep mine amber torchlight
-        new BuiltInTheme("Stardew Valley Ginger Island", "Stardew Valley", "#FF081820", "#FF142C36", "#FF40C8C0", "#FFDDE8DC", "#FF7090A0", "Aurora"),    // tropical turquoise sea
-
-        // ---- Minecraft (3) ----
-        new BuiltInTheme("Minecraft Creeper",      "Minecraft", "#FF1E2B0E", "#FF2E3F1A", "#FF6FBE48", "#FFFAEFB8", "#FFA78C5A", "Retro"),
-        new BuiltInTheme("Minecraft Nether Realm", "Minecraft", "#FF1A0808", "#FF2A1010", "#FFE85830", "#FFFAE0D0", "#FF9A625E", "Brutalist"),
-        new BuiltInTheme("Minecraft The End",      "Minecraft", "#FF14101A", "#FF221A2A", "#FFE5DFC0", "#FFF0E8D0", "#FF9888A0", "Sharp"),
-
-        // ---- Persona 5 (3) — Phantom Thieves / Mementos / Velvet Room ----
-        // v1.25.28: Persona 5's signature palette is "#d92323 red + #0d0d0d
-        // black + white" (canonical from multiple community references and
-        // Atlus's own logo guidelines). Mementos is "entire area bathed in
-        // red" per fan/dev commentary, deeper saturated rebellion red.
-        // Velvet Room is the iconic blue prison cell (Igor's domain).
-        new BuiltInTheme("Persona 5 Phantom Thieves", "Persona 5", "#FF0A0808", "#FF161010", "#FFD92323", "#FFEFEFEF", "#FF8C7878", "Sharp"),       // signature P5 red + black + white
-        new BuiltInTheme("Persona 5 Mementos",        "Persona 5", "#FF180808", "#FF2A0E0E", "#FFB81020", "#FFE8C8C8", "#FF885858", "Brutalist"),    // tunnels bathed in red
-        new BuiltInTheme("Persona 5 Velvet Room",     "Persona 5", "#FF080A1E", "#FF101230", "#FF4080E0", "#FFD8E0F2", "#FF7888A8", "Holographic"),  // Igor's blue prison
-
-        // ---- DayZ (3) ----
-        new BuiltInTheme("DayZ Chernarus Survivor",  "DayZ", "#FF1A1814", "#FF252118", "#FF8A7A3A", "#FFD5C8A8", "#FF796E5A", "Brutalist"),
-        new BuiltInTheme("DayZ Livonia Forest",      "DayZ", "#FF14180E", "#FF1F261A", "#FF8A7038", "#FFE5DCC8", "#FF7D8668", "Paper"),
-        new BuiltInTheme("DayZ Infected Encounter",  "DayZ", "#FF120A08", "#FF1F1410", "#FFC03830", "#FFE8D8D0", "#FF8A6C5E", "Brutalist"),
-
-        // ---- Amnesia (3) ----
-        new BuiltInTheme("Amnesia Dark Descent",          "Amnesia", "#FF0E0A06", "#FF181210", "#FFCAB04A", "#FFC8B098", "#FF766250", "Brutalist"),
-        new BuiltInTheme("Amnesia Brennenburg Cellar",    "Amnesia", "#FF0A0808", "#FF141010", "#FF6A8868", "#FFC0B098", "#FF686250", "Brutalist"),
-        new BuiltInTheme("Amnesia Daniel's Sanity Loss",  "Amnesia", "#FF1A0E0A", "#FF281610", "#FF982828", "#FFC8B098", "#FF826250", "Holographic"),
-
-        // ---- Baldur's Gate 3 (3) ----
-        new BuiltInTheme("Baldur's Gate 3 Underdark",            "Baldur's Gate 3", "#FF0E0820", "#FF1A1230", "#FF7BD4DE", "#FFE8DFF8", "#FFA08CC8", "Aurora"),
-        new BuiltInTheme("Baldur's Gate 3 Shadow-Cursed Lands",  "Baldur's Gate 3", "#FF0E0E18", "#FF14142A", "#FF6A40CC", "#FFE0DEEC", "#FF7C809B", "Holographic"),
-        new BuiltInTheme("Baldur's Gate 3 Avernus Hellfire",     "Baldur's Gate 3", "#FF180A08", "#FF281410", "#FFE85020", "#FFEFD8C8", "#FF976C5C", "Brutalist"),
-
-        // ---- Crash Bandicoot (3) ----
-        new BuiltInTheme("Crash Bandicoot N. Sanity",       "Crash Bandicoot", "#FF0A2818", "#FF143828", "#FFFF7A1A", "#FFFFEFD0", "#FF77C6E2", "Default"),
-        new BuiltInTheme("Crash Bandicoot Cortex Castle",   "Crash Bandicoot", "#FF14081A", "#FF221028", "#FF40D848", "#FFE0EAD0", "#FF927CAC", "Sharp"),
-        new BuiltInTheme("Crash Bandicoot Slippery Climb",  "Crash Bandicoot", "#FF1A1018", "#FF281828", "#FF40C8FF", "#FFE8DCEC", "#FF967FA1", "Aurora"),
-
-        // ---- Spore (3) ----
-        new BuiltInTheme("Spore Creature Stage",        "Spore", "#FF1A0E22", "#FF2A1832", "#FF8AFFAA", "#FFFCEEFC", "#FFFEC075", "Aurora"),
-        new BuiltInTheme("Spore Cell Stage Primordial", "Spore", "#FF0A1418", "#FF12222A", "#FF40FFD8", "#FFE0F8F0", "#FF7CA6AE", "Aurora"),
-        new BuiltInTheme("Spore Space Stage Galactic",  "Spore", "#FF0A0814", "#FF12101F", "#FFFFC448", "#FFEAE0F8", "#FF8A809E", "Holographic"),
-
-        // ---- Stronghold 2 (3) ----
-        new BuiltInTheme("Stronghold 2 Castle Keep",    "Stronghold 2", "#FF1C1812", "#FF2C271E", "#FFB81F1F", "#FFEDE2C8", "#FF978B74", "Default"),
-        new BuiltInTheme("Stronghold 2 Siege Bombard",  "Stronghold 2", "#FF1A0E0A", "#FF281A12", "#FFC04848", "#FFE8DAC8", "#FF967A68", "Brutalist"),
-        new BuiltInTheme("Stronghold 2 Royal Feast",    "Stronghold 2", "#FF1C1408", "#FF2C2010", "#FFE8C048", "#FFFAE8C8", "#FF9A825C", "Paper"),
-
-        // ---- Valheim (3) ----
-        new BuiltInTheme("Valheim Mistlands",      "Valheim", "#FF1A2028", "#FF252D38", "#FFD08A3A", "#FFE8DCC4", "#FF8A9197", "Frosted"),
-        new BuiltInTheme("Valheim Black Forest",   "Valheim", "#FF0A1410", "#FF121F1A", "#FF98C868", "#FFD8E0D0", "#FF7A8A76", "Brutalist"),
-        new BuiltInTheme("Valheim Plains Fuling",  "Valheim", "#FF1A1410", "#FF281E1A", "#FFE85838", "#FFE8DCC8", "#FF967A68", "Brutalist"),
-
-        // ---- World of Tanks (3) ----
-        new BuiltInTheme("World of Tanks Olive Drab",    "World of Tanks", "#FF1A1C10", "#FF252818", "#FFC8A050", "#FFE8E2C8", "#FF8A8B68", "Brutalist"),
-        new BuiltInTheme("World of Tanks German Panzer", "World of Tanks", "#FF14140E", "#FF202018", "#FFC08038", "#FFDCDCC8", "#FF7A7A68", "Sharp"),
-        new BuiltInTheme("World of Tanks Soviet Heavy",  "World of Tanks", "#FF180E08", "#FF281A10", "#FFE03838", "#FFE5DCC8", "#FF897968", "Brutalist"),
-
-            // v1.0.0: Generic themes (sampled from natural landscapes)
-            new BuiltInTheme("Evergreen", "Nature", "#FF0C140C", "#FF1A261A", "#FF6C9848", "#FFD4DCC8", "#FF688860", "Default"), // deep forest + meadow green
-            new BuiltInTheme("Sandstone", "Nature", "#FF100E0A", "#FF1E1C16", "#FFB8A070", "#FFE0DCD0", "#FF807860", "Retro"), // warm desert rock
-            new BuiltInTheme("Deep Current", "Nature", "#FF0A1014", "#FF141E24", "#FF5898A0", "#FFD0DCE0", "#FF608080", "Frosted"), // cool teal depths
-            new BuiltInTheme("Morning Dew", "Nature", "#FF0C0E0A", "#FF1A1E18", "#FFA8B880", "#FFDCE0D4", "#FF788870", "Paper"), // soft pale green
-            new BuiltInTheme("Hearthwood", "Nature", "#FF100C08", "#FF201A14", "#FFB87848", "#FFE0D8CC", "#FF887058", "Retro"), // rustic cabin warmth
-            new BuiltInTheme("Terracotta", "Nature", "#FF0E0C0C", "#FF1C1A1A", "#FFA86850", "#FFDCD8D4", "#FF806860", "Brutalist"), // earthy clay red
-            new BuiltInTheme("Tidestone", "Nature", "#FF12100C", "#FF201E18", "#FF5898A0", "#FFDCD8CC", "#FF807868", "Sharp"), // rock meets sea
-            new BuiltInTheme("Forest Gold", "Nature", "#FF0C140E", "#FF1A2618", "#FFC8B870", "#FFD8E0D0", "#FF688860", "Default"), // sunlit canopy
-            new BuiltInTheme("Inlet", "Nature", "#FF0A1214", "#FF142022", "#FFB87848", "#FFD0DCE0", "#FF607880", "Frosted"), // deep water warm glow
-            new BuiltInTheme("Canopy", "Nature", "#FF0E100C", "#FF1C1E1A", "#FF4C8840", "#FFD8DCD0", "#FF788870", "Default"), // dense overhead green
-            new BuiltInTheme("Sage", "Nature", "#FF0E0C0A", "#FF1C1A18", "#FFA8C088", "#FFDCE0D4", "#FF787060", "Paper"), // muted green on stone
-            new BuiltInTheme("Clay Coast", "Nature", "#FF0A0E12", "#FF141C22", "#FFA86850", "#FFD0D8DC", "#FF607078", "Brutalist"), // cool water warm clay
-            new BuiltInTheme("Dusk Harbor", "Nature", "#FF100E12", "#FF1E1C22", "#FF68A0A8", "#FFD8D8E0", "#FF787080", "Holographic"), // purple-gray twilight
-            new BuiltInTheme("Fern", "Nature", "#FF0A120A", "#FF162016", "#FF78B060", "#FFD4E0CC", "#FF588850", "Default"), // bright natural green
-            new BuiltInTheme("Driftwood", "Nature", "#FF100E0A", "#FF1E1A16", "#FF889870", "#FFDCD8CC", "#FF787058", "Retro"), // warm muted sage
-            new BuiltInTheme("Glacier", "Nature", "#FF0C0E10", "#FF1A1E22", "#FF78A8C0", "#FFD8DCE4", "#FF687880", "Frosted"), // cool icy blue-gray
-            new BuiltInTheme("Amber Trail", "Nature", "#FF0E0A08", "#FF1E1610", "#FFC8A050", "#FFE0D8C8", "#FF806840", "Retro"), // rich brown + gold
+        // v1.0.7: Generic built-in themes (sampled from natural landscapes).
+        // Franchise themes (WoW, Fallout, etc.) moved to downloadable packs
+        // on GitHub — see Settings → Updates → Theme Packs.
+            new BuiltInTheme("Evergreen", "", "#FF0C140C", "#FF1A261A", "#FF6C9848", "#FFD4DCC8", "#FF688860", "Default"), // deep forest + meadow green
+            new BuiltInTheme("Sandstone", "", "#FF100E0A", "#FF1E1C16", "#FFB8A070", "#FFE0DCD0", "#FF807860", "Retro"), // warm desert rock
+            new BuiltInTheme("Deep Current", "", "#FF0A1014", "#FF141E24", "#FF5898A0", "#FFD0DCE0", "#FF608080", "Frosted"), // cool teal depths
+            new BuiltInTheme("Morning Dew", "", "#FF0C0E0A", "#FF1A1E18", "#FFA8B880", "#FFDCE0D4", "#FF788870", "Paper"), // soft pale green
+            new BuiltInTheme("Hearthwood", "", "#FF100C08", "#FF201A14", "#FFB87848", "#FFE0D8CC", "#FF887058", "Retro"), // rustic cabin warmth
+            new BuiltInTheme("Terracotta", "", "#FF0E0C0C", "#FF1C1A1A", "#FFA86850", "#FFDCD8D4", "#FF806860", "Brutalist"), // earthy clay red
+            new BuiltInTheme("Tidestone", "", "#FF12100C", "#FF201E18", "#FF5898A0", "#FFDCD8CC", "#FF807868", "Sharp"), // rock meets sea
+            new BuiltInTheme("Forest Gold", "", "#FF0C140E", "#FF1A2618", "#FFC8B870", "#FFD8E0D0", "#FF688860", "Default"), // sunlit canopy
+            new BuiltInTheme("Inlet", "", "#FF0A1214", "#FF142022", "#FFB87848", "#FFD0DCE0", "#FF607880", "Frosted"), // deep water warm glow
+            new BuiltInTheme("Canopy", "", "#FF0E100C", "#FF1C1E1A", "#FF4C8840", "#FFD8DCD0", "#FF788870", "Default"), // dense overhead green
+            new BuiltInTheme("Sage", "", "#FF0E0C0A", "#FF1C1A18", "#FFA8C088", "#FFDCE0D4", "#FF787060", "Paper"), // muted green on stone
+            new BuiltInTheme("Clay Coast", "", "#FF0A0E12", "#FF141C22", "#FFA86850", "#FFD0D8DC", "#FF607078", "Brutalist"), // cool water warm clay
+            new BuiltInTheme("Dusk Harbor", "", "#FF100E12", "#FF1E1C22", "#FF68A0A8", "#FFD8D8E0", "#FF787080", "Holographic"), // purple-gray twilight
+            new BuiltInTheme("Fern", "", "#FF0A120A", "#FF162016", "#FF78B060", "#FFD4E0CC", "#FF588850", "Default"), // bright natural green
+            new BuiltInTheme("Driftwood", "", "#FF100E0A", "#FF1E1A16", "#FF889870", "#FFDCD8CC", "#FF787058", "Retro"), // warm muted sage
+            new BuiltInTheme("Glacier", "", "#FF0C0E10", "#FF1A1E22", "#FF78A8C0", "#FFD8DCE4", "#FF687880", "Frosted"), // cool icy blue-gray
+            new BuiltInTheme("Amber Trail", "", "#FF0E0A08", "#FF1E1610", "#FFC8A050", "#FFE0D8C8", "#FF806840", "Retro"), // rich brown + gold
     };
+
+    /// <summary>
+    /// Returns built-in themes merged with any downloaded theme packs.
+    /// Downloaded packs are loaded from %AppData%\fluidMonitor\themes\.
+    /// </summary>
+    public static List<BuiltInTheme> GetAllThemes()
+    {
+        var all = new List<BuiltInTheme>(BuiltInThemes);
+        foreach (var t in ThemePackService.LoadAllInstalledThemes())
+        {
+            all.Add(new BuiltInTheme(
+                t.Name, "", t.Bg, t.Tile, t.Accent, t.Text, t.Muted, t.Category));
+        }
+        return all;
+    }
+
+    /// <summary>Number of themes available to download (not yet installed).</summary>
+    public static int AvailableDownloadCount { get; set; }
 
     /// <summary>Find the matching preset for current settings, or return the Custom entry (index 0).</summary>
     public static ThemePreset MatchPreset(AppSettings s, IEnumerable<ThemePreset>? allPresets = null)
@@ -624,9 +238,25 @@ public static class ThemeApplier
         // v1.25.43: force SkinWidgetOpacity to 1.0 for light palettes.
         // Light colors are unreadable when the skin opacity makes them
         // semi-transparent over a dark wallpaper.
+        // v1.0.4: full light-background fix. When background is light,
+        // skins may contain dark BackgroundBrush/TileBrush that override
+        // the theme colors via merged dictionary precedence. Remove them.
         var bgColor = ParseColor(s.BackgroundColor, DarkBackground);
-        if (bgColor.R > 0x80 || bgColor.G > 0x80 || bgColor.B > 0x80)
+        bool isLightBg = (0.299 * bgColor.R + 0.587 * bgColor.G + 0.114 * bgColor.B) > 128;
+        if (isLightBg)
+        {
+            foreach (var md in res.MergedDictionaries)
+            {
+                foreach (var key in new[] { "BackgroundBrush", "TileBrush", "SkinTileBackground", "SkinWidgetOpacity" })
+                {
+                    if (md.Contains(key))
+                        md.Remove(key);
+                }
+            }
             res["SkinWidgetOpacity"] = 1.0;
+            if (System.Windows.Application.Current?.MainWindow != null)
+                System.Windows.Application.Current.MainWindow.Opacity = 1.0;
+        }
         // v1.25.37: always sync SkinTileBackground with TileBrush.
         // Previously only synced for SolidColorBrush skins, which meant
         // light mode tiles stayed dark on skins with non-solid backgrounds.

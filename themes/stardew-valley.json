@@ -1,0 +1,33 @@
+{
+  "franchise": "Stardew Valley",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Stardew Valley Farm",
+      "bg": "#FF0E1A0A",
+      "tile": "#FF182812",
+      "accent": "#FFE8B040",
+      "text": "#FFEFE0BC",
+      "muted": "#FF889872",
+      "category": "Paper"
+    },
+    {
+      "name": "Stardew Valley Skull Cavern",
+      "bg": "#FF120C08",
+      "tile": "#FF221A12",
+      "accent": "#FFE8782C",
+      "text": "#FFEFDDC0",
+      "muted": "#FF94785A",
+      "category": "Retro"
+    },
+    {
+      "name": "Stardew Valley Ginger Island",
+      "bg": "#FF081820",
+      "tile": "#FF142C36",
+      "accent": "#FF40C8C0",
+      "text": "#FFDDE8DC",
+      "muted": "#FF7090A0",
+      "category": "Aurora"
+    }
+  ]
+}

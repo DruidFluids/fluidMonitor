@@ -1,0 +1,99 @@
+<Window x:Class="Fluid.App.ToolsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TOOLS"
+        Width="380" MinHeight="200" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None" AllowsTransparency="True"
+        Background="Transparent">
+
+    <Border Background="{DynamicResource BackgroundBrush}"
+            CornerRadius="10" BorderThickness="1"
+            BorderBrush="{DynamicResource MutedTextBrush}"
+            Padding="0" Margin="8"
+            MouseLeftButtonDown="OnDragMove">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="12" Opacity="0.4" ShadowDepth="2"/>
+        </Border.Effect>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0" Margin="14,10,10,0">
+                <TextBlock Text="TOOLS" FontSize="11" FontWeight="Bold"
+                           Foreground="{DynamicResource AccentBrush}"
+                           VerticalAlignment="Center"/>
+                <Button DockPanel.Dock="Right" Content="&#10005;" Click="OnClose"
+                        HorizontalAlignment="Right"
+                        Width="24" Height="24" Padding="0" FontSize="13"
+                        Cursor="Hand" Background="Transparent"
+                        Foreground="{DynamicResource MutedTextBrush}"
+                        BorderThickness="0"/>
+            </DockPanel>
+
+            <Grid Grid.Row="1" Margin="14,10,14,14">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Style="{StaticResource ToolTileBtn}" Click="OnOpenAlerts">
+                    <StackPanel HorizontalAlignment="Center">
+                        <Border Width="42" Height="42" CornerRadius="10" Margin="0,0,0,8"
+                                Background="#18E06040" HorizontalAlignment="Center">
+                            <TextBlock Text="&#9888;" FontSize="20"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Foreground="#E06040"/>
+                        </Border>
+                        <TextBlock Text="Alerts" FontSize="11" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextBrush}"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="Thresholds" FontSize="9"
+                                   Foreground="{DynamicResource MutedTextBrush}"
+                                   HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="2" Style="{StaticResource ToolTileBtn}" Click="OnOpenGameMode">
+                    <StackPanel HorizontalAlignment="Center">
+                        <Border Width="42" Height="42" CornerRadius="10" Margin="0,0,0,8"
+                                Background="#186A9FD8" HorizontalAlignment="Center">
+                            <TextBlock Text="&#127918;" FontSize="20"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Foreground="#6A9FD8"/>
+                        </Border>
+                        <TextBlock Text="Game Mode" FontSize="11" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextBrush}"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="Hotkey snap" FontSize="9"
+                                   Foreground="{DynamicResource MutedTextBrush}"
+                                   HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="4" Style="{StaticResource ToolTileBtn}" Click="OnOpenUtilities">
+                    <StackPanel HorizontalAlignment="Center">
+                        <Border Width="42" Height="42" CornerRadius="10" Margin="0,0,0,8"
+                                Background="#1888AA55" HorizontalAlignment="Center">
+                            <TextBlock Text="&#128295;" FontSize="20"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Foreground="#88AA55"/>
+                        </Border>
+                        <TextBlock Text="Utilities" FontSize="11" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextBrush}"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="System tools" FontSize="9"
+                                   Foreground="{DynamicResource MutedTextBrush}"
+                                   HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Button>
+
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

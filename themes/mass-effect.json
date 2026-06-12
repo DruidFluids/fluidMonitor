@@ -1,0 +1,33 @@
+{
+  "franchise": "Mass Effect",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Mass Effect N7",
+      "bg": "#FF0A0A0C",
+      "tile": "#FF161616",
+      "accent": "#FFE61809",
+      "text": "#FFE8E0DC",
+      "muted": "#FF8A7C7C",
+      "category": "Sharp"
+    },
+    {
+      "name": "Mass Effect Citadel Council",
+      "bg": "#FF080F1C",
+      "tile": "#FF121C30",
+      "accent": "#FF0EB9FE",
+      "text": "#FFD8E8F8",
+      "muted": "#FF7090B0",
+      "category": "Holographic"
+    },
+    {
+      "name": "Mass Effect Reaper Indoctrination",
+      "bg": "#FF080608",
+      "tile": "#FF14080A",
+      "accent": "#FFE82820",
+      "text": "#FFE5D2D0",
+      "muted": "#FF8C6868",
+      "category": "Brutalist"
+    }
+  ]
+}

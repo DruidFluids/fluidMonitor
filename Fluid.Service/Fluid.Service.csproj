@@ -13,7 +13,7 @@
     <SelfContained>true</SelfContained>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
-    <Version>1.0.1</Version>
+    <Version>1.0.7</Version>
     <Product>fluidMonitor</Product>
   </PropertyGroup>
 

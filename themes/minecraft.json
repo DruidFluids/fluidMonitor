@@ -1,0 +1,33 @@
+{
+  "franchise": "Minecraft",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Minecraft Creeper",
+      "bg": "#FF1E2B0E",
+      "tile": "#FF2E3F1A",
+      "accent": "#FF6FBE48",
+      "text": "#FFFAEFB8",
+      "muted": "#FFA78C5A",
+      "category": "Retro"
+    },
+    {
+      "name": "Minecraft Nether Realm",
+      "bg": "#FF1A0808",
+      "tile": "#FF2A1010",
+      "accent": "#FFE85830",
+      "text": "#FFFAE0D0",
+      "muted": "#FF9A625E",
+      "category": "Brutalist"
+    },
+    {
+      "name": "Minecraft The End",
+      "bg": "#FF14101A",
+      "tile": "#FF221A2A",
+      "accent": "#FFE5DFC0",
+      "text": "#FFF0E8D0",
+      "muted": "#FF9888A0",
+      "category": "Sharp"
+    }
+  ]
+}

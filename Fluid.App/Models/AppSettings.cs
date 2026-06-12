@@ -302,6 +302,10 @@ public class AppSettings : INotifyPropertyChanged
     public const int CurrentSchemaVersion = 3;
     public int SchemaVersion { get; set; } = 1;
 
+    // v1.0.3: update checker settings
+    public string UpdateCheckMode { get; set; } = "Manual";   // Auto | Manual | Off
+    public string? LastUpdateCheck { get; set; }
+
     public event PropertyChangedEventHandler? PropertyChanged;
     private void Set<T>(ref T field, T value, [CallerMemberName] string? name = null)
     {

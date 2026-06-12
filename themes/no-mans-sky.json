@@ -1,0 +1,33 @@
+{
+  "franchise": "No Man's Sky",
+  "version": 1,
+  "themes": [
+    {
+      "name": "No Man's Sky Galaxy",
+      "bg": "#FF180A24",
+      "tile": "#FF281438",
+      "accent": "#FFE860C0",
+      "text": "#FFEAD8F8",
+      "muted": "#FF9C7CB0",
+      "category": "Aurora"
+    },
+    {
+      "name": "No Man's Sky Atlas Singularity",
+      "bg": "#FF120406",
+      "tile": "#FF22080A",
+      "accent": "#FFFF2828",
+      "text": "#FFEFCAC8",
+      "muted": "#FF8E5858",
+      "category": "Holographic"
+    },
+    {
+      "name": "No Man's Sky Sentinel Patrol",
+      "bg": "#FF0A1010",
+      "tile": "#FF182020",
+      "accent": "#FF40E060",
+      "text": "#FFD8E5D8",
+      "muted": "#FF788E78",
+      "category": "Cyberpunk"
+    }
+  ]
+}

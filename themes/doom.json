@@ -1,0 +1,33 @@
+{
+  "franchise": "Doom",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Doom Slayer",
+      "bg": "#FF180C08",
+      "tile": "#FF281810",
+      "accent": "#FFCB5E29",
+      "text": "#FFEFD8C0",
+      "muted": "#FF947058",
+      "category": "Brutalist"
+    },
+    {
+      "name": "Doom Mars UAC",
+      "bg": "#FF14100E",
+      "tile": "#FF221E1C",
+      "accent": "#FFE03020",
+      "text": "#FFE5D8D5",
+      "muted": "#FF8C7E78",
+      "category": "Sharp"
+    },
+    {
+      "name": "Doom Hellfire",
+      "bg": "#FF180404",
+      "tile": "#FF280808",
+      "accent": "#FFE83018",
+      "text": "#FFEFC8B8",
+      "muted": "#FF945858",
+      "category": "Holographic"
+    }
+  ]
+}

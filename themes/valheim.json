@@ -1,0 +1,33 @@
+{
+  "franchise": "Valheim",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Valheim Mistlands",
+      "bg": "#FF1A2028",
+      "tile": "#FF252D38",
+      "accent": "#FFD08A3A",
+      "text": "#FFE8DCC4",
+      "muted": "#FF8A9197",
+      "category": "Frosted"
+    },
+    {
+      "name": "Valheim Black Forest",
+      "bg": "#FF0A1410",
+      "tile": "#FF121F1A",
+      "accent": "#FF98C868",
+      "text": "#FFD8E0D0",
+      "muted": "#FF7A8A76",
+      "category": "Brutalist"
+    },
+    {
+      "name": "Valheim Plains Fuling",
+      "bg": "#FF1A1410",
+      "tile": "#FF281E1A",
+      "accent": "#FFE85838",
+      "text": "#FFE8DCC8",
+      "muted": "#FF967A68",
+      "category": "Brutalist"
+    }
+  ]
+}

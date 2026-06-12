@@ -1,0 +1,357 @@
+{
+  "franchise": "WoW",
+  "version": 1,
+  "themes": [
+    {
+      "name": "WoW Orc",
+      "bg": "#FF14060A",
+      "tile": "#FF260C12",
+      "accent": "#FFC0341E",
+      "text": "#FFE5C8B8",
+      "muted": "#FF8F6450",
+      "category": "Brutalist"
+    },
+    {
+      "name": "WoW Tauren",
+      "bg": "#FF1A0F08",
+      "tile": "#FF2E1C10",
+      "accent": "#FFC85E2C",
+      "text": "#FFEFDCC0",
+      "muted": "#FFA68056",
+      "category": "Paper"
+    },
+    {
+      "name": "WoW Troll",
+      "bg": "#FF081008",
+      "tile": "#FF101C10",
+      "accent": "#FF40B840",
+      "text": "#FFC8E0C0",
+      "muted": "#FF608850",
+      "category": "Brutalist"
+    },
+    {
+      "name": "WoW Undead",
+      "bg": "#FF080A0C",
+      "tile": "#FF141618",
+      "accent": "#FF68B048",
+      "text": "#FFC8D0C8",
+      "muted": "#FF6E7870",
+      "category": "Ink"
+    },
+    {
+      "name": "WoW Blood Elf",
+      "bg": "#FF1A0608",
+      "tile": "#FF2E0E12",
+      "accent": "#FF33FF44",
+      "text": "#FFF0D0B0",
+      "muted": "#FFA07060",
+      "category": "Sharp"
+    },
+    {
+      "name": "WoW Goblin",
+      "bg": "#FF0A0E08",
+      "tile": "#FF141C0E",
+      "accent": "#FF40C838",
+      "text": "#FFD0E0C0",
+      "muted": "#FF6E8858",
+      "category": "Retro"
+    },
+    {
+      "name": "WoW Pandaren",
+      "bg": "#FF0E1812",
+      "tile": "#FF1A2A1E",
+      "accent": "#FF3CB888",
+      "text": "#FFD8E8DC",
+      "muted": "#FF7A968A",
+      "category": "Paper"
+    },
+    {
+      "name": "WoW Human",
+      "bg": "#FF080E1A",
+      "tile": "#FF101A2E",
+      "accent": "#FFC8A030",
+      "text": "#FFE8E0D0",
+      "muted": "#FF7080A0",
+      "category": "Sharp"
+    },
+    {
+      "name": "WoW Dwarf",
+      "bg": "#FF120806",
+      "tile": "#FF201008",
+      "accent": "#FFE08028",
+      "text": "#FFF0D8B0",
+      "muted": "#FF907050",
+      "category": "Retro"
+    },
+    {
+      "name": "WoW Night Elf",
+      "bg": "#FF0A0806",
+      "tile": "#FF18140E",
+      "accent": "#FF90DDC0",
+      "text": "#FFD0D8CC",
+      "muted": "#FF687060",
+      "category": "Aurora"
+    },
+    {
+      "name": "WoW Night Elf Grove",
+      "bg": "#FF080A06",
+      "tile": "#FF14180E",
+      "accent": "#FF80B8CC",
+      "text": "#FFC8D8D0",
+      "muted": "#FF607858",
+      "category": "Frosted"
+    },
+    {
+      "name": "WoW Gnome",
+      "bg": "#FF0A100A",
+      "tile": "#FF141C14",
+      "accent": "#FF50D050",
+      "text": "#FFD0E0D0",
+      "muted": "#FF608860",
+      "category": "Retro"
+    },
+    {
+      "name": "WoW Draenei",
+      "bg": "#FF08081C",
+      "tile": "#FF101430",
+      "accent": "#FF5088E0",
+      "text": "#FFD8E0F8",
+      "muted": "#FF6878A8",
+      "category": "Holographic"
+    },
+    {
+      "name": "WoW Worgen",
+      "bg": "#FF0A0A0E",
+      "tile": "#FF14141A",
+      "accent": "#FFA09080",
+      "text": "#FFD8D0C8",
+      "muted": "#FF74706A",
+      "category": "Ink"
+    },
+    {
+      "name": "WoW Eastern Kingdoms",
+      "bg": "#FF0C1014",
+      "tile": "#FF181E26",
+      "accent": "#FF6098B8",
+      "text": "#FFDDE5EA",
+      "muted": "#FF788C9C",
+      "category": "Default"
+    },
+    {
+      "name": "WoW Kalimdor",
+      "bg": "#FF0E1408",
+      "tile": "#FF1C2412",
+      "accent": "#FF7AB840",
+      "text": "#FFDDEACA",
+      "muted": "#FF7E906A",
+      "category": "Paper"
+    },
+    {
+      "name": "WoW Northrend",
+      "bg": "#FF080E1A",
+      "tile": "#FF14202E",
+      "accent": "#FF80C8E8",
+      "text": "#FFDDEEF5",
+      "muted": "#FF7898B0",
+      "category": "Frosted"
+    },
+    {
+      "name": "WoW Outland",
+      "bg": "#FF14080A",
+      "tile": "#FF240E12",
+      "accent": "#FFE85028",
+      "text": "#FFEFD2BC",
+      "muted": "#FFA07868",
+      "category": "Brutalist"
+    },
+    {
+      "name": "WoW Pandaria",
+      "bg": "#FF0C1814",
+      "tile": "#FF182820",
+      "accent": "#FF48C098",
+      "text": "#FFDDEBE0",
+      "muted": "#FF7A988A",
+      "category": "Paper"
+    },
+    {
+      "name": "WoW Draenor",
+      "bg": "#FF180C06",
+      "tile": "#FF2A1C10",
+      "accent": "#FFE07028",
+      "text": "#FFEFD0B0",
+      "muted": "#FF9C7058",
+      "category": "Retro"
+    },
+    {
+      "name": "WoW Broken Isles",
+      "bg": "#FF0A0818",
+      "tile": "#FF161028",
+      "accent": "#FFB04AE0",
+      "text": "#FFE8D8F0",
+      "muted": "#FF8C70A8",
+      "category": "Aurora"
+    },
+    {
+      "name": "WoW Dragon Isles",
+      "bg": "#FF180E04",
+      "tile": "#FF2A1C0E",
+      "accent": "#FFFFB438",
+      "text": "#FFEFE0BC",
+      "muted": "#FFA88A60",
+      "category": "Holographic"
+    },
+    {
+      "name": "WoW Icecrown Citadel",
+      "bg": "#FF080A12",
+      "tile": "#FF101824",
+      "accent": "#FF50E090",
+      "text": "#FFCCEAD2",
+      "muted": "#FF608878",
+      "category": "Brutalist"
+    },
+    {
+      "name": "WoW Grizzly Hills",
+      "bg": "#FF0E1208",
+      "tile": "#FF1C2410",
+      "accent": "#FFC06028",
+      "text": "#FFEFDDC0",
+      "muted": "#FF8A7058",
+      "category": "Paper"
+    },
+    {
+      "name": "WoW Nagrand",
+      "bg": "#FF100E08",
+      "tile": "#FF1E1C14",
+      "accent": "#FFA89060",
+      "text": "#FFDCD4C0",
+      "muted": "#FF807050",
+      "category": "Retro"
+    },
+    {
+      "name": "WoW Kun-Lai Summit",
+      "bg": "#FF0A0E14",
+      "tile": "#FF141E2A",
+      "accent": "#FFE8C040",
+      "text": "#FFE0E4EC",
+      "muted": "#FF7888A0",
+      "category": "Sharp"
+    },
+    {
+      "name": "WoW Howling Fjord",
+      "bg": "#FF0C100A",
+      "tile": "#FF1A1E16",
+      "accent": "#FFB8A078",
+      "text": "#FFD8DCC8",
+      "muted": "#FF688858",
+      "category": "Retro"
+    },
+    {
+      "name": "WoW Zangarmarsh",
+      "bg": "#FF0A1820",
+      "tile": "#FF142836",
+      "accent": "#FF30E0C0",
+      "text": "#FFD0EEE5",
+      "muted": "#FF6E9A98",
+      "category": "Holographic"
+    },
+    {
+      "name": "WoW Stormsong Valley",
+      "bg": "#FF0A1416",
+      "tile": "#FF182428",
+      "accent": "#FF48BC90",
+      "text": "#FFDDEDDC",
+      "muted": "#FF749080",
+      "category": "Default"
+    },
+    {
+      "name": "WoW Ardenweald",
+      "bg": "#FF08081E",
+      "tile": "#FF121432",
+      "accent": "#FF40E0E0",
+      "text": "#FFD8E8F5",
+      "muted": "#FF7090B0",
+      "category": "Aurora"
+    },
+    {
+      "name": "WoW Revendreth",
+      "bg": "#FF12060A",
+      "tile": "#FF240C12",
+      "accent": "#FFD42038",
+      "text": "#FFEFC8CC",
+      "muted": "#FF8E5860",
+      "category": "Ink"
+    },
+    {
+      "name": "WoW Suramar",
+      "bg": "#FF0A0824",
+      "tile": "#FF161038",
+      "accent": "#FFC880FF",
+      "text": "#FFE8DAFA",
+      "muted": "#FF8C70B8",
+      "category": "Holographic"
+    },
+    {
+      "name": "WoW Shadowmoon Valley",
+      "bg": "#FF06081C",
+      "tile": "#FF101430",
+      "accent": "#FF6098FF",
+      "text": "#FFD8DEF2",
+      "muted": "#FF7080A8",
+      "category": "Aurora"
+    },
+    {
+      "name": "WoW Stranglethorn Vale",
+      "bg": "#FF061410",
+      "tile": "#FF12241A",
+      "accent": "#FF38B85C",
+      "text": "#FFD0E8D5",
+      "muted": "#FF6E8C78",
+      "category": "Paper"
+    },
+    {
+      "name": "WoW Tirisfal Glades",
+      "bg": "#FF0C1208",
+      "tile": "#FF181E12",
+      "accent": "#FF8AAE38",
+      "text": "#FFD8DCB0",
+      "muted": "#FF7C8458",
+      "category": "Ink"
+    },
+    {
+      "name": "WoW Sholazar Basin",
+      "bg": "#FF060E06",
+      "tile": "#FF101C10",
+      "accent": "#FF40B840",
+      "text": "#FFC8E0C0",
+      "muted": "#FF508850",
+      "category": "Default"
+    },
+    {
+      "name": "WoW Vashj'ir",
+      "bg": "#FF061620",
+      "tile": "#FF122838",
+      "accent": "#FF30A8D8",
+      "text": "#FFCCE0EE",
+      "muted": "#FF6890A8",
+      "category": "Holographic"
+    },
+    {
+      "name": "WoW Ashenvale",
+      "bg": "#FF061010",
+      "tile": "#FF0E1E20",
+      "accent": "#FF38C0B0",
+      "text": "#FFC8E8E4",
+      "muted": "#FF488880",
+      "category": "Frosted"
+    },
+    {
+      "name": "WoW Felwood",
+      "bg": "#FF0E1408",
+      "tile": "#FF1A2010",
+      "accent": "#FF9FE848",
+      "text": "#FFE0E8C0",
+      "muted": "#FF8C9A5A",
+      "category": "Brutalist"
+    }
+  ]
+}

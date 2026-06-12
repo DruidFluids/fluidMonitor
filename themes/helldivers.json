@@ -1,0 +1,33 @@
+{
+  "franchise": "Helldivers",
+  "version": 1,
+  "themes": [
+    {
+      "name": "Helldivers Super Earth",
+      "bg": "#FF0A1018",
+      "tile": "#FF14223C",
+      "accent": "#FF41639C",
+      "text": "#FFE8EFFA",
+      "muted": "#FF7C8AAA",
+      "category": "Sharp"
+    },
+    {
+      "name": "Helldivers Hellpod Drop",
+      "bg": "#FF121008",
+      "tile": "#FF1F1C10",
+      "accent": "#FFFFE710",
+      "text": "#FFEFEAC8",
+      "muted": "#FF94905A",
+      "category": "Brutalist"
+    },
+    {
+      "name": "Helldivers Automaton Front",
+      "bg": "#FF0A0608",
+      "tile": "#FF180A0E",
+      "accent": "#FFE82828",
+      "text": "#FFE8D8D8",
+      "muted": "#FF8C7878",
+      "category": "Cyberpunk"
+    }
+  ]
+}

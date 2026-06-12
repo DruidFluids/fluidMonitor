@@ -1,0 +1,300 @@
+{
+  "version": 1,
+  "packs": [
+    {
+      "id": "wow",
+      "name": "WoW",
+      "count": 39,
+      "file": "wow.json",
+      "swatches": [
+        "#FFC0341E",
+        "#FFC85E2C",
+        "#FF40B840",
+        "#FF68B048",
+        "#FF33FF44",
+        "#FF40C838",
+        "#FF3CB888"
+      ]
+    },
+    {
+      "id": "fallout",
+      "name": "Fallout",
+      "count": 14,
+      "file": "fallout.json",
+      "swatches": [
+        "#FF1BFF80",
+        "#FFFEF265",
+        "#FFC09858",
+        "#FFE82838",
+        "#FF1EC8FF",
+        "#FFE82048",
+        "#FFE0F0D8"
+      ]
+    },
+    {
+      "id": "league-of-legends",
+      "name": "League of Legends",
+      "count": 12,
+      "file": "league-of-legends.json",
+      "swatches": [
+        "#FFB8942E",
+        "#FFC81818",
+        "#FFE890C0",
+        "#FF98E8FF",
+        "#FFE8B83C",
+        "#FFE0782C",
+        "#FFE0A028"
+      ]
+    },
+    {
+      "id": "spyro",
+      "name": "Spyro",
+      "count": 8,
+      "file": "spyro.json",
+      "swatches": [
+        "#FF58B848",
+        "#FFD8A040",
+        "#FF68C8F0",
+        "#FF48A838",
+        "#FFC060D0",
+        "#FFB8B830",
+        "#FFE8B030"
+      ]
+    },
+    {
+      "id": "runescape",
+      "name": "RuneScape",
+      "count": 8,
+      "file": "runescape.json",
+      "swatches": [
+        "#FFE0982E",
+        "#FF40D8E0",
+        "#FF6CB050",
+        "#FF6080FF",
+        "#FFFFD83A",
+        "#FFD42820",
+        "#FF9038B0"
+      ]
+    },
+    {
+      "id": "borderlands",
+      "name": "Borderlands",
+      "count": 3,
+      "file": "borderlands.json",
+      "swatches": [
+        "#FFE08020",
+        "#FFFFD030",
+        "#FFB060FF"
+      ]
+    },
+    {
+      "id": "witcher",
+      "name": "Witcher",
+      "count": 3,
+      "file": "witcher.json",
+      "swatches": [
+        "#FFB8B0A0",
+        "#FF4A8060",
+        "#FFE0A030"
+      ]
+    },
+    {
+      "id": "cyberpunk-2077",
+      "name": "Cyberpunk 2077",
+      "count": 3,
+      "file": "cyberpunk-2077.json",
+      "swatches": [
+        "#FFFCEE09",
+        "#FFE83828",
+        "#FFC8121C"
+      ]
+    },
+    {
+      "id": "hades",
+      "name": "Hades",
+      "count": 3,
+      "file": "hades.json",
+      "swatches": [
+        "#FF60C8B0",
+        "#FFFF6020",
+        "#FFE8C440"
+      ]
+    },
+    {
+      "id": "helldivers",
+      "name": "Helldivers",
+      "count": 3,
+      "file": "helldivers.json",
+      "swatches": [
+        "#FF41639C",
+        "#FFFFE710",
+        "#FFE82828"
+      ]
+    },
+    {
+      "id": "doom",
+      "name": "Doom",
+      "count": 3,
+      "file": "doom.json",
+      "swatches": [
+        "#FFCB5E29",
+        "#FFE03020",
+        "#FFE83018"
+      ]
+    },
+    {
+      "id": "mass-effect",
+      "name": "Mass Effect",
+      "count": 3,
+      "file": "mass-effect.json",
+      "swatches": [
+        "#FFE61809",
+        "#FF0EB9FE",
+        "#FFE82820"
+      ]
+    },
+    {
+      "id": "no-mans-sky",
+      "name": "No Man's Sky",
+      "count": 3,
+      "file": "no-mans-sky.json",
+      "swatches": [
+        "#FFE860C0",
+        "#FFFF2828",
+        "#FF40E060"
+      ]
+    },
+    {
+      "id": "hollow-knight",
+      "name": "Hollow Knight",
+      "count": 3,
+      "file": "hollow-knight.json",
+      "swatches": [
+        "#FFD8E5E8",
+        "#FF6090C8",
+        "#FF60C840"
+      ]
+    },
+    {
+      "id": "stardew-valley",
+      "name": "Stardew Valley",
+      "count": 3,
+      "file": "stardew-valley.json",
+      "swatches": [
+        "#FFE8B040",
+        "#FFE8782C",
+        "#FF40C8C0"
+      ]
+    },
+    {
+      "id": "minecraft",
+      "name": "Minecraft",
+      "count": 3,
+      "file": "minecraft.json",
+      "swatches": [
+        "#FF6FBE48",
+        "#FFE85830",
+        "#FFE5DFC0"
+      ]
+    },
+    {
+      "id": "persona-5",
+      "name": "Persona 5",
+      "count": 3,
+      "file": "persona-5.json",
+      "swatches": [
+        "#FFD92323",
+        "#FFB81020",
+        "#FF4080E0"
+      ]
+    },
+    {
+      "id": "dayz",
+      "name": "DayZ",
+      "count": 3,
+      "file": "dayz.json",
+      "swatches": [
+        "#FF8A7A3A",
+        "#FF8A7038",
+        "#FFC03830"
+      ]
+    },
+    {
+      "id": "amnesia",
+      "name": "Amnesia",
+      "count": 3,
+      "file": "amnesia.json",
+      "swatches": [
+        "#FFCAB04A",
+        "#FF6A8868",
+        "#FF982828"
+      ]
+    },
+    {
+      "id": "baldurs-gate-3",
+      "name": "Baldur's Gate 3",
+      "count": 3,
+      "file": "baldurs-gate-3.json",
+      "swatches": [
+        "#FF7BD4DE",
+        "#FF6A40CC",
+        "#FFE85020"
+      ]
+    },
+    {
+      "id": "crash-bandicoot",
+      "name": "Crash Bandicoot",
+      "count": 3,
+      "file": "crash-bandicoot.json",
+      "swatches": [
+        "#FFFF7A1A",
+        "#FF40D848",
+        "#FF40C8FF"
+      ]
+    },
+    {
+      "id": "spore",
+      "name": "Spore",
+      "count": 3,
+      "file": "spore.json",
+      "swatches": [
+        "#FF8AFFAA",
+        "#FF40FFD8",
+        "#FFFFC448"
+      ]
+    },
+    {
+      "id": "stronghold-2",
+      "name": "Stronghold 2",
+      "count": 3,
+      "file": "stronghold-2.json",
+      "swatches": [
+        "#FFB81F1F",
+        "#FFC04848",
+        "#FFE8C048"
+      ]
+    },
+    {
+      "id": "valheim",
+      "name": "Valheim",
+      "count": 3,
+      "file": "valheim.json",
+      "swatches": [
+        "#FFD08A3A",
+        "#FF98C868",
+        "#FFE85838"
+      ]
+    },
+    {
+      "id": "world-of-tanks",
+      "name": "World of Tanks",
+      "count": 3,
+      "file": "world-of-tanks.json",
+      "swatches": [
+        "#FFC8A050",
+        "#FFC08038",
+        "#FFE03838"
+      ]
+    }
+  ]
+}
